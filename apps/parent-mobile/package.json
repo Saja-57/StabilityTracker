@@ -1,0 +1,41 @@
+{
+  "name": "@stability/parent-mobile",
+  "version": "0.0.0",
+  "private": true,
+  "main": "expo-router/entry",
+  "scripts": {
+    "dev": "expo start",
+    "android": "expo start --android",
+    "ios": "expo start --ios",
+    "build": "expo export --platform android --output-dir dist",
+    "lint": "eslint app src",
+    "typecheck": "tsc --noEmit",
+    "clean": "rimraf .expo dist"
+  },
+  "dependencies": {
+    "@expo-google-fonts/cairo": "^0.4.2",
+    "@expo-google-fonts/heebo": "^0.4.2",
+    "@expo-google-fonts/ubuntu": "^0.4.1",
+    "@stability/design-tokens": "workspace:*",
+    "@stability/i18n": "workspace:*",
+    "@stability/supabase": "workspace:*",
+    "expo": "~57.0.20",
+    "expo-font": "~57.0.3",
+    "expo-localization": "~57.0.1",
+    "expo-router": "~57.0.19",
+    "expo-secure-store": "~57.0.3",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "react-native": "0.86.3",
+    "react-native-reanimated": "4.5.1",
+    "react-native-safe-area-context": "~5.7.0",
+    "react-native-screens": "~4.26.0",
+    "react-native-url-polyfill": "^4.0.0",
+    "react-native-web": "~0.21.0",
+    "react-native-worklets": "0.10.1"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "babel-preset-expo": "~57.0.10"
+  }
+}

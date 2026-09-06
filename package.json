@@ -1,0 +1,37 @@
+{
+  "name": "stability-tracker",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.24.0",
+  "engines": {
+    "node": ">=20.9.0",
+    "pnpm": ">=10.0.0"
+  },
+  "scripts": {
+    "dev": "turbo run dev --parallel",
+    "dev:mobile": "pnpm --filter @stability/parent-mobile dev",
+    "dev:web": "pnpm --filter @stability/therapist-web dev",
+    "build": "turbo run build",
+    "lint": "turbo run lint",
+    "typecheck": "tsc --noEmit && turbo run typecheck",
+    "verify": "tsx scripts/verify-foundation.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "clean": "turbo run clean && rimraf .turbo"
+  },
+  "devDependencies": {
+    "@eslint/js": "^9.39.5",
+    "@types/node": "^22.19.11",
+    "eslint": "^9.39.5",
+    "eslint-config-next": "^16.3.4",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-react-hooks": "^7.0.1",
+    "globals": "^16.5.0",
+    "prettier": "^3.9.6",
+    "rimraf": "^6.1.2",
+    "tsx": "^4.21.0",
+    "turbo": "^2.10.12",
+    "typescript": "^5.9.3",
+    "typescript-eslint": "^8.69.0"
+  }
+}

@@ -1,0 +1,39 @@
+@import "tailwindcss";
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--color-background-primary);
+  color: var(--color-text-primary);
+}
+
+:lang(en) {
+  font-family: var(--font-ubuntu), sans-serif;
+}
+
+:lang(he) {
+  font-family: var(--font-heebo), sans-serif;
+}
+
+:lang(ar) {
+  font-family: var(--font-cairo), sans-serif;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}

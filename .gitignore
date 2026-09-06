@@ -1,0 +1,31 @@
+# Dependencies and package manager state
+node_modules/
+.pnpm-store/
+
+# Build and tool output
+.expo/
+.next/
+.turbo/
+dist/
+coverage/
+*.tsbuildinfo
+
+# Local environment files
+.env
+.env.*
+!.env.example
+
+# Supabase local state
+supabase/.branches/
+supabase/.temp/
+
+# Platform and editor files
+.DS_Store
+.idea/
+.vscode/
+*.jks
+*.keystore
+*.p8
+*.p12
+*.key
+*.mobileprovision
