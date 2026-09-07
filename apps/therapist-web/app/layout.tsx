@@ -31,6 +31,11 @@ const cairo = Cairo({
 
 export const metadata: Metadata = {
   title: translate(DEFAULT_LANGUAGE, "app.name"),
+  description: translate(DEFAULT_LANGUAGE, "brand.description"),
+  icons: {
+    icon: "/brand/app-icon.png",
+    apple: "/brand/app-icon.png",
+  },
 };
 
 export default function RootLayout({ children }: PropsWithChildren) {

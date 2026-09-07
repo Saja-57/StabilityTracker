@@ -15,6 +15,7 @@
     "lint": "turbo run lint",
     "typecheck": "tsc --noEmit && turbo run typecheck",
     "verify": "tsx scripts/verify-foundation.ts",
+    "sync:brand": "tsx scripts/sync-brand-assets.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "clean": "turbo run clean && rimraf .turbo"

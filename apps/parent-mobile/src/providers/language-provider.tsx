@@ -1,10 +1,9 @@
 import {
-  resolveSupportedLanguage,
+  DEFAULT_LANGUAGE,
   translate,
   type SupportedLanguage,
   type TranslationKey,
 } from "@stability/i18n";
-import { getLocales } from "expo-localization";
 import {
   createContext,
   useContext,
@@ -21,13 +20,8 @@ interface LanguageContextValue {
 
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
-function getInitialLanguage(): SupportedLanguage {
-  return resolveSupportedLanguage(getLocales()[0]?.languageCode);
-}
-
 export function LanguageProvider({ children }: PropsWithChildren) {
-  const [language, setLanguage] =
-    useState<SupportedLanguage>(getInitialLanguage);
+  const [language, setLanguage] = useState<SupportedLanguage>(DEFAULT_LANGUAGE);
 
   const value = useMemo<LanguageContextValue>(
     () => ({

@@ -23,7 +23,7 @@ export function getDirectionalTextStyle(
 
   return {
     fontFamily: getMobileFontFamily(language, weight),
-    textAlign: direction === "rtl" ? "right" : "left",
+    textAlign: "auto",
     writingDirection: direction,
   };
 }

@@ -1,9 +1,10 @@
 {
   "expo": {
-    "name": "Parent Mobile",
-    "slug": "parent-mobile",
+    "name": "Stability Tracker",
+    "slug": "stability-tracker",
     "version": "0.1.0",
     "orientation": "portrait",
+    "icon": "./assets/brand/app-icon.png",
     "scheme": "parent-mobile",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,

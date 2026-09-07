@@ -1,8 +1,45 @@
 # Project foundation
 
-This repository is the technical foundation for a multilingual care platform with a parent/caregiver mobile application and a therapist web application. Product branding is intentionally not established; repository and package identifiers are technical working names only.
+This repository is the technical foundation for Stability Tracker, a multilingual care platform with a parent/caregiver mobile application and a therapist web application.
 
-The repository currently contains only application shells and shared infrastructure. It does not contain product screens, domain data, database tables, seed data, or mocked API responses.
+The repository currently contains application shells, shared infrastructure, and platform-specific UI foundations. Application entry points render navigation-only shells with translated route placeholders, not product screens. Internal design-system previews remain available outside normal product navigation. There is no domain data, database schema, seed data, or mocked API response.
+
+## Brand assets
+
+The canonical single source of truth for approved Stability Tracker brand assets is:
+
+```text
+assets/brand/
+```
+
+This root-level directory contains the approved artwork files:
+
+- `app-icon.png` (1254x1254): Application, OS, and PWA icon contexts.
+- `logo-mark.png` (1254x1254): Compact identity contexts, collapsed navigation, and small brand identifiers.
+- `logo-horizontal.png` (2066x761): Primary header and navigation identity across web and mobile shells.
+- `logo-stacked.png` (1254x1254): Primary large-format identity, authentication, onboarding, and entry contexts.
+
+### Asset hierarchy and usage rules
+
+- **App / OS / PWA**: Use `app-icon.png`.
+- **Compact identity**: Use `logo-mark.png`.
+- **Header / navigation**: Use `logo-horizontal.png`.
+- **Auth / onboarding / large identity**: Use `logo-stacked.png`.
+
+These assets are approved artwork and must not be casually regenerated, redesigned, recolored, stretched, distorted, unnecessarily cropped, reconstructed with CSS/text/Lucide, given arbitrary gradients or shadows, or wrapped in decorative containers. Original aspect ratios must always be preserved.
+
+### Platform-specific derived copies
+
+`assets/brand/` remains the canonical source of truth. Platform-specific copies are derived build artifacts created only when technically required:
+
+- `apps/therapist-web/public/brand/`: Static browser-served assets for `<link rel="icon">`, Web App Manifest (`manifest.webmanifest`), and Next.js Image optimization.
+- `apps/parent-mobile/assets/brand/`: Local Metro bundler asset resolution and Expo app icon packaging.
+
+To synchronize derived platform copies with the canonical root assets and ensure byte-for-byte fidelity:
+
+```bash
+pnpm sync:brand
+```
 
 ## Architecture
 
@@ -14,7 +51,7 @@ apps/
   therapist-web/    Next.js App Router, React, Tailwind CSS
 packages/
   config/           Stable runtime constants
-  design-tokens/    Small semantic token foundation
+  design-tokens/    Semantic palette, typography, spacing, shape, and motion
   i18n/             Resources, translation keys, direction, font metadata
   supabase/         Browser, server, and secure mobile client factories
   types/            Foundational shared types
@@ -25,7 +62,7 @@ supabase/
   migrations/       Future database migrations
 ```
 
-UI components are intentionally platform-specific. There is no cross-platform UI package.
+UI components are intentionally platform-specific. Web primitives live in `apps/therapist-web/components/ui`; mobile primitives live in `apps/parent-mobile/src/components/ui`. There is no cross-platform UI package.
 
 ## Prerequisites
 
@@ -65,7 +102,7 @@ Copy `.env.example` to the relevant local environment file and provide project v
 
 ## Shared packages
 
-- `@stability/design-tokens` contains temporary semantic foundation values. Exact palette values will be refined from approved visual references.
+- `@stability/design-tokens` contains the shared semantic palette, typography hierarchy, spacing, restrained radii and shadows, sizing, motion, and web breakpoint values.
 - `@stability/i18n` is the source of translation resources, supported language behavior, direction, and language-to-font metadata.
 - `@stability/types` contains only foundational language and role types.
 - `@stability/validation` contains matching Zod validators without application-form assumptions.
@@ -86,6 +123,19 @@ Font selection is language-specific:
 Mixed-language content must mark each segment with its language so the correct font and direction apply independently.
 
 English is left-to-right. Hebrew and Arabic are right-to-left. Web layout uses document direction and CSS logical properties. Mobile layout uses centralized direction helpers and start/end spacing properties. Do not add physical left/right spacing when a logical property can express the intent.
+
+## UI foundations
+
+The web foundation owns accessible controls and overlay behavior with Tailwind styling, Lucide icons, and narrowly selected Radix interaction primitives. The mobile foundation owns independent React Native implementations, including language-aware `AppText`, safe and keyboard-aware screen layout, controls, feedback states, and restrained loading treatments.
+
+The parent application uses Expo Router tabs for Home, Routine, Log, Messages, and More. More links to route-only placeholders for Ask AI, Resources, Surveys, Appointments, Family, and Profile. The therapist application uses a responsive dashboard shell with a persistent desktop sidebar, an accessible narrow-screen drawer, and routes for Dashboard, Children, Appointments, Messages, Clinical Insights, Therapist Notes, Reports, and Settings. The child-detail route is structurally prepared without child data.
+
+The preview entry points exist only to validate tokens, component states, language switching, RTL layout, and mixed-language font behavior:
+
+- Parent: `/internal/design-system`
+- Therapist: `/internal/design-system`
+
+They are intentionally absent from normal application navigation. Preview labels come from translation resources and preview progress values are component-state demonstrations rather than domain data.
 
 ## Product foundation policies
 
