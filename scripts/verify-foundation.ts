@@ -103,6 +103,33 @@ const expectedBrandTranslationKeys = [
   "brand.description",
 ] as const satisfies readonly TranslationKey[];
 
+const expectedParentHomeTranslationKeys = [
+  "home.title",
+  "home.welcome",
+  "home.context.title",
+  "home.context.emptyTitle",
+  "home.context.emptyDescription",
+  "home.todayProgress.title",
+  "home.todayProgress.accessibility",
+  "home.todayProgress.unavailable",
+  "home.todayProgress.emptyDescription",
+  "home.needHelp.title",
+  "home.needHelp.description",
+  "home.needHelp.action",
+  "home.nextActivity.title",
+  "home.nextActivity.emptyTitle",
+  "home.nextActivity.emptyDescription",
+  "home.caregiverSurvey.title",
+  "home.caregiverSurvey.emptyTitle",
+  "home.caregiverSurvey.emptyDescription",
+  "home.caregiverSurvey.action",
+  "home.quickActions.title",
+  "home.actions.routine",
+  "home.actions.log",
+  "home.actions.askAI",
+  "home.actions.resources",
+] as const satisfies readonly TranslationKey[];
+
 const expectedRouteFiles = [
   "apps/parent-mobile/app/(tabs)/index.tsx",
   "apps/parent-mobile/app/(tabs)/routine.tsx",
@@ -144,6 +171,9 @@ for (const language of SUPPORTED_LANGUAGES) {
     assert.ok(translate(language, key).length > 0);
   }
   for (const key of expectedBrandTranslationKeys) {
+    assert.ok(translate(language, key).length > 0);
+  }
+  for (const key of expectedParentHomeTranslationKeys) {
     assert.ok(translate(language, key).length > 0);
   }
   assert.deepEqual(

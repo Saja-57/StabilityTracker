@@ -11,7 +11,8 @@ export function getDirectionalViewStyle(
 
 export function getDirectionalRowStyle(language: SupportedLanguage): ViewStyle {
   return {
-    flexDirection: getDirection(language) === "rtl" ? "row-reverse" : "row",
+    direction: getDirection(language),
+    flexDirection: "row",
   };
 }
 

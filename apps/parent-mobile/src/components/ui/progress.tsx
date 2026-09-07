@@ -3,7 +3,8 @@ import { StyleSheet, View } from "react-native";
 
 export interface ProgressProps {
   accessibilityLabel: string;
-  value: number;
+  unavailableLabel?: string;
+  value?: number;
 }
 
 const styles = StyleSheet.create({
@@ -21,17 +22,28 @@ const styles = StyleSheet.create({
   },
 });
 
-export function Progress({ accessibilityLabel, value }: ProgressProps) {
-  const normalizedValue = Math.min(100, Math.max(0, value));
+export function Progress({
+  accessibilityLabel,
+  unavailableLabel,
+  value,
+}: ProgressProps) {
+  const normalizedValue =
+    value === undefined ? undefined : Math.min(100, Math.max(0, value));
 
   return (
     <View
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="progressbar"
-      accessibilityValue={{ max: 100, min: 0, now: normalizedValue }}
+      accessibilityValue={
+        normalizedValue === undefined
+          ? { text: unavailableLabel }
+          : { max: 100, min: 0, now: normalizedValue }
+      }
       style={styles.track}
     >
-      <View style={[styles.indicator, { width: `${normalizedValue}%` }]} />
+      {normalizedValue === undefined ? null : (
+        <View style={[styles.indicator, { width: `${normalizedValue}%` }]} />
+      )}
     </View>
   );
 }
