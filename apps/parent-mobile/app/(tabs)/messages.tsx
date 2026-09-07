@@ -1,9 +1,5 @@
-import { MessageSquare } from "lucide-react-native";
-
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { MessagesScreen } from "@/features/messages";
 
 export default function MessagesRoute() {
-  return (
-    <RoutePlaceholder icon={MessageSquare} titleKey="navigation.messages" />
-  );
+  return <MessagesScreen />;
 }

@@ -235,6 +235,90 @@ const expectedParentEventLogFiles = [
   "apps/parent-mobile/src/features/event-log/components/timing-selector.tsx",
 ] as const;
 
+const expectedParentMessagesTranslationKeys = [
+  "messages.title",
+  "messages.subtitle",
+  "messages.empty.title",
+  "messages.empty.description",
+  "messages.loading",
+  "messages.error.title",
+  "messages.error.description",
+  "messages.retry",
+  "messages.category.recommendation",
+  "messages.category.observation",
+  "messages.category.reminder",
+  "messages.category.routineAdjustment",
+  "messages.status.unread",
+  "messages.status.read",
+  "messages.status.important",
+  "messages.actions.open",
+  "messages.actions.back",
+  "messages.detail.title",
+  "messages.detail.sentAt",
+  "messages.detail.from",
+] as const satisfies readonly TranslationKey[];
+
+const expectedParentSurveysTranslationKeys = [
+  "surveys.title",
+  "surveys.subtitle",
+  "surveys.empty.title",
+  "surveys.empty.description",
+  "surveys.loading",
+  "surveys.error.title",
+  "surveys.error.description",
+  "surveys.retry",
+  "surveys.progress.question",
+  "surveys.progress.of",
+  "surveys.progress.accessibility",
+  "surveys.optional",
+  "surveys.required",
+  "surveys.actions.next",
+  "surveys.actions.back",
+  "surveys.actions.review",
+  "surveys.actions.submitUnavailable",
+  "surveys.actions.submitUnavailableDescription",
+  "surveys.types.singleChoice",
+  "surveys.types.multiChoice",
+  "surveys.types.scale",
+  "surveys.types.shortText",
+  "surveys.types.longText",
+  "surveys.scale.value",
+  "surveys.text.shortPlaceholder",
+  "surveys.text.longPlaceholder",
+  "surveys.review.title",
+  "surveys.review.description",
+  "surveys.review.unanswered",
+  "surveys.validation.required",
+] as const satisfies readonly TranslationKey[];
+
+const expectedParentMessagesFiles = [
+  "apps/parent-mobile/src/features/messages/messages-screen.tsx",
+  "apps/parent-mobile/src/features/messages/types.ts",
+  "apps/parent-mobile/src/features/messages/message-options.ts",
+  "apps/parent-mobile/src/features/messages/components/message-category-badge.tsx",
+  "apps/parent-mobile/src/features/messages/components/message-detail.tsx",
+  "apps/parent-mobile/src/features/messages/components/message-feedback-states.tsx",
+  "apps/parent-mobile/src/features/messages/components/message-list.tsx",
+  "apps/parent-mobile/src/features/messages/components/message-list-item.tsx",
+] as const;
+
+const expectedParentSurveysFiles = [
+  "apps/parent-mobile/src/features/surveys/survey-screen.tsx",
+  "apps/parent-mobile/src/features/surveys/types.ts",
+  "apps/parent-mobile/src/features/surveys/components/multi-choice-question.tsx",
+  "apps/parent-mobile/src/features/surveys/components/scale-question.tsx",
+  "apps/parent-mobile/src/features/surveys/components/single-choice-question.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-choice-option.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-feedback-states.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-flow.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-header.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-progress.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-question.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-question-frame.tsx",
+  "apps/parent-mobile/src/features/surveys/components/survey-review.tsx",
+  "apps/parent-mobile/src/features/surveys/components/text-question.tsx",
+] as const;
+
 const expectedRouteFiles = [
   "apps/parent-mobile/app/(tabs)/index.tsx",
   "apps/parent-mobile/app/(tabs)/routine.tsx",
@@ -285,6 +369,12 @@ for (const language of SUPPORTED_LANGUAGES) {
     assert.ok(translate(language, key).length > 0);
   }
   for (const key of expectedParentEventLogTranslationKeys) {
+    assert.ok(translate(language, key).length > 0);
+  }
+  for (const key of expectedParentMessagesTranslationKeys) {
+    assert.ok(translate(language, key).length > 0);
+  }
+  for (const key of expectedParentSurveysTranslationKeys) {
     assert.ok(translate(language, key).length > 0);
   }
   assert.deepEqual(
@@ -409,6 +499,14 @@ for (const path of expectedParentEventLogFiles) {
   assert.ok(existsSync(path), `${path} is required by the Event Log UI.`);
 }
 
+for (const path of expectedParentMessagesFiles) {
+  assert.ok(existsSync(path), `${path} is required by the Messages UI.`);
+}
+
+for (const path of expectedParentSurveysFiles) {
+  assert.ok(existsSync(path), `${path} is required by the Surveys UI.`);
+}
+
 const sourceExtensions = new Set([".css", ".js", ".mjs", ".ts", ".tsx"]);
 const applicationRoots = ["apps/parent-mobile", "apps/therapist-web"];
 const ignoredDirectories = new Set([".expo", ".next", "dist", "node_modules"]);
@@ -419,6 +517,8 @@ const physicalDirectionPattern =
   /\b(?:left|right|marginLeft|marginRight|paddingLeft|paddingRight)\s*:/u;
 const eventLogIntegrationPattern =
   /from\s+["'](?:@stability\/supabase|expo-(?:audio|av|camera|image-picker)|@react-native-async-storage)|\bfetch\s*\(/u;
+const phaseSevenIntegrationPattern =
+  /from\s+["'](?:@stability\/supabase|@react-native-async-storage)|\bfetch\s*\(/u;
 
 function getSourceFiles(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -470,12 +570,43 @@ for (const path of expectedParentEventLogFiles) {
   );
 }
 
+for (const path of [
+  ...expectedParentMessagesFiles,
+  ...expectedParentSurveysFiles,
+]) {
+  const source = readFileSync(path, "utf8");
+  assert.doesNotMatch(
+    source,
+    physicalDirectionPattern,
+    `${path} contains a physical-direction style that can break RTL.`,
+  );
+  assert.doesNotMatch(
+    source,
+    phaseSevenIntegrationPattern,
+    `${path} contains a backend or persistence integration.`,
+  );
+}
+
 const eventLogRoute = readFileSync(
   "apps/parent-mobile/app/(tabs)/log.tsx",
   "utf8",
 );
 assert.match(eventLogRoute, /EventLogScreen/u);
 assert.doesNotMatch(eventLogRoute, /RoutePlaceholder/u);
+
+const messagesRoute = readFileSync(
+  "apps/parent-mobile/app/(tabs)/messages.tsx",
+  "utf8",
+);
+assert.match(messagesRoute, /MessagesScreen/u);
+assert.doesNotMatch(messagesRoute, /RoutePlaceholder/u);
+
+const surveysRoute = readFileSync(
+  "apps/parent-mobile/app/surveys/index.tsx",
+  "utf8",
+);
+assert.match(surveysRoute, /SurveyScreen/u);
+assert.doesNotMatch(surveysRoute, /RoutePlaceholder/u);
 
 console.log(
   "Application-shell routes, localization, typography, palette, and source invariants verified.",
