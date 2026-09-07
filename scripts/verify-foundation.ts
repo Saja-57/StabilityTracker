@@ -130,6 +130,50 @@ const expectedParentHomeTranslationKeys = [
   "home.actions.resources",
 ] as const satisfies readonly TranslationKey[];
 
+const expectedParentRoutineTranslationKeys = [
+  "routine.title",
+  "routine.context.title",
+  "routine.context.unavailable",
+  "routine.context.description",
+  "routine.progress.title",
+  "routine.progress.accessibility",
+  "routine.progress.unavailable",
+  "routine.progress.description",
+  "routine.progress.completed",
+  "routine.progress.total",
+  "routine.steps",
+  "routine.step",
+  "routine.empty.title",
+  "routine.empty.description",
+  "routine.loading",
+  "routine.error.title",
+  "routine.error.description",
+  "routine.retry",
+  "routine.status.upcoming",
+  "routine.status.current",
+  "routine.status.completed",
+  "routine.status.skipped",
+  "routine.status.delayed",
+  "routine.actions.complete",
+  "routine.actions.undo",
+  "routine.scheduledAt",
+  "routine.completedBy",
+  "routine.completedAt",
+] as const satisfies readonly TranslationKey[];
+
+const expectedParentRoutineFiles = [
+  "apps/parent-mobile/src/features/routine/routine-screen.tsx",
+  "apps/parent-mobile/src/features/routine/types.ts",
+  "apps/parent-mobile/src/features/routine/components/routine-context-card.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-feedback-states.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-header.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-progress-card.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-timeline.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-step.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-step-status.tsx",
+  "apps/parent-mobile/src/features/routine/components/routine-completion-meta.tsx",
+] as const;
+
 const expectedRouteFiles = [
   "apps/parent-mobile/app/(tabs)/index.tsx",
   "apps/parent-mobile/app/(tabs)/routine.tsx",
@@ -174,6 +218,9 @@ for (const language of SUPPORTED_LANGUAGES) {
     assert.ok(translate(language, key).length > 0);
   }
   for (const key of expectedParentHomeTranslationKeys) {
+    assert.ok(translate(language, key).length > 0);
+  }
+  for (const key of expectedParentRoutineTranslationKeys) {
     assert.ok(translate(language, key).length > 0);
   }
   assert.deepEqual(
@@ -290,12 +337,18 @@ for (const path of expectedRouteFiles) {
   assert.ok(existsSync(path), `${path} is required by the application shells.`);
 }
 
+for (const path of expectedParentRoutineFiles) {
+  assert.ok(existsSync(path), `${path} is required by the Routine UI.`);
+}
+
 const sourceExtensions = new Set([".css", ".js", ".mjs", ".ts", ".tsx"]);
 const applicationRoots = ["apps/parent-mobile", "apps/therapist-web"];
 const ignoredDirectories = new Set([".expo", ".next", "dist", "node_modules"]);
 const prohibitedFontPattern = /\b(?:Inter|Roboto|Poppins)\b/u;
 const rawColorPattern = /#[\dA-Fa-f]{3,8}\b|\brgba?\s*\(/u;
 const emojiPattern = /\p{Extended_Pictographic}/u;
+const physicalDirectionPattern =
+  /\b(?:left|right|marginLeft|marginRight|paddingLeft|paddingRight)\s*:/u;
 
 function getSourceFiles(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -322,6 +375,15 @@ for (const path of applicationRoots.flatMap(getSourceFiles)) {
     `${path} contains an application color literal.`,
   );
   assert.doesNotMatch(source, emojiPattern, `${path} contains an emoji.`);
+}
+
+for (const path of expectedParentRoutineFiles) {
+  const source = readFileSync(path, "utf8");
+  assert.doesNotMatch(
+    source,
+    physicalDirectionPattern,
+    `${path} contains a physical-direction style that can break RTL.`,
+  );
 }
 
 console.log(

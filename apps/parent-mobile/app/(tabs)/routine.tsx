@@ -1,7 +1,5 @@
-import { ListChecks } from "lucide-react-native";
-
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { RoutineScreen } from "@/features/routine";
 
 export default function RoutineRoute() {
-  return <RoutePlaceholder icon={ListChecks} titleKey="navigation.routine" />;
+  return <RoutineScreen />;
 }
