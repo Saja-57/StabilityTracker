@@ -174,6 +174,67 @@ const expectedParentRoutineFiles = [
   "apps/parent-mobile/src/features/routine/components/routine-completion-meta.tsx",
 ] as const;
 
+const expectedParentEventLogTranslationKeys = [
+  "eventLog.title",
+  "eventLog.subtitle",
+  "eventLog.entry.title",
+  "eventLog.entry.description",
+  "eventLog.mode.quick",
+  "eventLog.mode.quickDescription",
+  "eventLog.mode.detailed",
+  "eventLog.mode.detailedDescription",
+  "eventLog.type.title",
+  "eventLog.type.behavioralEvent",
+  "eventLog.type.meltdown",
+  "eventLog.type.sensoryOverload",
+  "eventLog.type.other",
+  "eventLog.intensity.title",
+  "eventLog.intensity.low",
+  "eventLog.intensity.moderate",
+  "eventLog.intensity.high",
+  "eventLog.media.title",
+  "eventLog.media.photo",
+  "eventLog.media.video",
+  "eventLog.media.audio",
+  "eventLog.media.gallery",
+  "eventLog.media.unavailable",
+  "eventLog.sections.basics",
+  "eventLog.sections.before",
+  "eventLog.sections.during",
+  "eventLog.sections.helped",
+  "eventLog.sections.additional",
+  "eventLog.support.title",
+  "eventLog.support.description",
+  "eventLog.review.title",
+  "eventLog.review.description",
+  "eventLog.actions.completeLaterUnavailable",
+  "eventLog.actions.saveUnavailable",
+  "eventLog.validation.eventType",
+] as const satisfies readonly TranslationKey[];
+
+const expectedParentEventLogFiles = [
+  "apps/parent-mobile/src/features/event-log/event-log-screen.tsx",
+  "apps/parent-mobile/src/features/event-log/options.ts",
+  "apps/parent-mobile/src/features/event-log/types.ts",
+  "apps/parent-mobile/src/features/event-log/components/calming-support-card.tsx",
+  "apps/parent-mobile/src/features/event-log/components/choice-group.tsx",
+  "apps/parent-mobile/src/features/event-log/components/detailed-progress.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-basics-section.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-context-section.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-during-section.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-log-header.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-response-section.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-review.tsx",
+  "apps/parent-mobile/src/features/event-log/components/event-type-selector.tsx",
+  "apps/parent-mobile/src/features/event-log/components/flow-actions.tsx",
+  "apps/parent-mobile/src/features/event-log/components/form-section.tsx",
+  "apps/parent-mobile/src/features/event-log/components/intensity-selector.tsx",
+  "apps/parent-mobile/src/features/event-log/components/log-mode-selector.tsx",
+  "apps/parent-mobile/src/features/event-log/components/media-capture-actions.tsx",
+  "apps/parent-mobile/src/features/event-log/components/quick-capture-form.tsx",
+  "apps/parent-mobile/src/features/event-log/components/timing-selector.tsx",
+] as const;
+
 const expectedRouteFiles = [
   "apps/parent-mobile/app/(tabs)/index.tsx",
   "apps/parent-mobile/app/(tabs)/routine.tsx",
@@ -221,6 +282,9 @@ for (const language of SUPPORTED_LANGUAGES) {
     assert.ok(translate(language, key).length > 0);
   }
   for (const key of expectedParentRoutineTranslationKeys) {
+    assert.ok(translate(language, key).length > 0);
+  }
+  for (const key of expectedParentEventLogTranslationKeys) {
     assert.ok(translate(language, key).length > 0);
   }
   assert.deepEqual(
@@ -341,6 +405,10 @@ for (const path of expectedParentRoutineFiles) {
   assert.ok(existsSync(path), `${path} is required by the Routine UI.`);
 }
 
+for (const path of expectedParentEventLogFiles) {
+  assert.ok(existsSync(path), `${path} is required by the Event Log UI.`);
+}
+
 const sourceExtensions = new Set([".css", ".js", ".mjs", ".ts", ".tsx"]);
 const applicationRoots = ["apps/parent-mobile", "apps/therapist-web"];
 const ignoredDirectories = new Set([".expo", ".next", "dist", "node_modules"]);
@@ -349,6 +417,8 @@ const rawColorPattern = /#[\dA-Fa-f]{3,8}\b|\brgba?\s*\(/u;
 const emojiPattern = /\p{Extended_Pictographic}/u;
 const physicalDirectionPattern =
   /\b(?:left|right|marginLeft|marginRight|paddingLeft|paddingRight)\s*:/u;
+const eventLogIntegrationPattern =
+  /from\s+["'](?:@stability\/supabase|expo-(?:audio|av|camera|image-picker)|@react-native-async-storage)|\bfetch\s*\(/u;
 
 function getSourceFiles(directory: string): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
@@ -385,6 +455,27 @@ for (const path of expectedParentRoutineFiles) {
     `${path} contains a physical-direction style that can break RTL.`,
   );
 }
+
+for (const path of expectedParentEventLogFiles) {
+  const source = readFileSync(path, "utf8");
+  assert.doesNotMatch(
+    source,
+    physicalDirectionPattern,
+    `${path} contains a physical-direction style that can break RTL.`,
+  );
+  assert.doesNotMatch(
+    source,
+    eventLogIntegrationPattern,
+    `${path} contains a backend, persistence, or native media integration.`,
+  );
+}
+
+const eventLogRoute = readFileSync(
+  "apps/parent-mobile/app/(tabs)/log.tsx",
+  "utf8",
+);
+assert.match(eventLogRoute, /EventLogScreen/u);
+assert.doesNotMatch(eventLogRoute, /RoutePlaceholder/u);
 
 console.log(
   "Application-shell routes, localization, typography, palette, and source invariants verified.",
