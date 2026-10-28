@@ -1,16 +1,8 @@
 import type { TranslationKey } from "@stability/i18n";
-import {
-  CalendarDays,
-  ChartNoAxesCombined,
-  FileText,
-  LayoutDashboard,
-  MessageSquare,
-  NotebookPen,
-  Settings,
-  UsersRound,
-} from "lucide-react";
 
-import type { UiIcon } from "@/components/ui/icon";
+import type { GlyphName } from "@/components/icons/glyphs";
+import { appointments, children, getThread } from "@/lib/sample-data/fixtures";
+import { SAMPLE_TODAY } from "@/lib/sample-data/time";
 
 export type NavigationItemId =
   | "dashboard"
@@ -25,61 +17,72 @@ export type NavigationItemId =
 export interface NavigationItemDefinition {
   readonly id: NavigationItemId;
   readonly href: string;
-  readonly icon: UiIcon;
+  readonly glyph: GlyphName;
   readonly labelKey: TranslationKey;
+  /** Count shown on the index tab; gold when it asks for the therapist's action. */
+  readonly count?: { readonly value: number; readonly action: boolean };
 }
 
-const dashboardNavigationItem: NavigationItemDefinition = {
-  id: "dashboard",
-  href: "/dashboard",
-  icon: LayoutDashboard,
-  labelKey: "navigation.dashboard",
-};
+const unreadFamilies = children.filter((child) =>
+  getThread(child.id).some((message) => message.from === "family" && !message.read),
+).length;
 
-const navigationItemsById: Readonly<
-  Record<NavigationItemId, NavigationItemDefinition>
-> = {
-  dashboard: dashboardNavigationItem,
+const navigationItemsById: Readonly<Record<NavigationItemId, NavigationItemDefinition>> = {
+  dashboard: {
+    id: "dashboard",
+    href: "/dashboard",
+    glyph: "desk",
+    labelKey: "navigation.dashboard",
+  },
   children: {
     id: "children",
     href: "/children",
-    icon: UsersRound,
+    glyph: "files",
     labelKey: "navigation.children",
+    count: {
+      value: children.filter((child) => child.status === "needsReview").length,
+      action: true,
+    },
   },
   appointments: {
     id: "appointments",
     href: "/appointments",
-    icon: CalendarDays,
+    glyph: "calendar",
     labelKey: "navigation.appointments",
+    count: {
+      value: appointments.filter((appointment) => appointment.start.startsWith(SAMPLE_TODAY)).length,
+      action: false,
+    },
   },
   messages: {
     id: "messages",
     href: "/messages",
-    icon: MessageSquare,
+    glyph: "messages",
     labelKey: "navigation.messages",
+    count: { value: unreadFamilies, action: true },
   },
   reports: {
     id: "reports",
     href: "/reports",
-    icon: FileText,
+    glyph: "reports",
     labelKey: "navigation.reports",
   },
   insights: {
     id: "insights",
     href: "/insights",
-    icon: ChartNoAxesCombined,
+    glyph: "insights",
     labelKey: "navigation.insights",
   },
   notes: {
     id: "notes",
     href: "/notes",
-    icon: NotebookPen,
+    glyph: "notes",
     labelKey: "navigation.notes",
   },
   settings: {
     id: "settings",
     href: "/settings",
-    icon: Settings,
+    glyph: "settings",
     labelKey: "navigation.settings",
   },
 };
@@ -98,29 +101,16 @@ export const secondaryNavigationItems: readonly NavigationItemDefinition[] = [
   navigationItemsById.settings,
 ];
 
-export const navigationItems = [
-  ...primaryNavigationItems,
-  ...secondaryNavigationItems,
-] as const;
+export const navigationItems = [...primaryNavigationItems, ...secondaryNavigationItems] as const;
 
-export function isNavigationItemActive(
-  pathname: string,
-  item: NavigationItemDefinition,
-): boolean {
+export function isNavigationItemActive(pathname: string, item: NavigationItemDefinition): boolean {
   return pathname === item.href || pathname.startsWith(`${item.href}/`);
 }
 
-export function getCurrentNavigationItem(
-  pathname: string,
-): NavigationItemDefinition {
-  return (
-    navigationItems.find((item) => isNavigationItemActive(pathname, item)) ??
-    dashboardNavigationItem
-  );
+export function getCurrentNavigationItem(pathname: string): NavigationItemDefinition {
+  return navigationItems.find((item) => isNavigationItemActive(pathname, item)) ?? navigationItemsById.dashboard;
 }
 
-export function getNavigationItemById(
-  id: NavigationItemId,
-): NavigationItemDefinition {
+export function getNavigationItemById(id: NavigationItemId): NavigationItemDefinition {
   return navigationItemsById[id];
 }

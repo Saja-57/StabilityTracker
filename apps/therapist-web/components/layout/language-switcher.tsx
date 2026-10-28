@@ -1,80 +1,51 @@
 "use client";
 
-import {
-  getDirection,
-  getLanguageLabelKey,
-  SUPPORTED_LANGUAGES,
-  translate,
-} from "@stability/i18n";
-import { Languages } from "lucide-react";
+import { getDirection, getLanguageLabelKey, SUPPORTED_LANGUAGES, translate } from "@stability/i18n";
 
-import {
-  Button,
-  DropdownMenu,
-  DropdownMenuItem,
-  IconButton,
-} from "@/components/ui";
+import { cx } from "@/components/ui/styles";
 import { useLanguage } from "@/providers/language-provider";
 
-export function LanguageSwitcher() {
+export interface LanguageSwitcherProps {
+  readonly tone?: "board" | "sheet";
+}
+
+export function LanguageSwitcher({ tone = "board" }: LanguageSwitcherProps) {
   const { language, setLanguage, t } = useLanguage();
 
   return (
     <div
       role="group"
       aria-label={t("common.language")}
-      className="hidden flex-wrap gap-2 sm:flex"
+      className={cx(
+        "grid grid-cols-3 gap-0.5 rounded-[10px] p-0.5",
+        tone === "board" ? "bg-board-deep/70 ring-1 ring-board-line" : "bg-sheet-sunk ring-1 ring-rule",
+      )}
     >
-      {SUPPORTED_LANGUAGES.map((option) => (
-        <Button
-          key={option}
-          aria-pressed={language === option}
-          dir={getDirection(option)}
-          lang={option}
-          onClick={() => setLanguage(option)}
-          size="small"
-          variant={language === option ? "primary" : "secondary"}
-        >
-          {translate(option, getLanguageLabelKey(option))}
-        </Button>
-      ))}
-    </div>
-  );
-}
-
-export function CompactLanguageSwitcher() {
-  const { direction, language, setLanguage, t } = useLanguage();
-
-  return (
-    <div className="sm:hidden">
-      <DropdownMenu
-        align="end"
-        direction={direction}
-        trigger={
-          <IconButton
-            aria-label={t("common.language")}
-            icon={Languages}
-            variant="secondary"
-          />
-        }
-      >
-        {SUPPORTED_LANGUAGES.map((option) => (
-          <DropdownMenuItem
+      {SUPPORTED_LANGUAGES.map((option) => {
+        const active = language === option;
+        return (
+          <button
             key={option}
-            aria-current={language === option ? "true" : undefined}
-            className={
-              language === option
-                ? "bg-[var(--color-brand-subtle)] text-[var(--color-brand-primary)]"
-                : undefined
-            }
+            type="button"
+            aria-pressed={active}
             dir={getDirection(option)}
             lang={option}
-            onSelect={() => setLanguage(option)}
+            onClick={() => setLanguage(option)}
+            className={cx(
+              "h-8 truncate rounded-[8px] px-1.5 text-[12.5px] transition-[background-color,color,box-shadow] duration-200",
+              tone === "board"
+                ? active
+                  ? "bg-board-raised text-board-ink shadow-press"
+                  : "text-board-muted hover:text-board-ink"
+                : active
+                  ? "bg-sheet-raised text-ink shadow-press"
+                  : "text-ink-3 hover:text-ink",
+            )}
           >
             {translate(option, getLanguageLabelKey(option))}
-          </DropdownMenuItem>
-        ))}
-      </DropdownMenu>
+          </button>
+        );
+      })}
     </div>
   );
 }

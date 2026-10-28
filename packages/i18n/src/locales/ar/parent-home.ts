@@ -1,0 +1,28 @@
+import type { enParentHome } from "../en/parent-home";
+
+export const arParentHome = {
+  "home.tally": "اكتمل {done} من {total} اليوم",
+  "home.adjustedStep": "عدّلت {name} خطوة {time}",
+  "home.markDone": "تعليم كمكتمل: {step}",
+  "home.nextShort": "التالي:",
+  "home.allDone": "اكتملت كل خطوات اليوم.",
+  "home.session.with": "جلسة مع {name}",
+  "home.greeting.morning": "صباح الخير، {name}.",
+  "home.summary": "اكتملت {done} من {total} خطوات اليوم. {child} في المدرسة؛ والجزء الأصعب يأتي عادة بعد الاستلام.",
+  "home.now": "الآن",
+  "home.until": "{start}–{end}",
+  "home.next": "التالي عند {time}",
+  "home.adjustedBy": "عدّلته {name}",
+  "home.schedule.title": "اليوم على الثلاجة",
+  "home.schedule.all": "الروتين كاملًا",
+  "home.note.from": "من {name}",
+  "home.note.read": "اقرأ",
+  "home.checkin.title": "استبيان الأسبوع",
+  "home.checkin.detail": "خمسة أسئلة لِلينا، نحو دقيقتين.",
+  "home.checkin.waiting": "بانتظارك",
+  "home.session.title": "جلسة مع لينا اليوم عند {time}",
+  "home.week.title": "آخر أسبوعين",
+  "home.week.summary": "اللحظات المسجّلة منذ جلسة {date}: {count}. ساعد «{support}» في كل مرة جرّبتموه.",
+  "home.help.action": "شيء ما يحدث الآن",
+  "home.help.hint": "يفتح الدعم المهدّئ أولًا، ثم تسجيلًا سريعًا.",
+} as const satisfies Record<keyof typeof enParentHome, string>;

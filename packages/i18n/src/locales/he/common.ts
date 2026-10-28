@@ -1,4 +1,20 @@
 import type { TranslationResource } from "../en/common";
+import { heParentCore } from "./parent-core";
+import { heParentHome } from "./parent-home";
+import { heParentRoutine } from "./parent-routine";
+import { heParentLog } from "./parent-log";
+import { heParentMessages } from "./parent-messages";
+import { heParentSurveys } from "./parent-surveys";
+import { heParentMore } from "./parent-more";
+import { heTherapistCore } from "./therapist-core";
+import { heTherapistCaseload } from "./therapist-caseload";
+import { heTherapistFile } from "./therapist-file";
+import { heTherapistAppointments } from "./therapist-appointments";
+import { heTherapistMessages } from "./therapist-messages";
+import { heTherapistReports } from "./therapist-reports";
+import { heTherapistInsights } from "./therapist-insights";
+import { heTherapistNotes } from "./therapist-notes";
+import { heTherapistSettings } from "./therapist-settings";
 
 export const heCommon = {
   "app.name": "Stability Tracker",
@@ -136,6 +152,10 @@ export const heCommon = {
   "eventLog.media.audio": "הקלטת שמע",
   "eventLog.media.gallery": "בחירה מהגלריה",
   "eventLog.media.unavailable": "עדיין לא זמין",
+  "eventLog.media.count": "{count} נוספו",
+  "eventLog.media.recording": "מקליט {time}. הקישו לעצירה",
+  "eventLog.media.remove": "הסרה",
+  "eventLog.media.permission": "אפשרו גישה בהגדרות כדי להוסיף את זה.",
   "eventLog.sections.basics": "פרטי האירוע",
   "eventLog.sections.before": "לפני האירוע",
   "eventLog.sections.during": "במהלך האירוע",
@@ -275,4 +295,20 @@ export const heCommon = {
   "states.empty.description": "התוכן יופיע כאן כאשר יהיה זמין.",
   "states.error.title": "משהו השתבש",
   "states.error.description": "לא ניתן היה לטעון את התוכן.",
+  ...heParentCore,
+  ...heParentHome,
+  ...heParentRoutine,
+  ...heParentLog,
+  ...heParentMessages,
+  ...heParentSurveys,
+  ...heParentMore,
+  ...heTherapistCore,
+  ...heTherapistCaseload,
+  ...heTherapistFile,
+  ...heTherapistAppointments,
+  ...heTherapistMessages,
+  ...heTherapistReports,
+  ...heTherapistInsights,
+  ...heTherapistNotes,
+  ...heTherapistSettings,
 } as const satisfies TranslationResource;

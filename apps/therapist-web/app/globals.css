@@ -17,6 +17,9 @@ body {
 body {
   background: var(--color-background-canvas);
   color: var(--color-text-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 :lang(en) {
@@ -31,11 +34,13 @@ body {
   font-family: var(--font-cairo), sans-serif;
 }
 
-button,
-input,
-select,
-textarea {
-  font: inherit;
+@layer base {
+  button,
+  input,
+  select,
+  textarea {
+    font: inherit;
+  }
 }
 
 button,
@@ -44,8 +49,8 @@ button,
 }
 
 ::selection {
-  background: var(--color-brand-subtle);
-  color: var(--color-text-primary);
+  background: var(--cf-selection);
+  color: var(--cf-sheet-ink);
 }
 
 .type-display,
@@ -156,12 +161,312 @@ button,
   }
 }
 
+/* ------------------------------------------------------------------
+ * Case File world
+ * ------------------------------------------------------------------ */
+
+@theme inline {
+  --color-board: var(--cf-pressboard-base);
+  --color-board-deep: var(--cf-pressboard-deep);
+  --color-board-raised: var(--cf-pressboard-raised);
+  --color-board-line: var(--cf-pressboard-line);
+  --color-board-ink: var(--cf-pressboard-ink);
+  --color-board-muted: var(--cf-pressboard-ink-muted);
+  --color-board-faint: var(--cf-pressboard-ink-faint);
+  --color-sheet: var(--cf-sheet-base);
+  --color-sheet-raised: var(--cf-sheet-raised);
+  --color-sheet-sunk: var(--cf-sheet-sunk);
+  --color-rule: var(--cf-sheet-rule);
+  --color-rule-strong: var(--cf-sheet-rule-strong);
+  --color-ink: var(--cf-sheet-ink);
+  --color-ink-2: var(--cf-sheet-ink-secondary);
+  --color-ink-3: var(--cf-sheet-ink-muted);
+  --color-gold: var(--cf-tab-gold);
+  --color-gold-ink: var(--cf-tab-gold-ink);
+  --color-gold-wash: var(--cf-tab-gold-wash);
+  --color-ruby: var(--cf-tab-ruby);
+  --color-ruby-ink: var(--cf-tab-ruby-ink);
+  --color-ruby-wash: var(--cf-tab-ruby-wash);
+  --color-cobalt: var(--cf-tab-cobalt);
+  --color-cobalt-ink: var(--cf-tab-cobalt-ink);
+  --color-cobalt-wash: var(--cf-tab-cobalt-wash);
+  --color-moss: var(--cf-tab-moss);
+  --color-moss-ink: var(--cf-tab-moss-ink);
+  --color-moss-wash: var(--cf-tab-moss-wash);
+  --color-clay: var(--cf-tab-clay);
+  --color-clay-wash: var(--cf-tab-clay-wash);
+  --color-int-low: var(--cf-intensity-low);
+  --color-int-moderate: var(--cf-intensity-moderate);
+  --color-int-high: var(--cf-intensity-high);
+  --color-pen: var(--cf-pen);
+  --color-stamp: var(--cf-stamp);
+  --shadow-sheet: var(--cf-shadow-sheet);
+  --shadow-folder: var(--cf-shadow-folder);
+  --shadow-lift: var(--cf-shadow-lift);
+  --shadow-press: var(--cf-shadow-press);
+  --ease-paper: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-settle: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.workspace {
+  background-color: var(--cf-pressboard-base);
+  /* Pressboard fibre: alpha-only turbulence keeps the board matte, not flat. */
+  background-image:
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E"),
+    radial-gradient(
+      120% 80% at 0% 0%,
+      var(--cf-pressboard-raised) 0%,
+      transparent 60%
+    );
+  color: var(--cf-pressboard-ink);
+  color-scheme: light;
+}
+
+.sheet-stock {
+  background-color: var(--cf-sheet-base);
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='1.4' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 0 0 0 0 0 0.1 0 0 0 0 0.05 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  color: var(--cf-sheet-ink);
+  caret-color: var(--cf-pen);
+}
+
+.font-display {
+  font-family: var(--font-display), var(--font-ubuntu), sans-serif;
+  font-variation-settings: "wdth" 92;
+  font-weight: 640;
+  letter-spacing: -0.025em;
+}
+
+:lang(he) .font-display {
+  font-family: var(--font-heebo), sans-serif;
+  font-variation-settings: normal;
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+:lang(ar) .font-display {
+  font-family: var(--font-cairo), sans-serif;
+  font-variation-settings: normal;
+  font-weight: 800;
+  letter-spacing: 0;
+}
+
+.font-figures {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums slashed-zero;
+  letter-spacing: -0.01em;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+.stamp {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-variant-numeric: tabular-nums;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.focus-ring:focus-visible,
+.workspace :focus-visible {
+  outline: 2px solid var(--cf-tab-gold);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+.sheet-stock :focus-visible {
+  outline-color: var(--cf-pen);
+}
+
+.workspace * {
+  scrollbar-width: thin;
+  scrollbar-color: var(--cf-pressboard-line) transparent;
+}
+
+.sheet-stock * {
+  scrollbar-color: var(--cf-sheet-rule-strong) transparent;
+}
+
+.rule-dashed {
+  background-image: linear-gradient(
+    to var(--rule-axis, right),
+    var(--cf-sheet-rule-strong) 50%,
+    transparent 50%
+  );
+  background-size: 8px 1px;
+  background-repeat: repeat-x;
+}
+
+/* Index tab joined to the sheet: concave fillets drawn by masks. */
+.tab-joined {
+  position: relative;
+}
+
+.tab-joined::before,
+.tab-joined::after {
+  content: "";
+  position: absolute;
+  inset-inline-end: 0;
+  width: 14px;
+  height: 14px;
+  background: var(--cf-sheet-base);
+  pointer-events: none;
+}
+
+.tab-joined::before {
+  top: -14px;
+  mask: radial-gradient(circle at 0 0, transparent 13.5px, black 14px);
+}
+
+.tab-joined::after {
+  bottom: -14px;
+  mask: radial-gradient(circle at 0 100%, transparent 13.5px, black 14px);
+}
+
+[dir="rtl"] .tab-joined::before {
+  mask: radial-gradient(circle at 100% 0, transparent 13.5px, black 14px);
+}
+
+[dir="rtl"] .tab-joined::after {
+  mask: radial-gradient(circle at 100% 100%, transparent 13.5px, black 14px);
+}
+
+/* Motion: paper has weight. Content is visible by default; motion only adds. */
+@keyframes sheet-settle {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(2px);
+  }
+}
+
+@keyframes folder-rise {
+  from {
+    opacity: 0;
+    transform: translateY(18px) rotate(-0.6deg);
+  }
+}
+
+@keyframes pen-stroke {
+  from {
+    stroke-dashoffset: var(--pen-length, 40);
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes stamp-press {
+  0% {
+    opacity: 0;
+    transform: scale(1.35) rotate(var(--stamp-tilt, -4deg));
+    filter: blur(1px);
+  }
+  60% {
+    opacity: 1;
+    transform: scale(0.97) rotate(var(--stamp-tilt, -4deg));
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) rotate(var(--stamp-tilt, -4deg));
+  }
+}
+
+@keyframes bar-grow {
+  from {
+    transform: scaleY(0);
+  }
+}
+
+@keyframes now-pulse {
+  0%,
+  100% {
+    box-shadow: 0 0 0 0 var(--cf-selection);
+  }
+  50% {
+    box-shadow: 0 0 0 6px transparent;
+  }
+}
+
+.animate-settle {
+  animation: sheet-settle 520ms var(--ease-paper, ease-out) both;
+  animation-delay: calc(var(--i, 0) * 45ms);
+}
+
+.animate-rise {
+  animation: folder-rise 640ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 70ms);
+}
+
+.animate-stamp {
+  animation: stamp-press 420ms cubic-bezier(0.2, 0.9, 0.2, 1) both;
+  animation-delay: 260ms;
+}
+
+.animate-bars > * {
+  transform-origin: bottom;
+  animation: bar-grow 700ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  animation-delay: calc(var(--i, 0) * 12ms + 120ms);
+}
+
+.pen-draw {
+  stroke-dasharray: var(--pen-length, 40);
+  animation: pen-stroke 420ms cubic-bezier(0.65, 0, 0.35, 1) both;
+}
+
+/* Route-level view transitions: pulling a file out of the drawer. */
+::view-transition-group(.file) {
+  animation-duration: 460ms;
+  animation-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+::view-transition-image-pair(.file) {
+  animation-name: file-blur;
+}
+
+@keyframes file-blur {
+  35% {
+    filter: blur(2px);
+  }
+}
+
+::view-transition-old(.sheet-swap) {
+  animation: 180ms ease-in both sheet-out;
+}
+
+::view-transition-new(.sheet-swap) {
+  animation: 420ms cubic-bezier(0.16, 1, 0.3, 1) 60ms both sheet-in;
+}
+
+@keyframes sheet-out {
+  to {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes sheet-in {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(*),
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,
   *::after {
     scroll-behavior: auto !important;
     animation-duration: 1ms !important;
+    animation-delay: 0ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 1ms !important;
   }

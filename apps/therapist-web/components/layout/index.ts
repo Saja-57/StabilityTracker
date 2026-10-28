@@ -1,14 +1,14 @@
+export { CommandPalette, type CommandPaletteProps } from "./command-palette";
 export { DashboardShell } from "./dashboard-shell";
-export { MobileSidebar, type MobileSidebarProps } from "./mobile-sidebar";
+export { LanguageSwitcher, type LanguageSwitcherProps } from "./language-switcher";
 export {
+  getCurrentNavigationItem,
+  getNavigationItemById,
   navigationItems,
   primaryNavigationItems,
   secondaryNavigationItems,
   type NavigationItemDefinition,
+  type NavigationItemId,
 } from "./navigation";
-export { NavigationSection } from "./navigation-section";
-export { PageContainer } from "./page-container";
+export { Rail, type RailProps } from "./rail";
 export { RoutePlaceholder } from "./route-placeholder";
-export { Sidebar } from "./sidebar";
-export { SidebarItem } from "./sidebar-item";
-export { TopBar } from "./top-bar";

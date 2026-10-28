@@ -1,16 +1,9 @@
-import { colors, spacing } from "@stability/design-tokens";
-import { CalendarDays } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 
-import {
-  AppText,
-  Card,
-  Divider,
-  getIconSize,
-  iconStrokeWidth,
-} from "@/components/ui";
-import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
+import { Row } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { isolate } from "@/lib/format";
+import { cf, corner, surface } from "@/theme/case-file";
 
 import type { RoutineContextViewModel } from "../types";
 
@@ -18,65 +11,54 @@ export interface RoutineContextCardProps {
   readonly context?: RoutineContextViewModel;
 }
 
-const styles = StyleSheet.create({
-  header: {
-    alignItems: "center",
-    gap: spacing.sm,
-  },
-  available: {
-    gap: spacing.xs,
-  },
-  unavailable: {
-    gap: spacing.xs,
-  },
-});
-
+/** The child chip pinned beside the date stamp: whose day this is. */
 export function RoutineContextCard({ context }: RoutineContextCardProps) {
-  const { language, t } = useLanguage();
-  const contentLanguage = context?.contentLanguage ?? language;
-  const hasContext = Boolean(
-    context?.routineName || context?.childDisplayName || context?.periodLabel,
-  );
+  const name = context?.childDisplayName;
+  if (!name) {
+    return null;
+  }
 
   return (
-    <Card variant="subtle">
-      <View style={[styles.header, getDirectionalRowStyle(language)]}>
-        <CalendarDays
-          color={colors.brand.primary}
-          size={getIconSize("medium")}
-          strokeWidth={iconStrokeWidth}
-        />
-        <AppText variant="cardTitle">{t("routine.context.title")}</AppText>
+    <Row gap={6} style={styles.chip}>
+      <View style={styles.monogram}>
+        <Type variant="label" style={styles.initial}>
+          {name.slice(0, 1)}
+        </Type>
       </View>
-      <Divider spacingSize="medium" />
-      {context && hasContext ? (
-        <View style={styles.available}>
-          {context.routineName ? (
-            <AppText language={contentLanguage} variant="bodyStrong">
-              {context.routineName}
-            </AppText>
-          ) : null}
-          {context.childDisplayName ? (
-            <AppText color="secondary" language={contentLanguage}>
-              {context.childDisplayName}
-            </AppText>
-          ) : null}
-          {context.periodLabel ? (
-            <AppText color="muted" language={contentLanguage}>
-              {context.periodLabel}
-            </AppText>
-          ) : null}
-        </View>
-      ) : (
-        <View style={styles.unavailable}>
-          <AppText variant="bodyStrong">
-            {t("routine.context.unavailable")}
-          </AppText>
-          <AppText color="secondary">
-            {t("routine.context.description")}
-          </AppText>
-        </View>
-      )}
-    </Card>
+      <Type variant="label" numberOfLines={1}>
+        {isolate(name)}
+      </Type>
+      {context.periodLabel ? (
+        <Type
+          variant="small"
+          color="muted"
+
+          numberOfLines={1}
+        >
+          {isolate(context.periodLabel)}
+        </Type>
+      ) : null}
+    </Row>
   );
 }
+
+const styles = StyleSheet.create({
+  chip: {
+    backgroundColor: surface.raised,
+    borderColor: surface.rule,
+    borderRadius: corner.pill,
+    borderWidth: 1,
+    paddingEnd: 12,
+    paddingStart: 4,
+    paddingVertical: 4,
+  },
+  monogram: {
+    alignItems: "center",
+    backgroundColor: cf.pressboard.base,
+    borderRadius: 13,
+    height: 26,
+    justifyContent: "center",
+    width: 26,
+  },
+  initial: { color: cf.pressboard.ink, fontSize: 13 },
+});

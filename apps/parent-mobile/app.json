@@ -7,8 +7,28 @@
     "icon": "./assets/brand/app-icon.png",
     "scheme": "parent-mobile",
     "userInterfaceStyle": "automatic",
-    "newArchEnabled": true,
-    "plugins": ["expo-router", "expo-localization", "expo-secure-store"],
+    "plugins": [
+      "expo-router",
+      "expo-localization",
+      "expo-secure-store",
+      "expo-font",
+      [
+        "expo-audio",
+        {
+          "microphonePermission": "Allow Stability Tracker to record voice notes for your child's log."
+        }
+      ],
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Allow Stability Tracker to attach photos and videos to your child's log.",
+          "cameraPermission": "Allow Stability Tracker to take photos and videos for your child's log.",
+          "microphonePermission": "Allow Stability Tracker to record sound with videos for your child's log."
+        }
+      ],
+      "expo-asset",
+      "expo-notifications"
+    ],
     "experiments": {
       "typedRoutes": true
     }

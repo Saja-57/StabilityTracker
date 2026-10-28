@@ -1,67 +1,60 @@
-import { spacing } from "@stability/design-tokens";
-import { FileText, HeartHandshake } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 
-import { TextArea } from "@/components/ui";
 import { useLanguage } from "@/providers/language-provider";
 
-import type { EventLogDraft, EventLogDraftChange } from "../types";
+import { eventSupportOptions } from "../options";
+import type {
+  EventLogDraft,
+  EventLogDraftChange,
+  EventSupport,
+} from "../types";
+import { ChoiceGroup, NoteField } from "./choice-group";
+import { toggleIn } from "./event-context-section";
 import { FormSection } from "./form-section";
 import { MediaCaptureActions } from "./media-capture-actions";
 
-export interface EventResponseSectionProps {
-  readonly draft: EventLogDraft;
-  readonly onChange: EventLogDraftChange;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.xl,
-  },
-  fields: {
-    gap: spacing.lg,
-  },
-});
-
+/** Page four: what helped, in moss, plus the media that is still to come. */
 export function EventResponseSection({
   draft,
   onChange,
-}: EventResponseSectionProps) {
+  withMedia = true,
+}: {
+  draft: EventLogDraft;
+  onChange: EventLogDraftChange;
+  withMedia?: boolean;
+}) {
   const { t } = useLanguage();
-  const completeLater = t("eventLog.fields.completeLater");
-
   return (
-    <View style={styles.container}>
-      <FormSection icon={HeartHandshake} title={t("eventLog.sections.helped")}>
-        <View style={styles.fields}>
-          <TextArea
-            helperText={completeLater}
-            label={t("eventLog.fields.helped")}
-            onChangeText={(value) => onChange("helped", value)}
-            placeholder={t("eventLog.fields.helpedPlaceholder")}
-            value={draft.helped}
-          />
-          <TextArea
-            helperText={completeLater}
-            label={t("eventLog.fields.recovery")}
-            onChangeText={(value) => onChange("recovery", value)}
-            placeholder={t("eventLog.fields.recoveryPlaceholder")}
-            value={draft.recovery}
-          />
-        </View>
+    <View style={styles.page}>
+      <FormSection
+        title={t("logFlow.helped.question")}
+        hint={t("logFlow.chooseAny")}
+      >
+        <ChoiceGroup<EventSupport>
+          label={t("eventLog.sections.helped")}
+          tone="moss"
+          options={eventSupportOptions}
+          selected={draft.supports}
+          onToggle={(value) =>
+            onChange("supports", toggleIn(draft.supports, value))
+          }
+        />
+        <NoteField
+          value={draft.helpedNote}
+          onChange={(value) => onChange("helpedNote", value)}
+          placeholderKey="eventLog.fields.helpedPlaceholder"
+        />
       </FormSection>
-      <FormSection icon={FileText} title={t("eventLog.sections.additional")}>
-        <View style={styles.fields}>
-          <TextArea
-            helperText={completeLater}
-            label={t("eventLog.fields.notes")}
-            onChangeText={(value) => onChange("notes", value)}
-            placeholder={t("eventLog.fields.notesPlaceholder")}
-            value={draft.notes}
-          />
-          <MediaCaptureActions />
-        </View>
-      </FormSection>
+      {withMedia ? (
+        <MediaCaptureActions
+          media={draft.media}
+          onChange={(media) => onChange("media", media)}
+        />
+      ) : null}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  page: { gap: 28 },
+});

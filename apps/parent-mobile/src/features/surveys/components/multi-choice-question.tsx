@@ -1,4 +1,3 @@
-import { spacing } from "@stability/design-tokens";
 import { StyleSheet, View } from "react-native";
 
 import { useLanguage } from "@/providers/language-provider";
@@ -12,12 +11,6 @@ export interface MultiChoiceQuestionProps {
   readonly question: MultiChoiceSurveyQuestion;
   readonly value: readonly string[];
 }
-
-const styles = StyleSheet.create({
-  options: {
-    gap: spacing.sm,
-  },
-});
 
 export function MultiChoiceQuestion({
   onChange,
@@ -35,6 +28,7 @@ export function MultiChoiceQuestion({
 
   return (
     <SurveyQuestionFrame
+      hint={t("checkin.hint.multi")}
       isOptional={question.isOptional}
       {...(question.language ? { language: question.language } : {})}
       prompt={question.prompt}
@@ -57,3 +51,7 @@ export function MultiChoiceQuestion({
     </SurveyQuestionFrame>
   );
 }
+
+const styles = StyleSheet.create({
+  options: { gap: 10 },
+});

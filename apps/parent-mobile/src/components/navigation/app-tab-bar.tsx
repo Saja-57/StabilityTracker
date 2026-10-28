@@ -1,30 +1,15 @@
-import {
-  colors,
-  radius,
-  shadows,
-  sizing,
-  spacing,
-} from "@stability/design-tokens";
 import type { TranslationKey } from "@stability/i18n";
-import {
-  Activity,
-  Home,
-  ListChecks,
-  Menu,
-  MessageSquare,
-} from "lucide-react-native";
+import type { Tabs } from "expo-router";
 import type { ComponentProps } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import type { Tabs } from "expo-router";
 
-import { AppText } from "@/components/ui";
-import {
-  getIconSize,
-  iconStrokeWidth,
-  type IconComponent,
-} from "@/components/ui/icon";
+import { Type } from "@/components/case-file/type";
+import { Glyph, type GlyphName } from "@/components/icons/glyphs";
+import { useFamilyContent } from "@/lib/use-family-content";
+import { useTherapistNotes } from "@/providers/family-store-provider";
 import { useLanguage } from "@/providers/language-provider";
+import { cf, elevation } from "@/theme/case-file";
 import { getDirectionalRowStyle } from "@/theme/direction";
 
 type TabsProps = ComponentProps<typeof Tabs>;
@@ -32,135 +17,162 @@ type AppTabBarProps = Parameters<NonNullable<TabsProps["tabBar"]>>[0];
 type TabRouteName = "index" | "routine" | "log" | "messages" | "more";
 
 interface TabDefinition {
-  icon: IconComponent;
+  glyph: GlyphName;
   labelKey: TranslationKey;
 }
 
 const tabDefinitions: Record<TabRouteName, TabDefinition> = {
-  index: { icon: Home, labelKey: "navigation.home" },
-  routine: { icon: ListChecks, labelKey: "navigation.routine" },
-  log: { icon: Activity, labelKey: "navigation.log" },
-  messages: { icon: MessageSquare, labelKey: "navigation.messages" },
-  more: { icon: Menu, labelKey: "navigation.more" },
+  index: { glyph: "home", labelKey: "navigation.home" },
+  routine: { glyph: "routine", labelKey: "navigation.routine" },
+  log: { glyph: "pulse", labelKey: "navigation.log" },
+  messages: { glyph: "messages", labelKey: "navigation.messages" },
+  more: { glyph: "layers", labelKey: "navigation.more" },
 };
-
-const styles = StyleSheet.create({
-  container: {
-    backgroundColor: colors.surface.primary,
-    borderTopColor: colors.border.subtle,
-    borderTopWidth: 1,
-    elevation: shadows.subtle.elevation,
-    paddingHorizontal: spacing.sm,
-    paddingTop: spacing.xs,
-    shadowColor: shadows.subtle.color,
-    shadowOffset: {
-      height: -shadows.subtle.offsetY,
-      width: shadows.subtle.offsetX,
-    },
-    shadowOpacity: shadows.subtle.opacity,
-    shadowRadius: shadows.subtle.radius,
-  },
-  item: {
-    alignItems: "center",
-    borderRadius: radius.small,
-    flex: 1,
-    gap: spacing.xxs,
-    justifyContent: "center",
-    minHeight: sizing.control.large,
-    paddingHorizontal: spacing.xs,
-    paddingVertical: spacing.xs,
-  },
-  itemActive: {
-    backgroundColor: colors.brand.subtle,
-  },
-  itemPressed: {
-    opacity: 0.72,
-  },
-});
 
 function isTabRouteName(routeName: string): routeName is TabRouteName {
   return routeName in tabDefinitions;
 }
 
-export function AppTabBar({ state, descriptors, navigation }: AppTabBarProps) {
+/**
+ * The pressboard board the app rests on. The active tab hangs from the sheet
+ * above it, the same joined-tab gesture as the therapist workspace's rail.
+ */
+export function AppTabBar({ state, descriptors, emitter, navigateToTab }: AppTabBarProps) {
   const { language, t } = useLanguage();
   const insets = useSafeAreaInsets();
+  const unread = useTherapistNotes(useFamilyContent().therapistNotes).filter((note) => !note.isRead).length;
 
   return (
     <View
       accessibilityLabel={t("shell.primaryNavigation")}
       accessibilityRole="tablist"
-      style={[
-        styles.container,
-        getDirectionalRowStyle(language),
-        { paddingBottom: Math.max(insets.bottom, spacing.sm) },
-      ]}
+      style={[styles.bar, getDirectionalRowStyle(language), { paddingBottom: Math.max(insets.bottom, 10) }]}
     >
       {state.routes.map((route, index) => {
-        if (!isTabRouteName(route.name)) {
-          return null;
-        }
-
+        if (!isTabRouteName(route.name)) return null;
         const definition = tabDefinitions[route.name];
         const descriptor = descriptors[route.key];
+        if (!descriptor) return null;
 
-        if (!descriptor) {
-          return null;
-        }
-
-        const isFocused = state.index === index;
+        const focused = state.index === index;
         const label = t(definition.labelKey);
-        const Icon = definition.icon;
+        const center = route.name === "log";
 
-        const handlePress = () => {
-          const event = navigation.emit({
-            canPreventDefault: true,
-            target: route.key,
-            type: "tabPress",
-          });
-
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
-          }
-        };
-
-        const handleLongPress = () => {
-          navigation.emit({ target: route.key, type: "tabLongPress" });
+        const onPress = () => {
+          const event = emitter.emit({ canPreventDefault: true, target: route.key, type: "tabPress" });
+          if (!focused && !event.defaultPrevented) navigateToTab(route.key);
         };
 
         return (
           <Pressable
             key={route.key}
-            accessibilityLabel={
-              descriptor.options.tabBarAccessibilityLabel ?? label
-            }
+            accessibilityLabel={descriptor.options.tabBarAccessibilityLabel ?? label}
             accessibilityRole="tab"
-            accessibilityState={{ selected: isFocused }}
-            aria-selected={isFocused}
-            onLongPress={handleLongPress}
-            onPress={handlePress}
-            style={({ pressed }) => [
-              styles.item,
-              isFocused ? styles.itemActive : undefined,
-              pressed ? styles.itemPressed : undefined,
-            ]}
+            accessibilityState={{ selected: focused }}
+            aria-selected={focused}
+            onPress={onPress}
+            onLongPress={() => emitter.emit({ target: route.key, type: "tabLongPress" })}
+            style={[styles.item, focused && !center ? styles.itemActive : null]}
             testID={descriptor.options.tabBarButtonTestID}
           >
-            <Icon
-              color={isFocused ? colors.brand.primary : colors.text.muted}
-              size={getIconSize("medium")}
-              strokeWidth={iconStrokeWidth}
-            />
-            <AppText
-              color={isFocused ? "primary" : "muted"}
-              numberOfLines={1}
+            {center ? (
+              <View style={styles.iconSlot}>
+                <View style={[styles.logButton, focused ? styles.logButtonActive : null]}>
+                  <Glyph name="pulse" color={focused ? cf.pressboard.ink : cf.sheet.ink} size={26} strokeWidth={2} />
+                </View>
+              </View>
+            ) : (
+              <View style={styles.iconSlot}>
+                <Glyph
+                  name={definition.glyph}
+                  color={focused ? cf.pressboard.base : cf.pressboard.inkMuted}
+                  size={23}
+                  tint={focused ? 0.22 : 0.14}
+                />
+                {route.name === "messages" && unread > 0 ? (
+                  <View style={styles.badge}>
+                    <Type variant="caption" style={styles.badgeText}>
+                      {unread}
+                    </Type>
+                  </View>
+                ) : null}
+              </View>
+            )}
+            <Type
               variant="caption"
+              numberOfLines={1}
+              style={{
+                color: focused && !center ? cf.sheet.ink : focused ? cf.pressboard.ink : cf.pressboard.inkMuted,
+                fontWeight: focused ? "600" : "400",
+                marginTop: 4,
+              }}
             >
               {label}
-            </AppText>
+            </Type>
           </Pressable>
         );
       })}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  bar: {
+    backgroundColor: cf.pressboard.base,
+    paddingHorizontal: 8,
+  },
+  item: {
+    alignItems: "center",
+    borderBottomEndRadius: 18,
+    borderBottomStartRadius: 18,
+    flex: 1,
+    justifyContent: "flex-start",
+    minHeight: 62,
+    paddingBottom: 8,
+    paddingTop: 10,
+  },
+  itemActive: {
+    backgroundColor: cf.sheet.base,
+  },
+  iconSlot: {
+    alignItems: "center",
+    height: 24,
+    justifyContent: "center",
+  },
+  logButton: {
+    alignItems: "center",
+    position: "absolute",
+    top: -34,
+    backgroundColor: cf.sheet.raised,
+    borderColor: cf.pressboard.base,
+    borderRadius: 30,
+    borderWidth: 4,
+    height: 60,
+    justifyContent: "center",
+    width: 60,
+    ...elevation.lift,
+  },
+  logButtonActive: {
+    backgroundColor: cf.pressboard.raised,
+    borderColor: cf.sheet.base,
+  },
+  badge: {
+    alignItems: "center",
+    backgroundColor: cf.tab.gold,
+    borderColor: cf.pressboard.base,
+    borderRadius: 10,
+    borderWidth: 2,
+    end: -12,
+    height: 20,
+    justifyContent: "center",
+    minWidth: 20,
+    paddingHorizontal: 3,
+    position: "absolute",
+    top: -7,
+  },
+  badgeText: {
+    color: cf.pressboard.deep,
+    fontSize: 11,
+    lineHeight: 13,
+  },
+});

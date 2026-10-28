@@ -7,9 +7,11 @@ export {
   SurveyLoadingState,
 } from "./components/survey-feedback-states";
 export { SurveyFlow } from "./components/survey-flow";
+export { SurveyIntro } from "./components/survey-intro";
 export { SurveyProgress } from "./components/survey-progress";
 export { SurveyQuestion } from "./components/survey-question";
 export { SurveyReview } from "./components/survey-review";
+export { SurveySent } from "./components/survey-sent";
 export { TextQuestion } from "./components/text-question";
 export { SurveyScreen, type SurveyScreenProps } from "./survey-screen";
 export type {

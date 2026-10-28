@@ -1,4 +1,3 @@
-import { spacing } from "@stability/design-tokens";
 import { StyleSheet, View } from "react-native";
 
 import { useLanguage } from "@/providers/language-provider";
@@ -13,12 +12,6 @@ export interface SingleChoiceQuestionProps {
   readonly value?: string;
 }
 
-const styles = StyleSheet.create({
-  options: {
-    gap: spacing.sm,
-  },
-});
-
 export function SingleChoiceQuestion({
   onChange,
   question,
@@ -28,6 +21,7 @@ export function SingleChoiceQuestion({
 
   return (
     <SurveyQuestionFrame
+      hint={t("checkin.hint.single")}
       isOptional={question.isOptional}
       {...(question.language ? { language: question.language } : {})}
       prompt={question.prompt}
@@ -51,3 +45,7 @@ export function SingleChoiceQuestion({
     </SurveyQuestionFrame>
   );
 }
+
+const styles = StyleSheet.create({
+  options: { gap: 10 },
+});

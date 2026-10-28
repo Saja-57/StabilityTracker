@@ -1,16 +1,10 @@
-import { colors, radius, sizing, spacing } from "@stability/design-tokens";
 import type { SupportedLanguage } from "@stability/i18n";
-import {
-  Circle,
-  CircleCheck,
-  Square,
-  SquareCheckBig,
-} from "lucide-react-native";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
-import { AppText, getIconSize, iconStrokeWidth } from "@/components/ui";
-import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
+import { PenMark, PressCard, Row } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { isolate } from "@/lib/format";
+import { cf, corner, elevation, space, surface } from "@/theme/case-file";
 
 export interface SurveyChoiceOptionProps {
   readonly label: string;
@@ -20,31 +14,7 @@ export interface SurveyChoiceOptionProps {
   readonly selected: boolean;
 }
 
-const styles = StyleSheet.create({
-  option: {
-    borderColor: colors.border.default,
-    borderRadius: radius.small,
-    borderWidth: 1,
-    minHeight: sizing.touchTarget,
-    paddingHorizontal: spacing.md,
-    paddingVertical: spacing.sm,
-  },
-  selected: {
-    backgroundColor: colors.brand.subtle,
-    borderColor: colors.brand.primary,
-  },
-  pressed: {
-    backgroundColor: colors.surface.interactive,
-  },
-  content: {
-    alignItems: "center",
-    gap: spacing.sm,
-  },
-  label: {
-    flex: 1,
-  },
-});
-
+/** A large choice row on paper; a pen tick lands in the box when chosen. */
 export function SurveyChoiceOption({
   label,
   language,
@@ -52,43 +22,59 @@ export function SurveyChoiceOption({
   onPress,
   selected,
 }: SurveyChoiceOptionProps) {
-  const { language: activeLanguage } = useLanguage();
-  const resolvedLanguage = language ?? activeLanguage;
-  const Indicator =
-    mode === "single"
-      ? selected
-        ? CircleCheck
-        : Circle
-      : selected
-        ? SquareCheckBig
-        : Square;
-
   return (
-    <Pressable
+    <PressCard
       accessibilityLabel={label}
       accessibilityRole={mode === "single" ? "radio" : "checkbox"}
       accessibilityState={{ checked: selected }}
       onPress={onPress}
-      style={({ pressed }) => [
-        styles.option,
-        selected ? styles.selected : undefined,
-        pressed ? styles.pressed : undefined,
-      ]}
+      pressedScale={0.985}
+      style={[styles.option, selected ? styles.selected : null]}
     >
-      <View style={[styles.content, getDirectionalRowStyle(resolvedLanguage)]}>
-        <Indicator
-          color={selected ? colors.brand.primary : colors.text.muted}
-          size={getIconSize("small")}
-          strokeWidth={iconStrokeWidth}
-        />
-        <AppText
-          language={resolvedLanguage}
+      <Row gap={space.lg}>
+        <Type
+          variant="headline"
           style={styles.label}
-          variant="bodyStrong"
+          {...(language ? { language } : {})}
         >
-          {label}
-        </AppText>
-      </View>
-    </Pressable>
+          {isolate(label)}
+        </Type>
+        <View
+          style={[
+            styles.box,
+            mode === "single" ? styles.round : null,
+            selected ? styles.boxOn : styles.boxOff,
+          ]}
+        >
+          <PenMark visible={selected} size={28} />
+        </View>
+      </Row>
+    </PressCard>
   );
 }
+
+const styles = StyleSheet.create({
+  option: {
+    backgroundColor: surface.raised,
+    borderColor: "transparent",
+    borderRadius: corner.md,
+    borderWidth: 2,
+    justifyContent: "center",
+    minHeight: 68,
+    paddingHorizontal: 18,
+    paddingVertical: 12,
+    ...elevation.tile,
+  },
+  selected: { borderColor: surface.board },
+  label: { flex: 1, fontSize: 17, lineHeight: 23 },
+  box: {
+    alignItems: "center",
+    borderRadius: 10,
+    height: 36,
+    justifyContent: "center",
+    width: 36,
+  },
+  round: { borderRadius: 18 },
+  boxOff: { borderColor: cf.sheet.ruleStrong, borderWidth: 1.5 },
+  boxOn: { backgroundColor: cf.tab.cobaltWash },
+});

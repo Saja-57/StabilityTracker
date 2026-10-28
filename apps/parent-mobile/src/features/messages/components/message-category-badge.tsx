@@ -1,7 +1,10 @@
-import { Badge } from "@/components/ui";
+import { TabLabel } from "@/components/case-file/primitives";
 import { useLanguage } from "@/providers/language-provider";
 
-import { messageCategoryLabelKeys } from "../message-options";
+import {
+  messageCategoryLabelKeys,
+  messageCategoryTones,
+} from "../message-options";
 import type { MessageCategory } from "../types";
 
 export interface MessageCategoryBadgeProps {
@@ -11,5 +14,10 @@ export interface MessageCategoryBadgeProps {
 export function MessageCategoryBadge({ category }: MessageCategoryBadgeProps) {
   const { t } = useLanguage();
 
-  return <Badge tone="brand">{t(messageCategoryLabelKeys[category])}</Badge>;
+  return (
+    <TabLabel
+      tone={messageCategoryTones[category]}
+      label={t(messageCategoryLabelKeys[category])}
+    />
+  );
 }

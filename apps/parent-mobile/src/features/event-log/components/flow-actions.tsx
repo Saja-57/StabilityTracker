@@ -1,62 +1,61 @@
-import { spacing } from "@stability/design-tokens";
 import { StyleSheet, View } from "react-native";
 
-import { AppText, Button } from "@/components/ui";
-import { useLanguage } from "@/providers/language-provider";
+import { Action, Row } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { corner, space } from "@/theme/case-file";
 
-export interface FlowActionsProps {
-  readonly onBack?: () => void;
-  readonly onPrimary: () => void;
-  readonly primaryLabel: string;
-}
-
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.sm,
-  },
-  unavailable: {
-    textAlign: "center",
-  },
-});
-
+/** Back and forward for a log page. A gentle hint replaces any error. */
 export function FlowActions({
+  backLabel,
+  nextLabel,
   onBack,
-  onPrimary,
-  primaryLabel,
-}: FlowActionsProps) {
-  const { t } = useLanguage();
-
+  onNext,
+  canContinue = true,
+  hint,
+}: {
+  backLabel?: string;
+  nextLabel: string;
+  onBack?: () => void;
+  onNext: () => void;
+  canContinue?: boolean;
+  hint?: string;
+}) {
   return (
-    <View style={styles.container}>
-      <Button
-        accessibilityLabel={primaryLabel}
-        fullWidth
-        onPress={onPrimary}
-        size="large"
-      >
-        {primaryLabel}
-      </Button>
-      {onBack ? (
-        <Button
-          accessibilityLabel={t("eventLog.actions.back")}
-          fullWidth
-          onPress={onBack}
-          variant="ghost"
-        >
-          {t("eventLog.actions.back")}
-        </Button>
+    <View style={styles.wrap}>
+      {!canContinue && hint ? (
+        <Type variant="small" color="muted" accessibilityLiveRegion="polite">
+          {hint}
+        </Type>
       ) : null}
-      <Button
-        accessibilityLabel={t("eventLog.actions.completeLater")}
-        disabled
-        fullWidth
-        variant="secondary"
-      >
-        {t("eventLog.actions.completeLater")}
-      </Button>
-      <AppText color="muted" style={styles.unavailable} variant="helper">
-        {t("eventLog.actions.completeLaterUnavailable")}
-      </AppText>
+      <Row gap={space.md}>
+        {onBack && backLabel ? (
+          <Action
+            label={backLabel}
+            variant="outline"
+            size="large"
+            onPress={onBack}
+            style={styles.back}
+          />
+        ) : null}
+        <View style={styles.flex}>
+          <Action
+            label={nextLabel}
+            trailingGlyph="arrow"
+            variant="ink"
+            size="large"
+            disabled={!canContinue}
+            onPress={onNext}
+            style={styles.next}
+          />
+        </View>
+      </Row>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  wrap: { gap: space.sm },
+  back: { borderRadius: corner.lg, paddingHorizontal: space.lg },
+  next: { borderRadius: corner.lg },
+  flex: { flex: 1 },
+});

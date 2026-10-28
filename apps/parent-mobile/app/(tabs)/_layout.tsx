@@ -1,10 +1,13 @@
 import { Tabs } from "expo-router";
 
 import { AppTabBar } from "@/components/navigation/app-tab-bar";
+import { useReminders } from "@/lib/reminders";
 import { useLanguage } from "@/providers/language-provider";
 
 export default function TabLayout() {
   const { t } = useLanguage();
+  // The tabs stay mounted under every other screen, so reminders live here.
+  useReminders();
 
   return (
     <Tabs

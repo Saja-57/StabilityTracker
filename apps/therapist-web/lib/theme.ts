@@ -1,5 +1,6 @@
 import {
   breakpoints,
+  caseFile,
   colors,
   motion,
   radius,
@@ -72,6 +73,16 @@ export const webThemeVariables: ThemeVariables = {
   "--motion-standard": motion.easing.standard,
   "--motion-emphasized": motion.easing.emphasized,
   ...Object.fromEntries(
+    Object.entries(caseFile).flatMap(([group, value]): [string, string][] =>
+      typeof value === "string"
+        ? [[`--cf-${group}`, value]]
+        : Object.entries(value).map(([name, color]) => [
+            `--cf-${group}-${toKebab(name)}`,
+            color,
+          ]),
+    ),
+  ),
+  ...Object.fromEntries(
     Object.entries(typography).flatMap(([variant, style]) => [
       [`--type-${variant}-size`, `${style.fontSize}px`],
       [`--type-${variant}-line`, `${style.lineHeight}px`],
@@ -80,3 +91,7 @@ export const webThemeVariables: ThemeVariables = {
     ]),
   ),
 };
+
+function toKebab(value: string): string {
+  return value.replace(/[A-Z]/g, (match) => `-${match.toLowerCase()}`);
+}

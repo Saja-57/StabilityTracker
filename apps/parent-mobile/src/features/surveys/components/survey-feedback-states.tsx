@@ -1,28 +1,24 @@
-import { spacing } from "@stability/design-tokens";
-import { ClipboardList } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 
-import { Card, EmptyState, ErrorState, Skeleton } from "@/components/ui";
+import { Action, Paper } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { Glyph } from "@/components/icons/glyphs";
 import { useLanguage } from "@/providers/language-provider";
-
-const styles = StyleSheet.create({
-  loading: {
-    gap: spacing.md,
-  },
-  skeletonCard: {
-    gap: spacing.lg,
-  },
-});
+import { cf, corner, space, surface } from "@/theme/case-file";
 
 export function SurveyEmptyState() {
   const { t } = useLanguage();
 
   return (
-    <EmptyState
-      description={t("surveys.empty.description")}
-      icon={ClipboardList}
-      title={t("surveys.empty.title")}
-    />
+    <Paper style={styles.sheet}>
+      <View style={styles.iconTile}>
+        <Glyph name="survey" color={cf.tab.mossInk} size={26} tint={0.25} />
+      </View>
+      <Type variant="title">{t("surveys.empty.title")}</Type>
+      <Type variant="body" color="secondary">
+        {t("surveys.empty.description")}
+      </Type>
+    </Paper>
   );
 }
 
@@ -36,12 +32,10 @@ export function SurveyLoadingState() {
       accessibilityRole="progressbar"
       style={styles.loading}
     >
-      <Skeleton height={spacing.lg} width="46%" />
-      <Card style={styles.skeletonCard}>
-        <Skeleton height={spacing.lg} width="72%" />
-        <Skeleton height={spacing.huge} />
-        <Skeleton height={spacing.huge} />
-      </Card>
+      <View style={[styles.bar, styles.barTitle]} />
+      <View style={[styles.bar, styles.barLine]} />
+      <View style={styles.block} />
+      <View style={styles.block} />
     </View>
   );
 }
@@ -50,10 +44,37 @@ export function SurveyErrorState({ onRetry }: { onRetry?: () => void }) {
   const { t } = useLanguage();
 
   return (
-    <ErrorState
-      description={t("surveys.error.description")}
-      {...(onRetry ? { onRetry, retryLabel: t("surveys.retry") } : {})}
-      title={t("surveys.error.title")}
-    />
+    <Paper style={styles.sheet}>
+      <Type variant="title">{t("surveys.error.title")}</Type>
+      <Type variant="body" color="secondary">
+        {t("surveys.error.description")}
+      </Type>
+      {onRetry ? (
+        <Action
+          label={t("surveys.retry")}
+          variant="outline"
+          onPress={onRetry}
+          style={styles.retry}
+        />
+      ) : null}
+    </Paper>
   );
 }
+
+const styles = StyleSheet.create({
+  sheet: { borderRadius: 8, gap: space.md, padding: 24 },
+  iconTile: {
+    alignItems: "center",
+    backgroundColor: cf.tab.mossWash,
+    borderRadius: corner.sm,
+    height: 48,
+    justifyContent: "center",
+    width: 48,
+  },
+  loading: { gap: space.md },
+  bar: { backgroundColor: surface.sunk, borderRadius: 8 },
+  barTitle: { height: 34, width: "72%" },
+  barLine: { height: 16, width: "46%" },
+  block: { backgroundColor: surface.sunk, borderRadius: corner.md, height: 68 },
+  retry: { alignSelf: "flex-start" },
+});

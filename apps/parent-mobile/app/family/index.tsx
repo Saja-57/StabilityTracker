@@ -1,9 +1,14 @@
-import { Users } from "lucide-react-native";
-
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { FamilyScreen } from "@/features/family";
+import { useFamilyContent } from "@/lib/use-family-content";
 
 export default function FamilyRoute() {
+  const { careTeam, family } = useFamilyContent();
   return (
-    <RoutePlaceholder icon={Users} showBack titleKey="navigation.family" />
+    <FamilyScreen
+      child={family.child}
+      caregivers={family.caregivers}
+      careTeam={careTeam}
+      therapistGivenName={family.therapist.givenName}
+    />
   );
 }

@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <title>Stability Tracker mark, proposal</title>
+  <!-- Sunrise: the brighter day ahead -->
+  <path d="M39.5 12a16.5 16.5 0 0 1 14 15.5" stroke="#E2B04F" stroke-width="4" stroke-linecap="round"/>
+  <path d="M49.6 7.4l1.7-2.7M55.6 12.8l2.8-1.5M58.2 20.2l3.1-.3" stroke="#E2B04F" stroke-width="2.9" stroke-linecap="round"/>
+  <!-- Caregiver: head, then one continuous embrace -->
+  <circle cx="26" cy="13" r="6.3" fill="#1C362E"/>
+  <path d="M19.5 23.5C10.5 31.5 10.5 47 21.5 53.2c7.8 4.4 17.6 3.2 24.2-1.6" stroke="#1C362E" stroke-width="6.4" stroke-linecap="round"/>
+  <!-- Child, held inside the embrace -->
+  <circle cx="35.5" cy="29.5" r="5.2" fill="#3D7A5C"/>
+  <path d="M27.6 46.6c-.3-6.4 3.4-10.4 8.3-10.4 4.8 0 8.6 4 8.3 9.9-5.4 2.6-11.2 2.8-16.6.5z" fill="#3D7A5C"/>
+  <!-- Leaf: growth at the end of the embrace -->
+  <path d="M45.4 51.8c3.6-6.9 9.6-9.6 15.4-8.9-1.9 6.2-8.4 10.4-15.4 8.9z" fill="#9DBDAD"/>
+  <path d="M46.8 51.2c3.6-2.6 7.4-4.5 11.5-5.6" stroke="#F2F4F0" stroke-width="0.9" stroke-linecap="round"/>
+</svg>

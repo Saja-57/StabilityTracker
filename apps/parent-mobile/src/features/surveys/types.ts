@@ -28,7 +28,11 @@ export interface MultiChoiceSurveyQuestion extends SurveyQuestionBase {
 
 export interface ScaleSurveyQuestion extends SurveyQuestionBase {
   readonly maximum: number;
+  /** Words under the highest step; a calm default is used when absent. */
+  readonly maximumLabel?: string;
   readonly minimum: number;
+  /** Words under the lowest step; a calm default is used when absent. */
+  readonly minimumLabel?: string;
   readonly type: "scale";
 }
 

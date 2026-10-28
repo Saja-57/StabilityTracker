@@ -1,79 +1,18 @@
-import { colors, radius, sizing } from "@stability/design-tokens";
-import {
-  Check,
-  Circle,
-  CircleDot,
-  CircleSlash2,
-  Clock3,
-} from "lucide-react-native";
 import { StyleSheet, View, type ViewStyle } from "react-native";
 
-import {
-  Badge,
-  getIconSize,
-  iconStrokeWidth,
-  type IconComponent,
-} from "@/components/ui";
+import { TabLabel, type Tone } from "@/components/case-file/primitives";
 import { useLanguage } from "@/providers/language-provider";
+import { cf, ink, surface } from "@/theme/case-file";
 
 import type { RoutineStepStatus as RoutineStepStatusValue } from "../types";
 
 export interface RoutineStepStatusProps {
+  /** Compact renders the timeline node; otherwise a tab label when the status needs words. */
   readonly compact?: boolean;
   readonly status: RoutineStepStatusValue;
 }
 
-interface StatusVisual {
-  readonly color: string;
-  readonly container: ViewStyle;
-  readonly icon: IconComponent;
-  readonly tone: "neutral" | "brand" | "success" | "warning";
-}
-
-const styles = StyleSheet.create({
-  indicator: {
-    alignItems: "center",
-    borderRadius: radius.full,
-    height: sizing.avatar.small,
-    justifyContent: "center",
-    width: sizing.avatar.small,
-  },
-});
-
-const statusVisuals: Record<RoutineStepStatusValue, StatusVisual> = {
-  upcoming: {
-    color: colors.text.muted,
-    container: { backgroundColor: colors.background.subtle },
-    icon: Circle,
-    tone: "neutral",
-  },
-  current: {
-    color: colors.brand.primary,
-    container: { backgroundColor: colors.brand.subtle },
-    icon: CircleDot,
-    tone: "brand",
-  },
-  completed: {
-    color: colors.status.success,
-    container: { backgroundColor: colors.statusSurface.success },
-    icon: Check,
-    tone: "success",
-  },
-  skipped: {
-    color: colors.text.muted,
-    container: { backgroundColor: colors.background.subtle },
-    icon: CircleSlash2,
-    tone: "neutral",
-  },
-  delayed: {
-    color: colors.status.warning,
-    container: { backgroundColor: colors.statusSurface.warning },
-    icon: Clock3,
-    tone: "warning",
-  },
-};
-
-const statusKeys = {
+export const routineStatusKeys = {
   upcoming: "routine.status.upcoming",
   current: "routine.status.current",
   completed: "routine.status.completed",
@@ -81,35 +20,71 @@ const statusKeys = {
   delayed: "routine.status.delayed",
 } as const;
 
+const nodeStyle: Record<RoutineStepStatusValue, ViewStyle> = {
+  upcoming: {
+    backgroundColor: surface.ground,
+    borderColor: cf.sheet.ruleStrong,
+    borderWidth: 2,
+  },
+  current: {
+    backgroundColor: cf.pressboard.base,
+    borderColor: cf.tab.mossWash,
+    borderWidth: 4,
+    height: 20,
+    width: 20,
+  },
+  completed: { backgroundColor: ink.pen },
+  skipped: {
+    backgroundColor: surface.ground,
+    borderColor: cf.tab.clay,
+    borderStyle: "dashed",
+    borderWidth: 2,
+  },
+  delayed: {
+    backgroundColor: cf.tab.clayWash,
+    borderColor: cf.tab.clay,
+    borderWidth: 2,
+  },
+};
+
+/** Only statuses that a picture cannot show on its own get a word. */
+const labelTone: Partial<Record<RoutineStepStatusValue, Tone>> = {
+  skipped: "clay",
+  delayed: "clay",
+};
+
+export const ROUTINE_NODE_SIZE = 20;
+
 export function RoutineStepStatus({
   compact = false,
   status,
 }: RoutineStepStatusProps) {
   const { t } = useLanguage();
-  const visual = statusVisuals[status];
-  const label = t(statusKeys[status]);
 
-  if (!compact) {
+  if (compact) {
     return (
-      <Badge icon={visual.icon} tone={visual.tone}>
-        {label}
-      </Badge>
+      <View
+        accessibilityElementsHidden
+        importantForAccessibility="no-hide-descendants"
+        style={styles.slot}
+      >
+        <View style={[styles.node, nodeStyle[status]]} />
+      </View>
     );
   }
 
-  const Icon = visual.icon;
-
-  return (
-    <View
-      accessibilityElementsHidden
-      importantForAccessibility="no-hide-descendants"
-      style={[styles.indicator, visual.container]}
-    >
-      <Icon
-        color={visual.color}
-        size={getIconSize("small")}
-        strokeWidth={iconStrokeWidth}
-      />
-    </View>
-  );
+  const tone = labelTone[status];
+  return tone ? (
+    <TabLabel tone={tone} label={t(routineStatusKeys[status])} />
+  ) : null;
 }
+
+const styles = StyleSheet.create({
+  slot: {
+    alignItems: "center",
+    height: ROUTINE_NODE_SIZE,
+    justifyContent: "center",
+    width: ROUTINE_NODE_SIZE,
+  },
+  node: { borderRadius: 10, height: 12, width: 12 },
+});

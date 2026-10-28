@@ -1,49 +1,56 @@
-import { spacing } from "@stability/design-tokens";
-import { getDirection } from "@stability/i18n";
 import { router } from "expo-router";
-import { ArrowLeft, ArrowRight } from "lucide-react-native";
-import { StyleSheet, View } from "react-native";
+import type { ReactNode } from "react";
+import { Pressable, StyleSheet, View } from "react-native";
 
-import { AppText, IconButton } from "@/components/ui";
+import { Row } from "@/components/case-file/primitives";
+import { Glyph } from "@/components/icons/glyphs";
 import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
+import { ink, surface } from "@/theme/case-file";
 
-const styles = StyleSheet.create({
-  header: {
-    alignItems: "flex-start",
-    gap: spacing.md,
-  },
-  copy: {
-    flex: 1,
-    gap: spacing.xs,
-  },
-});
+export interface SurveyHeaderProps {
+  /** Content at the far end of the header, such as progress squares. */
+  readonly aside?: ReactNode;
+  readonly onBack?: () => void;
+}
 
-export function SurveyHeader() {
-  const { language, t } = useLanguage();
-  const BackIcon = getDirection(language) === "rtl" ? ArrowRight : ArrowLeft;
-  const goBack = () => {
-    if (router.canGoBack()) {
-      router.back();
-      return;
-    }
+function leave() {
+  if (router.canGoBack()) {
+    router.back();
+    return;
+  }
+  router.replace("/");
+}
 
-    router.replace("/more");
-  };
+/** The stack back control, with room for progress at the other end. */
+export function SurveyHeader({ aside, onBack = leave }: SurveyHeaderProps) {
+  const { t } = useLanguage();
 
   return (
-    <View style={[styles.header, getDirectionalRowStyle(language)]}>
-      <IconButton
-        accessibilityLabel={t("common.back")}
-        icon={BackIcon}
-        onPress={goBack}
-      />
-      <View style={styles.copy}>
-        <AppText accessibilityRole="header" variant="pageTitle">
-          {t("surveys.title")}
-        </AppText>
-        <AppText color="secondary">{t("surveys.subtitle")}</AppText>
-      </View>
-    </View>
+    <Row style={styles.row}>
+      <Pressable
+        accessibilityLabel={t("checkin.back")}
+        accessibilityRole="button"
+        hitSlop={6}
+        onPress={onBack}
+        style={({ pressed }) => [styles.back, pressed ? styles.pressed : null]}
+      >
+        <Glyph name="arrowBack" color={ink.primary} size={20} />
+      </Pressable>
+      <View style={styles.aside}>{aside}</View>
+    </Row>
   );
 }
+
+const styles = StyleSheet.create({
+  row: { justifyContent: "space-between", minHeight: 44 },
+  back: {
+    alignItems: "center",
+    backgroundColor: surface.sunk,
+    borderRadius: 22,
+    height: 44,
+    justifyContent: "center",
+    width: 44,
+  },
+  pressed: { opacity: 0.7 },
+  aside: { alignItems: "flex-end" },
+});

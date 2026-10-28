@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { NotesView } from "@/features/notes/notes-view";
 
 export default function NotesPage() {
-  return <RoutePlaceholder navigationItemId="notes" />;
+  return <NotesView />;
 }

@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { DeskView } from "@/features/desk/desk-view";
 
 export default function DashboardPage() {
-  return <RoutePlaceholder navigationItemId="dashboard" />;
+  return <DeskView />;
 }

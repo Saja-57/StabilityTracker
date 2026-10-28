@@ -4,21 +4,21 @@ import { eventTimingOptions } from "../options";
 import type { EventTimingMode } from "../types";
 import { ChoiceGroup } from "./choice-group";
 
-export interface TimingSelectorProps {
-  readonly onChange: (value: EventTimingMode) => void;
-  readonly value: EventTimingMode | null;
-}
-
-export function TimingSelector({ onChange, value }: TimingSelectorProps) {
+/** When it happened, as four calm chips. */
+export function TimingSelector({
+  value,
+  onChange,
+}: {
+  value: EventTimingMode | null;
+  onChange: (value: EventTimingMode) => void;
+}) {
   const { t } = useLanguage();
-
   return (
     <ChoiceGroup
-      compact
       label={t("eventLog.timing.title")}
-      onSelect={onChange}
       options={eventTimingOptions}
-      selectedValue={value}
+      selected={value}
+      onToggle={onChange}
     />
   );
 }

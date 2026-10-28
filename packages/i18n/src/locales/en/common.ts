@@ -1,3 +1,20 @@
+import { enParentCore } from "./parent-core";
+import { enParentHome } from "./parent-home";
+import { enParentRoutine } from "./parent-routine";
+import { enParentLog } from "./parent-log";
+import { enParentMessages } from "./parent-messages";
+import { enParentSurveys } from "./parent-surveys";
+import { enParentMore } from "./parent-more";
+import { enTherapistCore } from "./therapist-core";
+import { enTherapistCaseload } from "./therapist-caseload";
+import { enTherapistFile } from "./therapist-file";
+import { enTherapistAppointments } from "./therapist-appointments";
+import { enTherapistMessages } from "./therapist-messages";
+import { enTherapistReports } from "./therapist-reports";
+import { enTherapistInsights } from "./therapist-insights";
+import { enTherapistNotes } from "./therapist-notes";
+import { enTherapistSettings } from "./therapist-settings";
+
 export const enCommon = {
   "app.name": "Stability Tracker",
   "brand.logo": "Stability Tracker logo",
@@ -138,6 +155,10 @@ export const enCommon = {
   "eventLog.media.audio": "Record audio",
   "eventLog.media.gallery": "Choose from gallery",
   "eventLog.media.unavailable": "Not available yet",
+  "eventLog.media.count": "{count} added",
+  "eventLog.media.recording": "Recording {time}. Tap to stop",
+  "eventLog.media.remove": "Remove",
+  "eventLog.media.permission": "Allow access in Settings to add this.",
   "eventLog.sections.basics": "Event basics",
   "eventLog.sections.before": "Before the event",
   "eventLog.sections.during": "During the event",
@@ -286,6 +307,22 @@ export const enCommon = {
     "Content will appear here when it becomes available.",
   "states.error.title": "Something went wrong",
   "states.error.description": "The content could not be loaded.",
+  ...enParentCore,
+  ...enParentHome,
+  ...enParentRoutine,
+  ...enParentLog,
+  ...enParentMessages,
+  ...enParentSurveys,
+  ...enParentMore,
+  ...enTherapistCore,
+  ...enTherapistCaseload,
+  ...enTherapistFile,
+  ...enTherapistAppointments,
+  ...enTherapistMessages,
+  ...enTherapistReports,
+  ...enTherapistInsights,
+  ...enTherapistNotes,
+  ...enTherapistSettings,
 } as const;
 
 export type TranslationKey = keyof typeof enCommon;

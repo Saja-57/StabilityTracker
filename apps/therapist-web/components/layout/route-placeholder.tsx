@@ -1,29 +1,18 @@
 "use client";
 
-import { EmptyState, PageHeader } from "@/components/ui";
+import { getNavigationItemById, type NavigationItemId } from "./navigation";
+import { Glyph } from "@/components/icons/glyphs";
 import { useLanguage } from "@/providers/language-provider";
 
-import { getNavigationItemById, type NavigationItemId } from "./navigation";
-
-export interface RoutePlaceholderProps {
-  readonly navigationItemId: NavigationItemId;
-}
-
-export function RoutePlaceholder({ navigationItemId }: RoutePlaceholderProps) {
+/** Temporary stand-in while a section is being designed. */
+export function RoutePlaceholder({ navigationItemId }: { navigationItemId: NavigationItemId }) {
   const { t } = useLanguage();
-  const navigationItem = getNavigationItemById(navigationItemId);
-
+  const item = getNavigationItemById(navigationItemId);
   return (
-    <div className="grid gap-8">
-      <PageHeader
-        description={t("shell.route.description")}
-        title={t(navigationItem.labelKey)}
-      />
-      <EmptyState
-        description={t("shell.route.description")}
-        icon={navigationItem.icon}
-        title={t("states.empty.title")}
-      />
+    <div className="grid gap-4 pt-6">
+      <Glyph name={item.glyph} size={32} className="text-ink-3" />
+      <h1 className="font-display text-[40px] leading-tight text-ink">{t(item.labelKey)}</h1>
+      <p className="text-ink-3">{t("shell.route.description")}</p>
     </div>
   );
 }

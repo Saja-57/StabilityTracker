@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { AppointmentsView } from "@/features/appointments/appointments-view";
 
 export default function AppointmentsPage() {
-  return <RoutePlaceholder navigationItemId="appointments" />;
+  return <AppointmentsView />;
 }

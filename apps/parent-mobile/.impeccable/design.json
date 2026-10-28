@@ -1,0 +1,306 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T00:00:00Z",
+  "title": "Design System: Stability Tracker Parent App",
+  "extensions": {
+    "extends": "../therapist-web/.impeccable/design.json",
+    "colorMeta": {
+      "pressboard": {
+        "role": "primary",
+        "displayName": "Pressboard",
+        "canonical": "#1C362E",
+        "source": "@stability/design-tokens caseFile.pressboard.base; ramps live in the world sidecar"
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet (fridge enamel)",
+        "canonical": "#F2F4F0",
+        "source": "caseFile.sheet.base"
+      },
+      "tab-gold": {
+        "role": "tertiary",
+        "displayName": "Tab Gold",
+        "canonical": "#E2B04F",
+        "source": "caseFile.tab.gold",
+        "purpose": "Only what waits on the parent."
+      },
+      "pen": {
+        "role": "secondary",
+        "displayName": "Pen Blue",
+        "canonical": "#2E4DA3",
+        "source": "caseFile.pen",
+        "purpose": "Done ticks and done times only."
+      },
+      "stamp": {
+        "role": "secondary",
+        "displayName": "Stamp Slate",
+        "canonical": "#34506B",
+        "source": "caseFile.stamp"
+      }
+    },
+    "typographyMeta": {
+      "hero": {
+        "displayName": "Hero",
+        "purpose": "One per screen: greeting or screen title. he/ar: Heebo/Cairo 800, tracking 0."
+      },
+      "display": {
+        "displayName": "Display",
+        "purpose": "Large card titles."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Picture-card steps, visit titles."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Section titles; always lead their block."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Screen intro line under the hero."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Reading text; 16px for one-handed reading."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Action labels, list row names."
+      },
+      "small": {
+        "displayName": "Small",
+        "purpose": "Secondary lines, text links."
+      },
+      "caption": {
+        "displayName": "Caption",
+        "purpose": "Tab bar labels, tab labels, sources."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Times and counts, every language."
+      },
+      "figure-large": {
+        "displayName": "Figure Large",
+        "purpose": "Calendar stamp day, ticket stub time."
+      },
+      "stamp": {
+        "displayName": "Stamp",
+        "purpose": "Dates, now, sent/saved, sample-data notice. en only in mono uppercase tracked; he/ar use the script's own face, no tracking."
+      }
+    },
+    "shadows": [
+      {
+        "name": "tile",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 10px 24px -12px rgba(19, 32, 27, 0.32), 0 1px 2px rgba(19, 32, 27, 0.12)",
+        "purpose": "Resting sheet tiles (world folder shadow)."
+      },
+      {
+        "name": "lift",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 22px 40px -18px rgba(19, 32, 27, 0.42), 0 2px 6px rgba(19, 32, 27, 0.14)",
+        "purpose": "NOW card, slips, open ticket, docked action, Log disc."
+      },
+      {
+        "name": "press",
+        "value": "0 1px 2px rgba(19, 32, 27, 0.18)",
+        "purpose": "Ink action and magnet contact."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-paper",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "All settles, presses, stamps, card hand-off."
+      },
+      {
+        "name": "press-in",
+        "value": "scale 0.975, 120ms ease-paper",
+        "purpose": "PressCard under the thumb; 0.9 for the pen tick."
+      },
+      {
+        "name": "press-out",
+        "value": "scale 1, 260ms ease-paper",
+        "purpose": "Release."
+      },
+      {
+        "name": "stamp-press",
+        "value": "scale 1.3 to 1, 360ms ease-paper, 180ms delay; opacity to 0.92",
+        "purpose": "Date and done stamps."
+      },
+      {
+        "name": "pen-draw",
+        "value": "stroke-dashoffset 40 to 0, 420ms cubic-bezier(0.65, 0, 0.35, 1)",
+        "purpose": "The ballpoint tick."
+      }
+    ],
+    "geometry": [
+      {
+        "name": "slip-tilt",
+        "value": "-1.2deg to 0.8deg",
+        "purpose": "Hand-placed note, check-in and answer slips."
+      },
+      {
+        "name": "stamp-tilt",
+        "value": "-2deg to -8deg"
+      },
+      {
+        "name": "ticket-notch",
+        "value": "22px circles in sheet at start/end; 1.5px dashed strong-rule tear line"
+      },
+      {
+        "name": "log-disc-raise",
+        "value": "-34px above the bar, 4px ring"
+      },
+      {
+        "name": "dock",
+        "value": "14px above tab bar, 20px inset; content reserves 128px"
+      },
+      {
+        "name": "pictogram-grid",
+        "value": "48px, stroke 2.2, tint plane 20%"
+      },
+      {
+        "name": "glyph-grid",
+        "value": "24px, stroke 1.6; tab bar tint 14% idle, 22% active"
+      }
+    ],
+    "focus": [
+      {
+        "name": "on-sheet",
+        "value": "pen-blue ring, per world sidecar"
+      }
+    ],
+    "overlay": "rgba(8, 20, 15, 0.52)"
+  },
+  "components": [
+    {
+      "name": "Ink Action",
+      "kind": "button",
+      "refersTo": "action-ink",
+      "description": "Primary action on any sheet and the docked 'Something's happening'.",
+      "html": "<button class=\"ds-action-ink\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linejoin=\"round\"/></svg>Something’s happening</button>",
+      "css": ".ds-action-ink{display:inline-flex;align-items:center;justify-content:center;gap:8px;height:48px;padding:0 24px;border:0;border-radius:14px;background:#1C362E;color:#E9F0EA;font:500 15px/20px Ubuntu, Heebo, Cairo, sans-serif;box-shadow:0 1px 2px rgba(19,32,27,0.18);transition:transform 120ms cubic-bezier(0.16,1,0.3,1)}.ds-action-ink:hover{background:#26443A}.ds-action-ink:active{transform:scale(0.975)}.ds-action-ink:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}"
+    },
+    {
+      "name": "Outline Action",
+      "kind": "button",
+      "refersTo": "action-outline",
+      "description": "Secondary beside an ink action.",
+      "html": "<button class=\"ds-action-outline\">Ask to reschedule</button>",
+      "css": ".ds-action-outline{display:inline-flex;align-items:center;height:48px;padding:0 24px;border:1px solid #D3DCD5;border-radius:14px;background:#FBFCFA;color:#13201B;font:500 15px/20px Ubuntu, Heebo, Cairo, sans-serif;}.ds-action-outline:active{transform:scale(0.975)}.ds-action-outline:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}"
+    },
+    {
+      "name": "Pen Tick",
+      "kind": "checkbox",
+      "refersTo": "pen-tick-checked",
+      "description": "The single done control. Open: strong-rule box. Checked: cobalt wash with the drawn ballpoint tick.",
+      "html": "<span class=\"ds-tick\"></span><span class=\"ds-tick ds-tick-on\"><svg width=\"34\" height=\"34\" viewBox=\"0 0 28 28\" fill=\"none\"><path d=\"M4.6 15.2c1.3.4 2.7 1.7 3.9 3.3.6.8 1.1 1.7 1.5 2.6.2-.6.9-2.3 2.2-4.6 2.6-4.6 6.4-9.5 12.2-13.4\" stroke=\"#2E4DA3\" stroke-width=\"2.4\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></span>",
+      "css": ".ds-tick{display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;box-sizing:border-box;border:1.5px solid #B4C2B9;border-radius:12px;margin-inline-end:8px}.ds-tick-on{border:0;background:#DDE7F1}"
+    },
+    {
+      "name": "NOW Picture Card",
+      "kind": "card",
+      "refersTo": "picture-card-now",
+      "description": "The current schedule step: moss-wash pictogram tile, title, mono time, now label, pen tick.",
+      "html": "<div class=\"ds-now\"><div class=\"ds-now-pic\"><svg width=\"40\" height=\"40\" viewBox=\"0 0 48 48\" fill=\"none\"><path d=\"M7 20.5L24 10l17 10.5V24H7z\" fill=\"#1C362E\" opacity=\".2\"/><path d=\"M7 40V20.5L24 10l17 10.5V40zM4 40h40M20 40v-9h8v9\" stroke=\"#1C362E\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></div><div class=\"ds-now-text\"><div class=\"ds-now-title\">School day</div><div class=\"ds-now-time\">08:15–15:30</div><span class=\"ds-now-label\"><i></i>Now</span></div><span class=\"ds-now-tick\"></span></div>",
+      "css": ".ds-now{display:flex;gap:12px;align-items:flex-start;width:300px;padding:16px;box-sizing:border-box;background:#FBFCFA;border:2px solid #1C362E;border-radius:26px;box-shadow:0 1px 0 rgba(255,255,255,0.7) inset,0 22px 40px -18px rgba(19,32,27,0.42),0 2px 6px rgba(19,32,27,0.14)}.ds-now-pic{display:flex;align-items:center;justify-content:center;width:70px;height:70px;border-radius:20px;background:#DCEBE2;flex:none}.ds-now-text{flex:1;display:flex;flex-direction:column;gap:6px}.ds-now-title{font:700 22px/28px 'Bricolage Grotesque',sans-serif;letter-spacing:-0.6px;color:#13201B}.ds-now-time{font:500 15px/20px 'Geist Mono',monospace;font-variant-numeric:tabular-nums;color:#13201B}.ds-now-label{display:inline-flex;align-items:center;gap:6px;align-self:flex-start;height:24px;padding:0 8px;border-radius:8px;background:#DDE7F1;color:#244C74;font:500 12.5px/17px Ubuntu,sans-serif}.ds-now-label i{width:6px;height:6px;border-radius:3px;background:#2F5C8A}.ds-now-tick{width:44px;height:44px;box-sizing:border-box;border:1.5px solid #B4C2B9;border-radius:12px;flex:none}"
+    },
+    {
+      "name": "Magnet Note Slip",
+      "kind": "card",
+      "refersTo": "note-slip",
+      "description": "Therapist note held to the door; gold dot on the magnet while unread. Heading leads, metadata row follows.",
+      "html": "<div class=\"ds-slip-wrap\"><span class=\"ds-magnet\"><b></b><i></i></span><div class=\"ds-slip\"><div class=\"ds-slip-h\">A softer landing after pickup</div><div class=\"ds-slip-meta\"><span class=\"ds-tl\">Routine adjustment</span><span class=\"ds-fig\">08:30</span></div><p>I moved the quiet minutes right after pickup.</p></div></div>",
+      "css": ".ds-slip-wrap{position:relative;padding-top:12px;width:320px;transform:rotate(-1.2deg)}.ds-magnet{position:absolute;top:0;left:50%;margin-left:-13px;width:26px;height:26px;border-radius:13px;background:#26443A;box-shadow:0 1px 2px rgba(19,32,27,0.18);z-index:2}.ds-magnet b{position:absolute;top:5px;left:6px;width:8px;height:6px;border-radius:4px;background:#7F988C;opacity:.6}.ds-magnet i{position:absolute;top:-3px;right:-3px;width:12px;height:12px;box-sizing:border-box;border-radius:6px;background:#E2B04F;border:2px solid #FBFCFA}.ds-slip{background:#FBFCFA;border-radius:6px;padding:22px 20px 20px;box-shadow:0 1px 0 rgba(255,255,255,0.7) inset,0 22px 40px -18px rgba(19,32,27,0.42),0 2px 6px rgba(19,32,27,0.14);display:flex;flex-direction:column;gap:8px}.ds-slip-h{font:700 22px/28px 'Bricolage Grotesque',sans-serif;letter-spacing:-0.6px;color:#13201B}.ds-slip-meta{display:flex;gap:8px;align-items:center}.ds-tl{height:24px;line-height:24px;padding:0 8px;border-radius:8px;background:#E7ECE6;color:#3B4D45;font:500 12.5px Ubuntu,sans-serif}.ds-fig{font:500 15px 'Geist Mono',monospace;color:#5F7069}.ds-slip p{margin:0;font:400 16px/24px Ubuntu,sans-serif;color:#13201B}"
+    },
+    {
+      "name": "Perforated Visit Ticket",
+      "kind": "card",
+      "refersTo": "visit-ticket",
+      "description": "Visit with slate calendar stamp, mono time, notched tear line, and a bring list below.",
+      "html": "<div class=\"ds-ticket\"><div class=\"ds-ticket-top\"><div class=\"ds-cal\"><span>WED</span><b>14</b><span>OCT</span></div><div class=\"ds-ticket-time\">15:30</div></div><div class=\"ds-perf\"><i class=\"s\"></i><hr><i class=\"e\"></i></div><div class=\"ds-ticket-bottom\">What to bring</div></div>",
+      "css": ".ds-ticket{width:320px;background:#FBFCFA;border-radius:26px;box-shadow:0 1px 0 rgba(255,255,255,0.7) inset,0 22px 40px -18px rgba(19,32,27,0.42),0 2px 6px rgba(19,32,27,0.14)}.ds-ticket-top{display:flex;gap:16px;padding:20px;align-items:flex-start}.ds-cal{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:80px;height:96px;box-sizing:border-box;border:1.5px solid #34506B;border-radius:12px;color:#34506B;transform:rotate(-3deg);font:500 11px 'Geist Mono',monospace;letter-spacing:1px}.ds-cal b{font:500 34px/38px 'Geist Mono',monospace;letter-spacing:0}.ds-ticket-time{font:500 40px/44px 'Geist Mono',monospace;color:#13201B}.ds-perf{position:relative;height:22px;display:flex;align-items:center}.ds-perf i{position:absolute;width:22px;height:22px;border-radius:11px;background:#F2F4F0}.ds-perf .s{left:-11px}.ds-perf .e{right:-11px}.ds-perf hr{flex:1;margin:0 17px;border:0;border-top:1.5px dashed #B4C2B9}.ds-ticket-bottom{padding:12px 20px 20px;font:700 18px/24px 'Bricolage Grotesque',sans-serif;color:#13201B}"
+    },
+    {
+      "name": "Pressboard Tab Bar",
+      "kind": "navigation",
+      "refersTo": "tab-bar",
+      "description": "Board the app rests on; active tab joins the sheet; Log disc raised from the board, board-raised when active; gold count on Messages.",
+      "html": "<nav class=\"ds-bar\"><a class=\"on\"><span>Home</span></a><a><span>Routine</span></a><a class=\"log\"><em></em><span>Log</span></a><a><span>Messages</span><b>2</b></a><a><span>More</span></a></nav>",
+      "css": ".ds-bar{display:flex;width:390px;padding:0 8px 10px;box-sizing:border-box;background:#1C362E;font:400 12.5px/17px Ubuntu,sans-serif}.ds-bar a{position:relative;flex:1;min-height:62px;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;padding-bottom:8px;color:#A7BDB2;border-radius:0 0 18px 18px}.ds-bar a.on{background:#F2F4F0;color:#13201B;font-weight:600}.ds-bar a.log em{position:absolute;top:-24px;width:60px;height:60px;box-sizing:border-box;border-radius:30px;background:#FBFCFA;border:4px solid #1C362E;box-shadow:0 22px 40px -18px rgba(19,32,27,0.42),0 2px 6px rgba(19,32,27,0.14)}.ds-bar a b{position:absolute;top:6px;right:14px;min-width:20px;height:20px;box-sizing:border-box;border-radius:10px;border:2px solid #1C362E;background:#E2B04F;color:#132A23;font:500 11px/16px Ubuntu,sans-serif;text-align:center}"
+    },
+    {
+      "name": "Date Stamp",
+      "kind": "label",
+      "refersTo": "date-stamp",
+      "description": "Slate rubber stamp; en mono uppercase tracked, he/ar script face untracked.",
+      "html": "<span class=\"ds-stamp\">Wednesday 14 October</span>",
+      "css": ".ds-stamp{display:inline-block;padding:3px 8px;border:1.5px solid #34506B;border-radius:6px;color:#34506B;font:500 11px/14px 'Geist Mono',monospace;letter-spacing:1px;text-transform:uppercase;transform:rotate(-2deg);opacity:.92}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Fridge Door (inside The Case File)",
+    "overview": "The family's side of the case file lives on the fridge door: cool sheet enamel, picture cards in order, the therapist's notes held up by pressboard magnets, visits as perforated tickets, and a pressboard tab bar the app rests on. Pen ticks mark done; gold marks only what waits on the parent. Set large for one-handed use; trilingual with he/ar mirrored. World doctrine lives in apps/therapist-web/DESIGN.md.",
+    "keyCharacteristics": [
+      "Pressboard board with the active tab joined to the sheet",
+      "48-grid duotone pictogram picture cards",
+      "Pen tick as the single done control",
+      "Magnet-held tilted slips; perforated visit tickets",
+      "Gold rationed to what waits on the parent",
+      "Mono for numerals only; stamps in the script's own face in he/ar"
+    ],
+    "rules": [
+      {
+        "name": "The Waiting-On-You Rule",
+        "body": "Gold appears only where the parent owes something: unread note, open check-in, unread count.",
+        "section": "colors"
+      },
+      {
+        "name": "The Pen Is Done Rule",
+        "body": "Pen blue means finished: ticks and done times only.",
+        "section": "colors"
+      },
+      {
+        "name": "The Numerals-Only Mono Rule",
+        "body": "Geist Mono sets times, counts and day numbers in every language, never words.",
+        "section": "typography"
+      },
+      {
+        "name": "The Script's Own Stamp Rule",
+        "body": "In he and ar stamps use the script's own face with no tracking.",
+        "section": "typography"
+      },
+      {
+        "name": "The Heading-First Rule",
+        "body": "Headings lead; metadata rows come after them, never kickers.",
+        "section": "typography"
+      },
+      {
+        "name": "The Held-Not-Floating Rule",
+        "body": "Every lifted slip is held by a magnet, a stub, or the board.",
+        "section": "elevation"
+      },
+      {
+        "name": "The One Tick Rule",
+        "body": "Every done state is the pen tick; no switches, filled checkboxes or Mark done buttons.",
+        "section": "components"
+      }
+    ],
+    "dos": [
+      "Do put the heading first, then the metadata row.",
+      "Do mark every done state with the pen tick.",
+      "Do draw new pictures as 48px duotone pictograms.",
+      "Do hold lifted slips with a magnet or stub; tilt at most 1.2 degrees.",
+      "Do set he/ar stamps in the script's own face, untracked.",
+      "Do load sample content through useFamilyContent and isolate() data runs.",
+      "Do keep targets at 44px or more."
+    ],
+    "donts": [
+      "Don't use gold for anything that does not wait on the parent.",
+      "Don't use the tracked stamp as a section label or kicker.",
+      "Don't let intensity color shame the family.",
+      "Don't build pastel wellness card grids or chat bubbles.",
+      "Don't put Geist Mono on words.",
+      "Don't join the Log disc to the sheet."
+    ]
+  }
+}

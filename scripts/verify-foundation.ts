@@ -515,8 +515,10 @@ const rawColorPattern = /#[\dA-Fa-f]{3,8}\b|\brgba?\s*\(/u;
 const emojiPattern = /\p{Extended_Pictographic}/u;
 const physicalDirectionPattern =
   /\b(?:left|right|marginLeft|marginRight|paddingLeft|paddingRight)\s*:/u;
+// Device capture (camera, microphone) is allowed in the log; talking to the
+// backend or to storage directly is not. That goes through src/lib.
 const eventLogIntegrationPattern =
-  /from\s+["'](?:@stability\/supabase|expo-(?:audio|av|camera|image-picker)|@react-native-async-storage)|\bfetch\s*\(/u;
+  /from\s+["'](?:@stability\/supabase|@react-native-async-storage)|\bfetch\s*\(/u;
 const phaseSevenIntegrationPattern =
   /from\s+["'](?:@stability\/supabase|@react-native-async-storage)|\bfetch\s*\(/u;
 
@@ -566,7 +568,7 @@ for (const path of expectedParentEventLogFiles) {
   assert.doesNotMatch(
     source,
     eventLogIntegrationPattern,
-    `${path} contains a backend, persistence, or native media integration.`,
+    `${path} contains a backend or persistence integration.`,
   );
 }
 

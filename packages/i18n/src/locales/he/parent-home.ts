@@ -1,0 +1,28 @@
+import type { enParentHome } from "../en/parent-home";
+
+export const heParentHome = {
+  "home.tally": "{done} מתוך {total} הושלמו היום",
+  "home.adjustedStep": "{name} התאימה את הצעד של {time}",
+  "home.markDone": "סימון כבוצע: {step}",
+  "home.nextShort": "הבא:",
+  "home.allDone": "כל הצעדים של היום הושלמו.",
+  "home.session.with": "מפגש עם {name}",
+  "home.greeting.morning": "בוקר טוב, {name}.",
+  "home.summary": "{done} מתוך {total} צעדים הושלמו היום. {child} בבית הספר; החלק הקשה מגיע בדרך כלל אחרי האיסוף.",
+  "home.now": "עכשיו",
+  "home.until": "{start}–{end}",
+  "home.next": "הבא ב־{time}",
+  "home.adjustedBy": "הותאם על ידי {name}",
+  "home.schedule.title": "היום על המקרר",
+  "home.schedule.all": "כל השגרה",
+  "home.note.from": "מאת {name}",
+  "home.note.read": "לקריאה",
+  "home.checkin.title": "השאלון השבועי",
+  "home.checkin.detail": "חמש שאלות עבור לנה, כשתי דקות.",
+  "home.checkin.waiting": "ממתין",
+  "home.session.title": "מפגש עם לנה היום ב־{time}",
+  "home.week.title": "השבועיים האחרונים",
+  "home.week.summary": "רגעים שתועדו מאז המפגש ב־{date}: {count}. {support} עזר בכל פעם שניסיתם.",
+  "home.help.action": "משהו קורה עכשיו",
+  "home.help.hint": "פותח קודם תמיכה מרגיעה, ואז תיעוד מהיר.",
+} as const satisfies Record<keyof typeof enParentHome, string>;

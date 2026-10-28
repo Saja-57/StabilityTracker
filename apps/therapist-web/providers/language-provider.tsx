@@ -3,6 +3,7 @@
 import {
   DEFAULT_LANGUAGE,
   getDirection,
+  isSupportedLanguage,
   translate,
   type SupportedLanguage,
   type TextDirection,
@@ -12,6 +13,7 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type PropsWithChildren,
@@ -24,6 +26,8 @@ interface LanguageContextValue {
   readonly t: (key: TranslationKey) => string;
 }
 
+const LANGUAGE_STORAGE_KEY = "stability.language";
+
 const LanguageContext = createContext<LanguageContextValue | null>(null);
 
 export function LanguageProvider({ children }: PropsWithChildren) {
@@ -34,7 +38,24 @@ export function LanguageProvider({ children }: PropsWithChildren) {
     document.documentElement.lang = nextLanguage;
     document.documentElement.dir = getDirection(nextLanguage);
     setLanguageState(nextLanguage);
+    try {
+      window.localStorage.setItem(LANGUAGE_STORAGE_KEY, nextLanguage);
+    } catch {
+      // Storage can be unavailable (private mode); the choice still applies.
+    }
   }, []);
+
+  useEffect(() => {
+    try {
+      const saved = window.localStorage.getItem(LANGUAGE_STORAGE_KEY);
+      if (saved && isSupportedLanguage(saved) && saved !== DEFAULT_LANGUAGE) {
+        // Apply after hydration so server and first client render agree.
+        queueMicrotask(() => setLanguage(saved));
+      }
+    } catch {
+      // Ignore unavailable storage.
+    }
+  }, [setLanguage]);
 
   const value = useMemo<LanguageContextValue>(
     () => ({

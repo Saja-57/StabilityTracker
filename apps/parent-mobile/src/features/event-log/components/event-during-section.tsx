@@ -1,49 +1,65 @@
-import { spacing } from "@stability/design-tokens";
-import { Activity } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 
-import { TextArea, TextInput } from "@/components/ui";
+import { Type } from "@/components/case-file/type";
 import { useLanguage } from "@/providers/language-provider";
+import { space } from "@/theme/case-file";
 
-import type { EventLogDraft, EventLogDraftChange } from "../types";
+import { eventDurationOptions, eventSettingOptions } from "../options";
+import type {
+  EventDuration,
+  EventLogDraft,
+  EventLogDraftChange,
+  EventSetting,
+} from "../types";
+import { ChoiceGroup, NoteField } from "./choice-group";
 import { FormSection } from "./form-section";
 
-export interface EventDuringSectionProps {
-  readonly draft: EventLogDraft;
-  readonly onChange: EventLogDraftChange;
-}
-
-const styles = StyleSheet.create({
-  fields: {
-    gap: spacing.lg,
-  },
-});
-
+/** Page three: where it was and how long it lasted. */
 export function EventDuringSection({
   draft,
   onChange,
-}: EventDuringSectionProps) {
+}: {
+  draft: EventLogDraft;
+  onChange: EventLogDraftChange;
+}) {
   const { t } = useLanguage();
-  const completeLater = t("eventLog.fields.completeLater");
-
   return (
-    <FormSection icon={Activity} title={t("eventLog.sections.during")}>
-      <View style={styles.fields}>
-        <TextArea
-          helperText={completeLater}
-          label={t("eventLog.fields.behavior")}
-          onChangeText={(value) => onChange("behavior", value)}
-          placeholder={t("eventLog.fields.behaviorPlaceholder")}
-          value={draft.behavior}
-        />
-        <TextInput
-          helperText={completeLater}
-          label={t("eventLog.fields.duration")}
-          onChangeText={(value) => onChange("duration", value)}
-          placeholder={t("eventLog.fields.durationPlaceholder")}
-          value={draft.duration}
+    <FormSection title={t("logFlow.during.question")}>
+      <View style={styles.part}>
+        <Type variant="label" color="secondary">
+          {t("logFlow.during.where")}
+        </Type>
+        <ChoiceGroup<EventSetting>
+          label={t("logFlow.during.where")}
+          options={eventSettingOptions}
+          selected={draft.setting}
+          onToggle={(value) =>
+            onChange("setting", draft.setting === value ? null : value)
+          }
         />
       </View>
+      <View style={styles.part}>
+        <Type variant="label" color="secondary">
+          {t("logFlow.during.howLong")}
+        </Type>
+        <ChoiceGroup<EventDuration>
+          label={t("logFlow.during.howLong")}
+          options={eventDurationOptions}
+          selected={draft.duration}
+          onToggle={(value) =>
+            onChange("duration", draft.duration === value ? null : value)
+          }
+        />
+      </View>
+      <NoteField
+        value={draft.duringNote}
+        onChange={(value) => onChange("duringNote", value)}
+        placeholderKey="eventLog.fields.behaviorPlaceholder"
+      />
     </FormSection>
   );
 }
+
+const styles = StyleSheet.create({
+  part: { gap: space.sm, marginBottom: space.sm },
+});

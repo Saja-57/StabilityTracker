@@ -1,122 +1,134 @@
-import { colors, radius, spacing } from "@stability/design-tokens";
-import { Circle, MessageSquareText, TriangleAlert } from "lucide-react-native";
-import { Pressable, StyleSheet, View } from "react-native";
+import { StyleSheet, View } from "react-native";
 
 import {
-  AppText,
-  Badge,
-  Card,
-  getIconSize,
-  iconStrokeWidth,
-} from "@/components/ui";
+  Magnet,
+  Paper,
+  PressCard,
+  Row,
+} from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { Glyph } from "@/components/icons/glyphs";
+import { isolate } from "@/lib/format";
 import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
+import { elevation, ink, space } from "@/theme/case-file";
 
-import { messageCategoryLabelKeys } from "../message-options";
+import { formatNoteWhen, messageCategoryLabelKeys } from "../message-options";
 import type { ParentMessageViewModel } from "../types";
 import { MessageCategoryBadge } from "./message-category-badge";
 
 export interface MessageListItemProps {
   readonly message: ParentMessageViewModel;
   readonly onPress: (message: ParentMessageViewModel) => void;
+  /** Slight hand-placed tilt for slips held on the door, in degrees. */
+  readonly tilt?: number;
+  readonly today?: string;
 }
 
-const styles = StyleSheet.create({
-  pressed: {
-    opacity: 0.72,
-  },
-  card: {
-    gap: spacing.md,
-  },
-  header: {
-    alignItems: "flex-start",
-    gap: spacing.md,
-  },
-  icon: {
-    alignItems: "center",
-    backgroundColor: colors.brand.subtle,
-    borderRadius: radius.small,
-    height: spacing.xxxl,
-    justifyContent: "center",
-    width: spacing.xxxl,
-  },
-  content: {
-    flex: 1,
-    gap: spacing.xs,
-  },
-  metadata: {
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: spacing.sm,
-  },
-});
-
-export function MessageListItem({ message, onPress }: MessageListItemProps) {
+/**
+ * A therapist note as a paper slip. Unread slips are held by the pressboard
+ * magnet with a gold dot; read slips lie flat.
+ */
+export function MessageListItem({
+  message,
+  onPress,
+  tilt = 0,
+  today,
+}: MessageListItemProps) {
   const { language, t } = useLanguage();
-  const categoryLabel = t(messageCategoryLabelKeys[message.category]);
-  const readLabel = t(
-    message.isRead ? "messages.status.read" : "messages.status.unread",
+  const unread = !message.isRead;
+  const when = formatNoteWhen(
+    message.sentAt,
+    today,
+    language,
+    t("common.yesterday"),
   );
-  const accessibilityLabel = [message.title, categoryLabel, readLabel]
+  const accessibilityLabel = [
+    message.title,
+    t(messageCategoryLabelKeys[message.category]),
+    t(unread ? "messages.status.unread" : "messages.status.read"),
+    when,
+  ]
     .filter(Boolean)
     .join(". ");
 
   return (
-    <Pressable
-      accessibilityHint={t("messages.actions.open")}
+    <PressCard
+      accessibilityHint={t("inbox.open.hint")}
       accessibilityLabel={accessibilityLabel}
       accessibilityRole="button"
       onPress={() => onPress(message)}
-      style={({ pressed }) => (pressed ? styles.pressed : undefined)}
+      style={unread ? styles.held : null}
     >
-      <Card style={styles.card} variant="interactive">
-        <View style={[styles.header, getDirectionalRowStyle(language)]}>
-          <View style={styles.icon}>
-            <MessageSquareText
-              color={colors.brand.primary}
-              size={getIconSize("medium")}
-              strokeWidth={iconStrokeWidth}
-            />
+      <View style={tilt ? { transform: [{ rotate: `${tilt}deg` }] } : null}>
+        {unread ? (
+          <View style={styles.magnetPin}>
+            <Magnet unread />
           </View>
-          <View style={styles.content}>
-            <AppText
+        ) : null}
+        <Paper
+          style={[styles.slip, unread ? styles.slipUnread : styles.slipRead]}
+        >
+          <Type
+            variant={unread ? "title" : "headline"}
+            {...(message.contentLanguage
+              ? { language: message.contentLanguage }
+              : {})}
+          >
+            {isolate(message.title)}
+          </Type>
+          <Row gap={space.sm}>
+            <MessageCategoryBadge category={message.category} />
+            {when ? (
+              <Type variant="caption" color="muted" style={styles.when}>
+                {when}
+              </Type>
+            ) : null}
+          </Row>
+          {message.preview ? (
+            <Type
+              variant="body"
+              color="secondary"
+              numberOfLines={unread ? 3 : 2}
               {...(message.contentLanguage
                 ? { language: message.contentLanguage }
                 : {})}
-              variant={message.isRead ? "bodyStrong" : "cardTitle"}
             >
-              {message.title}
-            </AppText>
-            {message.preview ? (
-              <AppText
-                color="secondary"
-                {...(message.contentLanguage
-                  ? { language: message.contentLanguage }
-                  : {})}
-                numberOfLines={2}
+              {isolate(message.preview)}
+            </Type>
+          ) : null}
+          {unread && message.senderDisplayName ? (
+            <Row style={styles.between}>
+              <Type
+                variant="small"
+                color="muted"
+                style={styles.flex}
+                numberOfLines={1}
               >
-                {message.preview}
-              </AppText>
-            ) : null}
-          </View>
-        </View>
-        <View style={[styles.metadata, getDirectionalRowStyle(language)]}>
-          <MessageCategoryBadge category={message.category} />
-          <Badge icon={Circle} tone={message.isRead ? "neutral" : "brand"}>
-            {readLabel}
-          </Badge>
-          {message.isImportant ? (
-            <Badge icon={TriangleAlert} tone="warning">
-              {t("messages.status.important")}
-            </Badge>
+                {isolate(message.senderDisplayName)}
+              </Type>
+              <Glyph name="chevron" color={ink.primary} size={18} />
+            </Row>
           ) : null}
-          {message.sentAt ? (
-            <AppText color="muted" variant="caption">
-              {message.sentAt}
-            </AppText>
-          ) : null}
-        </View>
-      </Card>
-    </Pressable>
+        </Paper>
+      </View>
+    </PressCard>
   );
 }
+
+const styles = StyleSheet.create({
+  flex: { flex: 1 },
+  between: { justifyContent: "space-between" },
+  held: { paddingTop: 12 },
+  magnetPin: {
+    alignItems: "center",
+    end: 0,
+    position: "absolute",
+    start: 0,
+    top: 0,
+    zIndex: 2,
+  },
+  slip: { borderRadius: 6, gap: 10, padding: 20 },
+  slipUnread: { paddingTop: 24, ...elevation.lift },
+  slipRead: { gap: space.sm, paddingVertical: 16 },
+  when: { fontVariant: ["tabular-nums"] },
+});

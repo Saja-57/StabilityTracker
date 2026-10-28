@@ -1,0 +1,804 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-10-14T10:16:29+00:00",
+  "title": "Design System: Stability Tracker Therapist Workspace",
+  "extensions": {
+    "colorMeta": {
+      "pressboard-deep": {
+        "role": "primary",
+        "displayName": "Deep Pressboard",
+        "canonical": "#132A23",
+        "tonalRamp": [
+          "#18352C",
+          "#295B4C",
+          "#3B826C",
+          "#4CA98C",
+          "#73BFA8",
+          "#9DD3C2",
+          "#C7E6DC",
+          "#EDF7F4"
+        ]
+      },
+      "pressboard": {
+        "role": "primary",
+        "displayName": "Forest Pressboard",
+        "canonical": "#1C362E",
+        "tonalRamp": [
+          "#1A322B",
+          "#2D574A",
+          "#407C6A",
+          "#54A189",
+          "#79B9A5",
+          "#A1CEC0",
+          "#C9E3DB",
+          "#EEF6F4"
+        ]
+      },
+      "pressboard-raised": {
+        "role": "primary",
+        "displayName": "Raised Pressboard",
+        "canonical": "#26443A",
+        "tonalRamp": [
+          "#1B312A",
+          "#305549",
+          "#447967",
+          "#589D86",
+          "#7CB6A3",
+          "#A3CCBE",
+          "#CBE2DA",
+          "#EFF6F3"
+        ]
+      },
+      "pressboard-line": {
+        "role": "primary",
+        "displayName": "Pressboard Seam",
+        "canonical": "#335549",
+        "tonalRamp": [
+          "#1D3029",
+          "#325347",
+          "#477665",
+          "#5C9983",
+          "#80B2A0",
+          "#A6C9BD",
+          "#CCE0D9",
+          "#EFF5F3"
+        ]
+      },
+      "pressboard-ink": {
+        "role": "primary",
+        "displayName": "Board Ink",
+        "canonical": "#E9F0EA",
+        "tonalRamp": [
+          "#1F2D21",
+          "#364F39",
+          "#4C7052",
+          "#63926A",
+          "#86AC8B",
+          "#AAC5AE",
+          "#CEDED1",
+          "#F0F5F1"
+        ]
+      },
+      "pressboard-ink-muted": {
+        "role": "primary",
+        "displayName": "Board Ink Muted",
+        "canonical": "#A7BDB2",
+        "tonalRamp": [
+          "#212C26",
+          "#394C42",
+          "#516C5E",
+          "#698C7A",
+          "#8AA899",
+          "#ADC2B8",
+          "#D0DCD6",
+          "#F0F4F2"
+        ]
+      },
+      "pressboard-ink-faint": {
+        "role": "primary",
+        "displayName": "Board Ink Faint",
+        "canonical": "#7F988C",
+        "tonalRamp": [
+          "#222A26",
+          "#3B4943",
+          "#54695F",
+          "#6D887B",
+          "#8EA499",
+          "#B0BFB8",
+          "#D2DBD6",
+          "#F1F4F2"
+        ]
+      },
+      "sheet": {
+        "role": "neutral",
+        "displayName": "Sheet Stock",
+        "canonical": "#F2F4F0",
+        "tonalRamp": [
+          "#262C20",
+          "#424D38",
+          "#5E6D50",
+          "#7A8D68",
+          "#99A989",
+          "#B8C3AD",
+          "#D6DCD0",
+          "#F2F4F0"
+        ]
+      },
+      "sheet-raised": {
+        "role": "neutral",
+        "displayName": "Raised Sheet",
+        "canonical": "#FBFCFA",
+        "tonalRamp": [
+          "#26301D",
+          "#425332",
+          "#5E7647",
+          "#7A995C",
+          "#99B37F",
+          "#B8C9A6",
+          "#D6E0CC",
+          "#F2F5EF"
+        ]
+      },
+      "sheet-sunk": {
+        "role": "neutral",
+        "displayName": "Sunk Sheet",
+        "canonical": "#E7ECE6",
+        "tonalRamp": [
+          "#232B21",
+          "#3C4B39",
+          "#566B51",
+          "#6F8B6A",
+          "#90A78B",
+          "#B1C1AE",
+          "#D2DCD1",
+          "#F1F4F1"
+        ]
+      },
+      "sheet-rule": {
+        "role": "neutral",
+        "displayName": "Hairline Rule",
+        "canonical": "#D3DCD5",
+        "tonalRamp": [
+          "#222B24",
+          "#3B4A3E",
+          "#546958",
+          "#6C8873",
+          "#8DA593",
+          "#AFC0B3",
+          "#D2DBD4",
+          "#F1F4F1"
+        ]
+      },
+      "sheet-rule-strong": {
+        "role": "neutral",
+        "displayName": "Strong Rule",
+        "canonical": "#B4C2B9",
+        "tonalRamp": [
+          "#222A25",
+          "#3B4940",
+          "#55685C",
+          "#6E8777",
+          "#8EA396",
+          "#B0BFB5",
+          "#D2DAD5",
+          "#F1F4F2"
+        ]
+      },
+      "ink": {
+        "role": "neutral",
+        "displayName": "Sheet Ink",
+        "canonical": "#13201B",
+        "tonalRamp": [
+          "#1C3028",
+          "#315346",
+          "#467664",
+          "#5B9A82",
+          "#7FB39F",
+          "#A5CABC",
+          "#CCE1D9",
+          "#EFF5F3"
+        ]
+      },
+      "ink-secondary": {
+        "role": "neutral",
+        "displayName": "Secondary Ink",
+        "canonical": "#3B4D45",
+        "tonalRamp": [
+          "#212B27",
+          "#3A4B43",
+          "#526B60",
+          "#6A8B7C",
+          "#8BA69A",
+          "#AEC1B9",
+          "#D1DCD7",
+          "#F1F4F2"
+        ]
+      },
+      "ink-muted": {
+        "role": "neutral",
+        "displayName": "Muted Ink",
+        "canonical": "#5F7069",
+        "tonalRamp": [
+          "#232927",
+          "#3D4843",
+          "#576660",
+          "#70847C",
+          "#91A19A",
+          "#B2BDB9",
+          "#D3DAD7",
+          "#F1F3F2"
+        ]
+      },
+      "tab-gold": {
+        "role": "secondary",
+        "displayName": "Sunrise Gold",
+        "canonical": "#E2B04F",
+        "tonalRamp": [
+          "#422F0B",
+          "#725213",
+          "#A2741B",
+          "#D29623",
+          "#E2B050",
+          "#EBC884",
+          "#F3E0B9",
+          "#FBF5E9"
+        ]
+      },
+      "tab-gold-ink": {
+        "role": "secondary",
+        "displayName": "Gold Ink",
+        "canonical": "#6E4A0E",
+        "tonalRamp": [
+          "#442E09",
+          "#764F0F",
+          "#A77115",
+          "#D9921C",
+          "#E8AD4A",
+          "#EFC580",
+          "#F6DEB7",
+          "#FCF5E8"
+        ]
+      },
+      "tab-gold-wash": {
+        "role": "secondary",
+        "displayName": "Gold Wash",
+        "canonical": "#F7E8C6",
+        "tonalRamp": [
+          "#433109",
+          "#745610",
+          "#A57A17",
+          "#D79E1E",
+          "#E6B74C",
+          "#EDCC82",
+          "#F5E2B7",
+          "#FCF6E9"
+        ]
+      },
+      "tab-ruby": {
+        "role": "secondary",
+        "displayName": "Ruby",
+        "canonical": "#A3403A",
+        "tonalRamp": [
+          "#381614",
+          "#622623",
+          "#8B3732",
+          "#B54740",
+          "#C96E69",
+          "#DA9A96",
+          "#EAC5C3",
+          "#F8EDEC"
+        ]
+      },
+      "tab-ruby-ink": {
+        "role": "secondary",
+        "displayName": "Ruby Ink",
+        "canonical": "#8A2F2A",
+        "tonalRamp": [
+          "#3B1412",
+          "#66231F",
+          "#91312C",
+          "#BC4039",
+          "#CF6863",
+          "#DE9592",
+          "#ECC3C0",
+          "#F9ECEB"
+        ]
+      },
+      "tab-ruby-wash": {
+        "role": "secondary",
+        "displayName": "Ruby Wash",
+        "canonical": "#F4DEDA",
+        "tonalRamp": [
+          "#3B1812",
+          "#66291E",
+          "#913B2B",
+          "#BD4C38",
+          "#D07362",
+          "#DE9D91",
+          "#ECC7C0",
+          "#F9EDEB"
+        ]
+      },
+      "tab-cobalt": {
+        "role": "secondary",
+        "displayName": "Cobalt",
+        "canonical": "#2F5C8A",
+        "tonalRamp": [
+          "#132639",
+          "#224263",
+          "#305E8D",
+          "#3E7AB7",
+          "#6798CB",
+          "#94B7DB",
+          "#C2D6EA",
+          "#ECF2F9"
+        ]
+      },
+      "tab-cobalt-ink": {
+        "role": "secondary",
+        "displayName": "Cobalt Ink",
+        "canonical": "#244C74",
+        "tonalRamp": [
+          "#12263A",
+          "#1F4265",
+          "#2D5E90",
+          "#3A7ABB",
+          "#6399CF",
+          "#92B8DD",
+          "#C1D6EC",
+          "#ECF2F9"
+        ]
+      },
+      "tab-cobalt-wash": {
+        "role": "secondary",
+        "displayName": "Cobalt Wash",
+        "canonical": "#DDE7F1",
+        "tonalRamp": [
+          "#162636",
+          "#27425E",
+          "#375E86",
+          "#477AAD",
+          "#6E99C3",
+          "#9AB8D5",
+          "#C5D6E7",
+          "#EDF2F8"
+        ]
+      },
+      "tab-moss": {
+        "role": "secondary",
+        "displayName": "Moss",
+        "canonical": "#3D7A5C",
+        "tonalRamp": [
+          "#193326",
+          "#2C5843",
+          "#3F7E5F",
+          "#52A37B",
+          "#77BB9A",
+          "#A0CFB8",
+          "#C9E4D6",
+          "#EEF6F2"
+        ]
+      },
+      "tab-moss-ink": {
+        "role": "secondary",
+        "displayName": "Moss Ink",
+        "canonical": "#2B5F46",
+        "tonalRamp": [
+          "#183527",
+          "#295B43",
+          "#3B8260",
+          "#4CA97C",
+          "#73BF9A",
+          "#9DD3B9",
+          "#C7E6D7",
+          "#EDF7F2"
+        ]
+      },
+      "tab-moss-wash": {
+        "role": "secondary",
+        "displayName": "Moss Wash",
+        "canonical": "#DCEBE2",
+        "tonalRamp": [
+          "#1C3124",
+          "#30543F",
+          "#457859",
+          "#599C74",
+          "#7DB593",
+          "#A4CBB4",
+          "#CBE1D4",
+          "#EFF6F2"
+        ]
+      },
+      "tab-clay": {
+        "role": "secondary",
+        "displayName": "Clay",
+        "canonical": "#B97A3A",
+        "tonalRamp": [
+          "#3A2612",
+          "#654320",
+          "#905F2D",
+          "#BA7B3A",
+          "#CE9964",
+          "#DDB892",
+          "#ECD6C1",
+          "#F9F2EC"
+        ]
+      },
+      "tab-clay-wash": {
+        "role": "secondary",
+        "displayName": "Clay Wash",
+        "canonical": "#F2E4D3",
+        "tonalRamp": [
+          "#3B2811",
+          "#66461E",
+          "#92632B",
+          "#BD8138",
+          "#D09E62",
+          "#DEBB91",
+          "#ECD8C0",
+          "#F9F3EB"
+        ]
+      },
+      "intensity-low": {
+        "role": "tertiary",
+        "displayName": "Intensity Low",
+        "canonical": "#5F8F79",
+        "tonalRamp": [
+          "#1F2E27",
+          "#355043",
+          "#4B7160",
+          "#62937C",
+          "#84AE9B",
+          "#A9C6B9",
+          "#CEDED7",
+          "#F0F5F2"
+        ]
+      },
+      "intensity-moderate": {
+        "role": "tertiary",
+        "displayName": "Intensity Moderate",
+        "canonical": "#B88019",
+        "tonalRamp": [
+          "#432F09",
+          "#755110",
+          "#A67417",
+          "#D8961D",
+          "#E7B04B",
+          "#EEC881",
+          "#F5DFB7",
+          "#FCF5E9"
+        ]
+      },
+      "intensity-high": {
+        "role": "tertiary",
+        "displayName": "Intensity High",
+        "canonical": "#A3403A",
+        "tonalRamp": [
+          "#381614",
+          "#622623",
+          "#8B3732",
+          "#B54740",
+          "#C96E69",
+          "#DA9A96",
+          "#EAC5C3",
+          "#F8EDEC"
+        ]
+      },
+      "pen": {
+        "role": "tertiary",
+        "displayName": "Ballpoint Blue",
+        "canonical": "#2E4DA3",
+        "tonalRamp": [
+          "#111C3C",
+          "#1D3167",
+          "#2A4693",
+          "#365ABF",
+          "#607ED2",
+          "#90A5E0",
+          "#BFCBED",
+          "#EBEFF9"
+        ]
+      },
+      "stamp": {
+        "role": "tertiary",
+        "displayName": "Stamp Slate",
+        "canonical": "#34506B",
+        "tonalRamp": [
+          "#192633",
+          "#2B4359",
+          "#3E5F7F",
+          "#507BA5",
+          "#769ABC",
+          "#9FB8D0",
+          "#C8D6E4",
+          "#EEF2F7"
+        ]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "One page title per sheet; 40px mobile to 52px. he/ar swap to Heebo/Cairo 800."
+      },
+      "file-title": {
+        "displayName": "File Title",
+        "purpose": "Child name heading an open file; shares a view transition with the folder name."
+      },
+      "headline": {
+        "displayName": "Sheet Heading",
+        "purpose": "Section headings on the sheet."
+      },
+      "title": {
+        "displayName": "Sub-heading",
+        "purpose": "Sub-sections inside panels."
+      },
+      "lede": {
+        "displayName": "Lede",
+        "purpose": "Summary under page titles and folder reasons; 58-60ch."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Lists and descriptions."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Tab labels, captions, legends."
+      },
+      "figure": {
+        "displayName": "Figure",
+        "purpose": "Counts and durations in tabular Geist Mono."
+      },
+      "stamp": {
+        "displayName": "Stamp",
+        "purpose": "Dates, now markers, sample-data notice only."
+      }
+    },
+    "shadows": [
+      {
+        "name": "sheet",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.6) inset, 0 24px 48px -24px rgba(5, 18, 13, 0.55), 0 2px 6px rgba(5, 18, 13, 0.18)",
+        "purpose": "The single reading sheet laid on pressboard."
+      },
+      {
+        "name": "folder",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 10px 24px -12px rgba(19, 32, 27, 0.32), 0 1px 2px rgba(19, 32, 27, 0.12)",
+        "purpose": "File panels and back folders resting on the sheet."
+      },
+      {
+        "name": "lift",
+        "value": "0 1px 0 rgba(255, 255, 255, 0.7) inset, 0 22px 40px -18px rgba(19, 32, 27, 0.42), 0 2px 6px rgba(19, 32, 27, 0.14)",
+        "purpose": "The front folder of a stack and the mobile rail drawer."
+      },
+      {
+        "name": "press",
+        "value": "0 1px 2px rgba(19, 32, 27, 0.18)",
+        "purpose": "Ink and outline actions."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-paper",
+        "value": "cubic-bezier(0.16, 1, 0.3, 1)",
+        "purpose": "Default exponential ease-out for settling sheets, rising folders, stack reorder, bars, and the file view transition."
+      },
+      {
+        "name": "ease-settle",
+        "value": "cubic-bezier(0.22, 1, 0.36, 1)",
+        "purpose": "Softer ease-out alternative for settling."
+      },
+      {
+        "name": "sheet-settle",
+        "value": "520ms ease-paper, 45ms stagger; from opacity 0, translateY(10px), blur(2px)",
+        "purpose": "Content entering a sheet or tab panel."
+      },
+      {
+        "name": "folder-rise",
+        "value": "640ms ease-paper, 70ms stagger; from translateY(18px) rotate(-0.6deg)",
+        "purpose": "Folders entering the desk."
+      },
+      {
+        "name": "stamp-press",
+        "value": "420ms cubic-bezier(0.2, 0.9, 0.2, 1), 260ms delay; scale 1.35 to 0.97 to 1 at the stamp tilt",
+        "purpose": "Date stamps pressing onto paper."
+      },
+      {
+        "name": "pen-stroke",
+        "value": "420ms cubic-bezier(0.65, 0, 0.35, 1); stroke-dashoffset draw",
+        "purpose": "Pen ticks and loops being drawn."
+      },
+      {
+        "name": "bar-grow",
+        "value": "700ms ease-paper, 12ms stagger + 120ms; scaleY from 0 at bottom",
+        "purpose": "Event barcode bars."
+      },
+      {
+        "name": "file-pull",
+        "value": "view transition 460ms ease-paper with mid-flight 2px blur",
+        "purpose": "Shared monogram and name when a file is pulled from the desk."
+      },
+      {
+        "name": "sheet-swap",
+        "value": "out 180ms ease-in to translateY(-6px); in 420ms ease-paper +60ms from translateY(12px)",
+        "purpose": "Route-level sheet replacement."
+      },
+      {
+        "name": "reduced-motion",
+        "value": "animations and view transitions removed under prefers-reduced-motion",
+        "purpose": "Content is visible by default; motion only adds."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "sm",
+        "value": "640px"
+      },
+      {
+        "name": "lg",
+        "value": "1024px",
+        "purpose": "Rail becomes persistent; sheet scrolls internally."
+      },
+      {
+        "name": "xl",
+        "value": "1280px",
+        "purpose": "Desk splits 1.55 : 1."
+      }
+    ],
+    "textures": [
+      {
+        "name": "pressboard-fibre",
+        "value": "fractalNoise turbulence, baseFrequency 0.9, 3 octaves, white at 7% alpha, 220px tile, over a top-start radial of pressboard-raised",
+        "purpose": "Matte board."
+      },
+      {
+        "name": "sheet-fibre",
+        "value": "fractalNoise turbulence, baseFrequency 1.4, 2 octaves, green-tinted at 3.5% alpha, 180px tile",
+        "purpose": "Sheet stock grain."
+      }
+    ],
+    "focus": [
+      {
+        "name": "on-board",
+        "value": "2px solid tab-gold, 2px offset"
+      },
+      {
+        "name": "on-sheet",
+        "value": "2px solid pen, 2px offset"
+      }
+    ],
+    "selection": "rgba(226, 176, 79, 0.38)",
+    "overlay": "rgba(8, 20, 15, 0.52)"
+  },
+  "components": [
+    {
+      "name": "Ink Action",
+      "kind": "button",
+      "refersTo": "action-ink",
+      "description": "Primary action on any sheet, such as Open file or Reply. Forest pressboard ink, never gold.",
+      "html": "<button class=\"ds-action-ink\">Open file <svg width=\"17\" height=\"17\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M5 12h14M13 6l6 6-6 6\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button>",
+      "css": ".ds-action-ink{display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 16px;border:0;border-radius:11px;background:#1C362E;color:#E9F0EA;font:500 14px/1 Ubuntu, Heebo, Cairo, sans-serif;box-shadow:0 1px 2px rgba(19,32,27,0.18);cursor:pointer;transition:background-color 150ms,transform 150ms}.ds-action-ink:hover{background:#26443A}.ds-action-ink:active{transform:translateY(1px)}.ds-action-ink:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}"
+    },
+    {
+      "name": "Outline Action",
+      "kind": "button",
+      "refersTo": "action-outline",
+      "description": "Secondary action beside an ink action.",
+      "html": "<button class=\"ds-action-outline\">Message family</button>",
+      "css": ".ds-action-outline{display:inline-flex;align-items:center;height:40px;padding:0 16px;border:0;border-radius:11px;background:#FBFCFA;color:#13201B;font:500 14px/1 Ubuntu, Heebo, Cairo, sans-serif;box-shadow:0 0 0 1px #D3DCD5;cursor:pointer;transition:box-shadow 150ms,transform 150ms}.ds-action-outline:hover{box-shadow:0 0 0 1px #B4C2B9}.ds-action-outline:active{transform:translateY(1px)}.ds-action-outline:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}"
+    },
+    {
+      "name": "Tab Label",
+      "kind": "chip",
+      "refersTo": "tab-label-gold",
+      "description": "File status in index-tab ink. Gold only when the therapist must act; cobalt and moss shown for contrast.",
+      "html": "<div class=\"ds-tabs\"><span class=\"ds-tab ds-tab-gold\"><i></i>Needs your review</span><span class=\"ds-tab ds-tab-cobalt\"><i></i>Session today</span><span class=\"ds-tab ds-tab-moss\"><i></i>Steady</span></div>",
+      "css": ".ds-tabs{display:flex;gap:8px;flex-wrap:wrap}.ds-tab{display:inline-flex;align-items:center;gap:6px;height:24px;padding:0 8px;border-radius:7px;font:500 12px/1 Ubuntu, Heebo, Cairo, sans-serif;white-space:nowrap}.ds-tab i{width:6px;height:6px;border-radius:50%}.ds-tab-gold{background:#F7E8C6;color:#6E4A0E}.ds-tab-gold i{background:#E2B04F}.ds-tab-cobalt{background:#DDE7F1;color:#244C74}.ds-tab-cobalt i{background:#2F5C8A}.ds-tab-moss{background:#DCEBE2;color:#2B5F46}.ds-tab-moss i{background:#3D7A5C}"
+    },
+    {
+      "name": "Boxed Field",
+      "kind": "input",
+      "refersTo": "field-box",
+      "description": "Short entries such as routine times. Pen-blue ring on focus.",
+      "html": "<input class=\"ds-field\" value=\"19:30\" aria-label=\"Time\">",
+      "css": ".ds-field{height:40px;padding:0 12px;border:0;border-radius:10px;background:#FBFCFA;color:#13201B;font:400 14px/1 'Geist Mono', ui-monospace, monospace;font-variant-numeric:tabular-nums;box-shadow:0 0 0 1px #D3DCD5;outline:none;transition:box-shadow 200ms}.ds-field:hover{box-shadow:0 0 0 1px #B4C2B9}.ds-field:focus{box-shadow:0 0 0 1px #2E4DA3}"
+    },
+    {
+      "name": "Rail Navigation",
+      "kind": "nav",
+      "refersTo": "rail-tab-active",
+      "description": "Pressboard rail with index tabs; the active tab is sheet stock joined to the sheet. Gold counts ask for action.",
+      "html": "<nav class=\"ds-rail\"><a class=\"ds-rail-tab is-active\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 13.5h16v4a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" fill=\"currentColor\" opacity=\"0.2\"/><path d=\"M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 8.75h8M8 12h5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg><span>Dashboard</span></a><a class=\"ds-rail-tab\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 13.5h16v4a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" fill=\"currentColor\" opacity=\"0.2\"/><path d=\"M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 8.75h8M8 12h5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg><span>Children</span><b class=\"ds-count\">3</b></a><a class=\"ds-rail-tab\" href=\"#\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\"><path d=\"M4 13.5h16v4a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" fill=\"currentColor\" opacity=\"0.2\"/><path d=\"M4 6.5A2.5 2.5 0 0 1 6.5 4h11A2.5 2.5 0 0 1 20 6.5v11a2.5 2.5 0 0 1-2.5 2.5h-11A2.5 2.5 0 0 1 4 17.5z\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M8 8.75h8M8 12h5\" stroke=\"currentColor\" stroke-width=\"1.6\" stroke-linecap=\"round\"/></svg><span>Appointments</span><b class=\"ds-count ds-count-quiet\">4</b></a></nav>",
+      "css": ".ds-rail{display:grid;gap:2px;width:248px;padding:12px 0 12px 12px;background:#1C362E}.ds-rail-tab{display:flex;align-items:center;gap:12px;height:44px;padding:0 20px 0 14px;margin-right:12px;border-radius:12px;color:#A7BDB2;font:400 14.5px/1 Ubuntu, Heebo, Cairo, sans-serif;text-decoration:none;transition:background-color 200ms,color 200ms}.ds-rail-tab svg{color:#7F988C}.ds-rail-tab:hover{background:rgba(38,68,58,0.7);color:#E9F0EA}.ds-rail-tab.is-active{margin-right:0;border-radius:12px 0 0 12px;background:#F2F4F0;color:#13201B;font-weight:500}.ds-rail-tab.is-active svg{color:#1C362E}.ds-rail-tab span{flex:1}.ds-rail-tab:focus-visible{outline:2px solid #E2B04F;outline-offset:2px}.ds-count{display:grid;place-items:center;min-width:20px;height:20px;padding:0 6px;border-radius:9999px;background:#E2B04F;color:#132A23;font:400 11.5px/1 'Geist Mono', ui-monospace, monospace}.ds-count-quiet{background:#26443A;color:#A7BDB2}"
+    },
+    {
+      "name": "Folder Face",
+      "kind": "card",
+      "refersTo": "folder-front",
+      "description": "Front folder of the files-that-need-you stack: monogram tile, display name, reason, figures, ink action.",
+      "html": "<article class=\"ds-folder\"><div class=\"ds-folder-tab\"><i></i>Noa Levi</div><div class=\"ds-folder-body\"><header><span class=\"ds-mono\">NL</span><div><h3>Noa Levi</h3><p>6 years / Sensory regulation</p></div></header><p class=\"ds-reason\">Since the session on 7 Oct: 10 logged, 1 at high intensity.</p><div class=\"ds-figs\"><div><b>10</b><span>Events since last session</span></div><div><b>1</b><span>High intensity</span></div><div><b>11<small> min</small></b><span>Median recovery</span></div></div><button class=\"ds-open\">Open file</button></div></article>",
+      "css": ".ds-folder{width:420px;padding-top:34px;position:relative}.ds-folder-tab{position:absolute;top:1px;left:8px;display:flex;align-items:center;gap:8px;height:34px;padding:0 16px 0 12px;border-radius:12px 12px 0 0;background:#FBFCFA;box-shadow:inset 0 3px 0 #E2B04F;color:#13201B;font:500 13.5px/1 Ubuntu, Heebo, Cairo, sans-serif}.ds-folder-tab i{width:8px;height:8px;border-radius:50%;background:#E2B04F}.ds-folder-body{display:grid;gap:20px;padding:28px;border-radius:16px;background:#FBFCFA;box-shadow:0 1px 0 rgba(255,255,255,0.7) inset,0 22px 40px -18px rgba(19,32,27,0.42),0 2px 6px rgba(19,32,27,0.14);font-family:Ubuntu, Heebo, Cairo, sans-serif;color:#13201B}.ds-folder-body header{display:flex;gap:16px;align-items:center}.ds-mono{display:grid;place-items:center;width:64px;height:64px;border-radius:16px;background:#1C362E;color:#E9F0EA;box-shadow:inset 0 0 0 1px #335549;font:640 22px/1 'Bricolage Grotesque', Ubuntu, sans-serif;font-variation-settings:'wdth' 92}.ds-folder-body h3{margin:0;font:640 32px/36px 'Bricolage Grotesque', Ubuntu, sans-serif;font-variation-settings:'wdth' 92;letter-spacing:-0.025em}.ds-folder-body header p{margin:4px 0 0;font-size:14px;color:#5F7069}.ds-reason{margin:0;font-size:17px;line-height:28px;color:#3B4D45}.ds-figs{display:flex;gap:32px;padding-top:20px;border-top:1px dashed #B4C2B9}.ds-figs div{display:grid;gap:2px}.ds-figs b{font:400 26px/32px 'Geist Mono', ui-monospace, monospace;font-variant-numeric:tabular-nums slashed-zero;letter-spacing:-0.01em}.ds-figs small{font-size:13px;color:#5F7069}.ds-figs span{font-size:12.5px;color:#5F7069}.ds-open{justify-self:start;height:40px;padding:0 16px;border:0;border-radius:11px;background:#1C362E;color:#E9F0EA;font:500 14px/1 Ubuntu, Heebo, Cairo, sans-serif;cursor:pointer}.ds-open:hover{background:#26443A}.ds-open:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}"
+    },
+    {
+      "name": "Event Barcode",
+      "kind": "custom",
+      "description": "One column per day, one bar per event, height and color by intensity; gold-wash band marks days since the last session.",
+      "html": "<div class=\"ds-barcode\" role=\"img\" aria-label=\"Events across 8 days\"><span><i class=\"l\"></i></span><span><i class=\"h\"></i><i class=\"m\"></i></span><span><em></em></span><span><i class=\"m\"></i></span><span class=\"since\"><i class=\"l\"></i><i class=\"m\"></i></span><span class=\"since\"><i class=\"h\"></i></span><span class=\"since\"><i class=\"m\"></i><i class=\"m\"></i><i class=\"l\"></i></span><span class=\"since\"><em></em></span></div>",
+      "css": ".ds-barcode{display:grid;grid-template-columns:repeat(8,1fr);gap:3px;align-items:end;width:260px;height:64px;padding:8px;background:#FBFCFA}.ds-barcode span{display:flex;align-items:end;justify-content:center;gap:2px;height:100%;padding:0 1px;border-radius:3px}.ds-barcode span.since{background:rgba(247,232,198,0.7)}.ds-barcode i{width:100%;max-width:5px;border-radius:1.5px}.ds-barcode i.l{height:40%;background:#5F8F79}.ds-barcode i.m{height:70%;background:#B88019}.ds-barcode i.h{height:100%;background:#A3403A}.ds-barcode em{width:100%;height:3px;border-radius:9999px;background:#D3DCD5}"
+    },
+    {
+      "name": "Date Stamp and Pen Marks",
+      "kind": "custom",
+      "description": "Stamp-slate mono date pressed at a tilt; pen-blue ballpoint tick for reviewed and loop for flagged.",
+      "html": "<div class=\"ds-marks\"><span class=\"ds-stamp\">Wed, 14 Oct 2026</span><button class=\"ds-tick\" role=\"checkbox\" aria-checked=\"true\" aria-label=\"Reviewed\"><svg viewBox=\"0 0 28 28\" width=\"26\" height=\"26\" fill=\"none\"><path d=\"M4.6 15.2c1.3.4 2.7 1.7 3.9 3.3.6.8 1.1 1.7 1.5 2.6.2-.6.9-2.3 2.2-4.6 2.6-4.6 6.4-9.5 12.2-13.4\" stroke=\"currentColor\" stroke-width=\"2.2\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></svg></button><span class=\"ds-loop\">1 flagged<svg viewBox=\"0 0 100 40\" preserveAspectRatio=\"none\" fill=\"none\"><path d=\"M62 4.5C40 1.5 9 5 4.2 17.6 0.4 27.7 26 36.6 55 35.2c27-1.3 42.4-9 40.6-19.2C93.7 5.4 66 1.2 44 4.4 33 6 24 8.6 19 11\" stroke=\"currentColor\" stroke-width=\"1.7\" stroke-linecap=\"round\" vector-effect=\"non-scaling-stroke\"/></svg></span></div>",
+      "css": ".ds-marks{display:flex;align-items:center;gap:24px;padding:16px;background:#F2F4F0}.ds-stamp{display:inline-flex;padding:3px 8px;border:1.5px solid currentColor;border-radius:6px;color:#34506B;font:500 12px/1.2 'Geist Mono', ui-monospace, monospace;letter-spacing:0.08em;text-transform:uppercase;font-variant-numeric:tabular-nums;opacity:0.9;mix-blend-mode:multiply;transform:rotate(-4deg)}.ds-tick{display:grid;place-items:center;width:32px;height:32px;border:0;border-radius:8px;background:transparent;color:#2E4DA3;cursor:pointer}.ds-tick:focus-visible{outline:2px solid #2E4DA3;outline-offset:2px}.ds-loop{position:relative;padding:2px 8px;font:400 13px/1.4 Ubuntu, Heebo, Cairo, sans-serif;color:#13201B}.ds-loop svg{position:absolute;inset:-6px -4px;width:calc(100% + 8px);height:calc(100% + 12px);color:#2E4DA3;overflow:visible;pointer-events:none}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Case File",
+    "overview": "A deep forest pressboard frames the workspace and one cool, bright sheet of paper stock carries all reading. Each child is a folder: the desk stacks those that need the therapist, and opening one lifts it into the full file whose index tabs flip sections. Dense and honest rather than decorative: tabular mono numerals, an event barcode per child, rubber-stamped dates, and ballpoint pen marks for the therapist's review. Gold is rationed to mean 'this needs you'. Trilingual, with he and ar mirrored.",
+    "keyCharacteristics": [
+      "Pressboard frame, sheet-stock reading surface, faint fibre texture",
+      "Index-tab inks with gold reserved for therapist action",
+      "Tabular mono figures and tilted rubber stamps",
+      "Pen tick and pen loop as review language",
+      "Paper-weight motion: exponential ease-out, no bounce"
+    ],
+    "rules": [
+      {
+        "name": "The Gold Means You Rule",
+        "body": "Gold appears only where the therapist must act. Primary actions are forest pressboard ink.",
+        "section": "colors"
+      },
+      {
+        "name": "The Wash-and-Ink Rule",
+        "body": "A tab tone appears as wash with its matching ink text, or as a solid dot or bar.",
+        "section": "colors"
+      },
+      {
+        "name": "The Ruby Is Intensity Rule",
+        "body": "Ruby marks high intensity and skipped steps, not generic chrome errors.",
+        "section": "colors"
+      },
+      {
+        "name": "The Grid-Locked Numerals Rule",
+        "body": "Every count, time, and duration is tabular Geist Mono.",
+        "section": "typography"
+      },
+      {
+        "name": "The Script Swap Rule",
+        "body": "In he and ar, display switches to Heebo or Cairo 800.",
+        "section": "typography"
+      },
+      {
+        "name": "The One Sheet Rule",
+        "body": "All reading happens on the single sheet laid on the board; no floating tile grids.",
+        "section": "layout"
+      },
+      {
+        "name": "The Paper Weight Rule",
+        "body": "Shadows fall downward, soft, with an inset white top edge; no glows or hard offsets.",
+        "section": "elevation"
+      },
+      {
+        "name": "The Tab Joins the Sheet Rule",
+        "body": "An active index tab shares its surface with the sheet or panel below.",
+        "section": "shapes"
+      }
+    ],
+    "dos": [
+      "Do use forest pressboard ink for the primary action on any sheet.",
+      "Do reserve gold for items needing the therapist's action, pairing gold wash with gold-ink text.",
+      "Do set every number and time in Geist Mono with tabular figures.",
+      "Do stamp dates in stamp slate and mark review only with pen ticks and pen loops.",
+      "Do draw new icons as 24px duotone glyphs matching the set.",
+      "Do verify every surface in he and ar."
+    ],
+    "donts": [
+      "Don't use gold for primary buttons, decoration, or emphasis that asks nothing of the therapist.",
+      "Don't use cream or warm paper for the sheet.",
+      "Don't break reading content into floating white KPI tiles.",
+      "Don't import a generic icon library into product chrome.",
+      "Don't use bounce or elastic easing, or hide content until an animation runs.",
+      "Don't use uppercase tracked labels as section kickers; the mono stamp is only for dates, now, and the sample-data notice."
+    ]
+  }
+}

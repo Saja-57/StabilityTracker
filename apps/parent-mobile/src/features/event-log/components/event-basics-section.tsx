@@ -1,8 +1,5 @@
-import { spacing } from "@stability/design-tokens";
-import { ClipboardPenLine } from "lucide-react-native";
-import { StyleSheet, View } from "react-native";
+import { View, StyleSheet } from "react-native";
 
-import { AppText, TextInput } from "@/components/ui";
 import { useLanguage } from "@/providers/language-provider";
 
 import type { EventLogDraft, EventLogDraftChange } from "../types";
@@ -11,70 +8,45 @@ import { FormSection } from "./form-section";
 import { IntensitySelector } from "./intensity-selector";
 import { TimingSelector } from "./timing-selector";
 
-export interface EventBasicsSectionProps {
-  readonly draft: EventLogDraft;
-  readonly eventTypeError?: string;
-  readonly onChange: EventLogDraftChange;
+/** Page one: what happened, how strong, and when. */
+export function EventBasicsSection({
+  draft,
+  onChange,
+}: {
+  draft: EventLogDraft;
+  onChange: EventLogDraftChange;
+}) {
+  const { t } = useLanguage();
+  return (
+    <View style={styles.page}>
+      <FormSection
+        title={t("logFlow.basics.question")}
+        hint={t("eventLog.type.description")}
+      >
+        <EventTypeSelector
+          value={draft.eventType}
+          onChange={(value) => onChange("eventType", value)}
+        />
+      </FormSection>
+      <FormSection
+        title={t("logFlow.intensity.question")}
+        hint={t("eventLog.intensity.description")}
+      >
+        <IntensitySelector
+          value={draft.intensity}
+          onChange={(value) => onChange("intensity", value)}
+        />
+      </FormSection>
+      <FormSection title={t("logFlow.timing.question")}>
+        <TimingSelector
+          value={draft.timingMode}
+          onChange={(value) => onChange("timingMode", value)}
+        />
+      </FormSection>
+    </View>
+  );
 }
 
 const styles = StyleSheet.create({
-  fields: {
-    gap: spacing.lg,
-  },
-  reporter: {
-    gap: spacing.xs,
-  },
+  page: { gap: 28 },
 });
-
-export function EventBasicsSection({
-  draft,
-  eventTypeError,
-  onChange,
-}: EventBasicsSectionProps) {
-  const { t } = useLanguage();
-  const optional = t("eventLog.fields.optional");
-
-  return (
-    <FormSection icon={ClipboardPenLine} title={t("eventLog.sections.basics")}>
-      <View style={styles.fields}>
-        <EventTypeSelector
-          onChange={(value) => onChange("eventType", value)}
-          value={draft.eventType}
-          {...(eventTypeError ? { errorText: eventTypeError } : {})}
-        />
-        <TimingSelector
-          onChange={(value) => onChange("timingMode", value)}
-          value={draft.timingMode}
-        />
-        {draft.timingMode === "earlier" ? (
-          <>
-            <TextInput
-              helperText={optional}
-              label={t("eventLog.fields.date")}
-              onChangeText={(value) => onChange("date", value)}
-              placeholder={t("eventLog.fields.datePlaceholder")}
-              value={draft.date}
-            />
-            <TextInput
-              helperText={optional}
-              label={t("eventLog.fields.time")}
-              onChangeText={(value) => onChange("time", value)}
-              placeholder={t("eventLog.fields.timePlaceholder")}
-              value={draft.time}
-            />
-          </>
-        ) : null}
-        <IntensitySelector
-          onChange={(value) => onChange("intensity", value)}
-          value={draft.intensity}
-        />
-        <View style={styles.reporter}>
-          <AppText variant="label">{t("eventLog.fields.reporter")}</AppText>
-          <AppText color="muted" variant="helper">
-            {t("eventLog.fields.reporterUnavailable")}
-          </AppText>
-        </View>
-      </View>
-    </FormSection>
-  );
-}

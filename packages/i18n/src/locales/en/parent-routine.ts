@@ -1,0 +1,23 @@
+/** Parent app: routine. */
+export const enParentRoutine = {
+  "routineDay.progress": "{done} of {total} done",
+  "routineDay.progressA11y": "{done} of {total} steps done today",
+  "routineDay.allDone": "Every card is ticked for today.",
+  "routineDay.now": "Now",
+  "routineDay.until": "{start} to {end}",
+  "routineDay.adjustedBy": "Adjusted by {name}",
+  "routineDay.suggestion": "Suggested support: {support}",
+  "routineDay.markDone": "Mark done",
+  "routineDay.undo": "Undo",
+  "routineDay.tick": "Mark {step} done",
+  "routineDay.untick": "Undo {step}",
+  "routineDay.doneBy": "Done by {name} at {time}",
+  "routineDay.expandHint": "Shows the details and the done action",
+  "routineDay.collapseHint": "Hides the details",
+  "routineDay.loading": "Getting today's cards ready",
+  "routineDay.empty.title": "No cards on the fridge today",
+  "routineDay.empty.detail": "When today's routine is set up, its picture cards appear here in order.",
+  "routineDay.error.title": "The cards didn't load",
+  "routineDay.error.detail": "This is usually a connection hiccup. Try again whenever you're ready.",
+  "routineDay.retry": "Try again",
+} as const;

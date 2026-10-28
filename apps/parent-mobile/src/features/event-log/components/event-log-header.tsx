@@ -1,45 +1,78 @@
-import { spacing } from "@stability/design-tokens";
-import { X } from "lucide-react-native";
+import type { ReactNode } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { AppText, IconButton } from "@/components/ui";
+import { PressCard, Row } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { Glyph } from "@/components/icons/glyphs";
 import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
+import { ink, space, surface } from "@/theme/case-file";
 
-export interface EventLogHeaderProps {
-  readonly onExit?: () => void;
+/** A 44pt round sunk back control. */
+export function BackButton({
+  onPress,
+  label,
+}: {
+  onPress: () => void;
+  label?: string;
+}) {
+  const { t } = useLanguage();
+  return (
+    <PressCard
+      accessibilityRole="button"
+      accessibilityLabel={label ?? t("common.back")}
+      hitSlop={6}
+      onPress={onPress}
+      pressedScale={0.92}
+      style={styles.back}
+    >
+      <Glyph name="arrowBack" color={ink.primary} size={22} />
+    </PressCard>
+  );
 }
 
-const styles = StyleSheet.create({
-  header: {
-    alignItems: "flex-start",
-    gap: spacing.md,
-  },
-  copy: {
-    flex: 1,
-    gap: spacing.xs,
-  },
-});
-
-export function EventLogHeader({ onExit }: EventLogHeaderProps) {
-  const { language, t } = useLanguage();
-
+/** Page heading for every Log stage: optional back control, title, lede. */
+export function EventLogHeader({
+  title,
+  lede,
+  onBack,
+  aside,
+  hero = false,
+}: {
+  title: string;
+  lede?: string;
+  onBack?: () => void;
+  aside?: ReactNode;
+  hero?: boolean;
+}) {
   return (
-    <View style={[styles.header, getDirectionalRowStyle(language)]}>
-      <View style={styles.copy}>
-        <AppText accessibilityRole="header" variant="pageTitle">
-          {t("eventLog.title")}
-        </AppText>
-        <AppText color="secondary">{t("eventLog.subtitle")}</AppText>
-      </View>
-      {onExit ? (
-        <IconButton
-          accessibilityLabel={t("eventLog.actions.exit")}
-          icon={X}
-          onPress={onExit}
-          variant="ghost"
-        />
+    <View style={styles.header}>
+      {onBack || aside ? (
+        <Row style={styles.between}>
+          {onBack ? <BackButton onPress={onBack} /> : <View />}
+          {aside}
+        </Row>
+      ) : null}
+      <Type variant={hero ? "hero" : "display"} accessibilityRole="header">
+        {title}
+      </Type>
+      {lede ? (
+        <Type variant="lede" color="secondary">
+          {lede}
+        </Type>
       ) : null}
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  header: { gap: space.md },
+  between: { justifyContent: "space-between" },
+  back: {
+    alignItems: "center",
+    backgroundColor: surface.sunk,
+    borderRadius: 22,
+    height: 44,
+    justifyContent: "center",
+    width: 44,
+  },
+});

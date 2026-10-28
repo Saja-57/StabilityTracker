@@ -29,3 +29,8 @@ supabase/.temp/
 *.p12
 *.key
 *.mobileprovision
+
+# Design tool scratch (review screenshots, caches)
+**/.impeccable/review/
+**/.impeccable/questions/
+**/.impeccable/hook.cache.json

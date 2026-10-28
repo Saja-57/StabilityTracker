@@ -11,3 +11,4 @@ export {
   type TypographyVariant,
   type TypographyWeight,
 } from "./typography";
+export { caseFile } from "./case-file";

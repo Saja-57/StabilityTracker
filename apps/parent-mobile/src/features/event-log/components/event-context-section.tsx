@@ -1,56 +1,50 @@
-import { spacing } from "@stability/design-tokens";
-import { Search } from "lucide-react-native";
-import { StyleSheet, View } from "react-native";
-
-import { TextArea } from "@/components/ui";
 import { useLanguage } from "@/providers/language-provider";
 
-import type { EventLogDraft, EventLogDraftChange } from "../types";
+import { eventTriggerOptions } from "../options";
+import type {
+  EventLogDraft,
+  EventLogDraftChange,
+  EventTrigger,
+} from "../types";
+import { ChoiceGroup, NoteField } from "./choice-group";
 import { FormSection } from "./form-section";
 
-export interface EventContextSectionProps {
-  readonly draft: EventLogDraft;
-  readonly onChange: EventLogDraftChange;
+export function toggleIn<TValue>(
+  list: readonly TValue[],
+  value: TValue,
+): readonly TValue[] {
+  return list.includes(value)
+    ? list.filter((item) => item !== value)
+    : [...list, value];
 }
 
-const styles = StyleSheet.create({
-  fields: {
-    gap: spacing.lg,
-  },
-});
-
+/** Page two: what came just before. */
 export function EventContextSection({
   draft,
   onChange,
-}: EventContextSectionProps) {
+}: {
+  draft: EventLogDraft;
+  onChange: EventLogDraftChange;
+}) {
   const { t } = useLanguage();
-  const completeLater = t("eventLog.fields.completeLater");
-
   return (
-    <FormSection icon={Search} title={t("eventLog.sections.before")}>
-      <View style={styles.fields}>
-        <TextArea
-          helperText={completeLater}
-          label={t("eventLog.fields.trigger")}
-          onChangeText={(value) => onChange("trigger", value)}
-          placeholder={t("eventLog.fields.triggerPlaceholder")}
-          value={draft.trigger}
-        />
-        <TextArea
-          helperText={completeLater}
-          label={t("eventLog.fields.environment")}
-          onChangeText={(value) => onChange("environment", value)}
-          placeholder={t("eventLog.fields.environmentPlaceholder")}
-          value={draft.environment}
-        />
-        <TextArea
-          helperText={completeLater}
-          label={t("eventLog.fields.before")}
-          onChangeText={(value) => onChange("before", value)}
-          placeholder={t("eventLog.fields.beforePlaceholder")}
-          value={draft.before}
-        />
-      </View>
+    <FormSection
+      title={t("logFlow.before.question")}
+      hint={t("logFlow.chooseAny")}
+    >
+      <ChoiceGroup<EventTrigger>
+        label={t("eventLog.sections.before")}
+        options={eventTriggerOptions}
+        selected={draft.triggers}
+        onToggle={(value) =>
+          onChange("triggers", toggleIn(draft.triggers, value))
+        }
+      />
+      <NoteField
+        value={draft.beforeNote}
+        onChange={(value) => onChange("beforeNote", value)}
+        placeholderKey="eventLog.fields.beforePlaceholder"
+      />
     </FormSection>
   );
 }

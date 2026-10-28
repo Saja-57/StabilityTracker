@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { InsightsView } from "@/features/insights/insights-view";
 
 export default function InsightsPage() {
-  return <RoutePlaceholder navigationItemId="insights" />;
+  return <InsightsView />;
 }

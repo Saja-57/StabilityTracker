@@ -1,129 +1,198 @@
-import { spacing } from "@stability/design-tokens";
-import type { TranslationKey } from "@stability/i18n";
-import { ClipboardCheck } from "lucide-react-native";
 import { StyleSheet, View } from "react-native";
 
-import { AppText, Button, Card, Divider } from "@/components/ui";
+import { Paper, Row, Stamp } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { fill, isolate } from "@/lib/format";
+import { formatDay, formatTime } from "@/lib/time";
 import { useLanguage } from "@/providers/language-provider";
+import { cf, space, surface } from "@/theme/case-file";
 
 import {
+  eventDurationOptions,
   eventIntensityLabelKeys,
-  eventTimingLabelKeys,
+  eventSettingOptions,
+  eventSupportLabelKeys,
+  eventTriggerOptions,
   eventTypeLabelKeys,
+  labelFor,
 } from "../options";
 import type { EventLogDraft } from "../types";
-import { FormSection } from "./form-section";
+import { IntensityMark } from "./intensity-selector";
+import { LogPicture } from "./log-picture";
 
-export interface EventReviewProps {
-  readonly draft: EventLogDraft;
-  readonly onBack: () => void;
-}
+/**
+ * The event as a paper slip, in the order a therapist reads it:
+ * before, behavior, what helped.
+ */
+export function EventReview({
+  draft,
+  at,
+  caregiverName,
+  stamped = false,
+}: {
+  draft: EventLogDraft;
+  at: string;
+  caregiverName: string;
+  stamped?: boolean;
+}) {
+  const { language, t } = useLanguage();
+  const notNoted = t("logFlow.review.notNoted");
+  const join = (parts: readonly (string | undefined)[]) =>
+    parts.filter(Boolean).join(", ");
 
-interface ReviewItem {
-  readonly labelKey: TranslationKey;
-  readonly value: string;
-}
-
-const styles = StyleSheet.create({
-  rows: {
-    gap: spacing.md,
-  },
-  row: {
-    gap: spacing.xs,
-  },
-  actions: {
-    gap: spacing.sm,
-  },
-  centered: {
-    textAlign: "center",
-  },
-});
-
-export function EventReview({ draft, onBack }: EventReviewProps) {
-  const { t } = useLanguage();
-  const items: ReviewItem[] = [];
-
-  if (draft.eventType) {
-    items.push({
-      labelKey: "eventLog.type.title",
-      value: t(eventTypeLabelKeys[draft.eventType]),
-    });
-  }
-  if (draft.timingMode) {
-    items.push({
-      labelKey: "eventLog.timing.title",
-      value: t(eventTimingLabelKeys[draft.timingMode]),
-    });
-  }
-  if (draft.date.trim()) {
-    items.push({ labelKey: "eventLog.fields.date", value: draft.date.trim() });
-  }
-  if (draft.time.trim()) {
-    items.push({ labelKey: "eventLog.fields.time", value: draft.time.trim() });
-  }
-  if (draft.intensity) {
-    items.push({
-      labelKey: "eventLog.intensity.title",
-      value: t(eventIntensityLabelKeys[draft.intensity]),
-    });
-  }
-
-  const textItems = [
-    ["eventLog.fields.trigger", draft.trigger],
-    ["eventLog.fields.environment", draft.environment],
-    ["eventLog.fields.before", draft.before],
-    ["eventLog.fields.behavior", draft.behavior],
-    ["eventLog.fields.duration", draft.duration],
-    ["eventLog.fields.helped", draft.helped],
-    ["eventLog.fields.recovery", draft.recovery],
-    ["eventLog.fields.notes", draft.notes],
-  ] as const satisfies readonly (readonly [TranslationKey, string])[];
-
-  for (const [labelKey, value] of textItems) {
-    if (value.trim()) {
-      items.push({ labelKey, value: value.trim() });
-    }
-  }
+  const before = join(
+    draft.triggers.map((value) => {
+      const key = labelFor(eventTriggerOptions, value);
+      return key ? t(key) : undefined;
+    }),
+  );
+  const settingKey = draft.setting
+    ? labelFor(eventSettingOptions, draft.setting)
+    : undefined;
+  const durationKey = draft.duration
+    ? labelFor(eventDurationOptions, draft.duration)
+    : undefined;
+  const behavior = join([
+    draft.intensity ? t(eventIntensityLabelKeys[draft.intensity]) : undefined,
+    settingKey ? t(settingKey) : undefined,
+    durationKey ? t(durationKey) : undefined,
+  ]);
+  const helped = join(
+    draft.supports.map((value) => t(eventSupportLabelKeys[value])),
+  );
+  const type = draft.eventType
+    ? t(eventTypeLabelKeys[draft.eventType])
+    : notNoted;
 
   return (
-    <View style={styles.actions}>
-      <FormSection
-        description={t("eventLog.review.description")}
-        icon={ClipboardCheck}
-        title={t("eventLog.review.title")}
-      >
-        <View style={styles.rows}>
-          {items.map((item, index) => (
-            <View key={item.labelKey} style={styles.row}>
-              <AppText color="muted" variant="caption">
-                {t(item.labelKey)}
-              </AppText>
-              <AppText>{item.value}</AppText>
-              {index < items.length - 1 ? <Divider /> : null}
-            </View>
-          ))}
+    <View style={styles.wrap}>
+      <Paper style={styles.slip}>
+        <Row style={styles.between} align="center">
+          <Stamp
+            label={`${formatDay(at, language)} ${formatTime(at, language)}`}
+            tilt={-2}
+          />
+          {draft.intensity ? (
+            <IntensityMark value={draft.intensity} size={22} />
+          ) : null}
+        </Row>
+
+        <Row gap={space.md} align="center">
+          <View style={styles.picture}>
+            {draft.eventType ? (
+              <LogPicture
+                name={draft.eventType}
+                size={44}
+                color={cf.pressboard.base}
+                tintColor={cf.tab.mossWash}
+              />
+            ) : null}
+          </View>
+          <Type variant="title" style={styles.flex}>
+            {type}
+          </Type>
+        </Row>
+
+        <SlipPart
+          label={t("vocab.abc.before")}
+          value={before}
+          note={draft.beforeNote}
+          empty={notNoted}
+        />
+        <SlipPart
+          label={t("vocab.abc.behavior")}
+          value={behavior}
+          note={draft.duringNote}
+          empty={notNoted}
+        />
+        <SlipPart
+          label={t("vocab.abc.helped")}
+          value={helped}
+          note={draft.helpedNote}
+          empty={notNoted}
+          moss
+        />
+
+        <Type variant="caption" color="muted">
+          {fill(t("logFlow.review.by"), { name: isolate(caregiverName) })}
+        </Type>
+      </Paper>
+      {stamped ? (
+        <View style={styles.stamp} pointerEvents="none">
+          <Stamp label={t("logFlow.saved.stamp")} tone="moss" tilt={-8} />
         </View>
-      </FormSection>
-      <Card style={styles.actions} variant="subtle">
-        <Button
-          accessibilityLabel={t("eventLog.actions.saveUnavailable")}
-          disabled
-          fullWidth
-        >
-          {t("eventLog.actions.saveUnavailable")}
-        </Button>
-        <AppText color="muted" style={styles.centered} variant="helper">
-          {t("eventLog.actions.saveUnavailableDescription")}
-        </AppText>
-      </Card>
-      <Button
-        accessibilityLabel={t("eventLog.actions.back")}
-        fullWidth
-        onPress={onBack}
-        variant="ghost"
-      >
-        {t("eventLog.actions.back")}
-      </Button>
+      ) : null}
     </View>
   );
 }
+
+function SlipPart({
+  label,
+  value,
+  note,
+  empty,
+  moss = false,
+}: {
+  label: string;
+  value: string;
+  note: string;
+  empty: string;
+  moss?: boolean;
+}) {
+  const trimmed = note.trim();
+  return (
+    <View style={styles.part}>
+      <Type variant="label" color="secondary">
+        {label}
+      </Type>
+      {value || !trimmed ? (
+        <Type
+          variant="body"
+          color={value ? (moss ? "moss" : "primary") : "muted"}
+        >
+          {value || empty}
+        </Type>
+      ) : null}
+      {trimmed ? (
+        <Type variant="body" color="secondary" style={styles.note}>
+          {isolate(trimmed)}
+        </Type>
+      ) : null}
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  wrap: { paddingTop: 6 },
+  slip: {
+    borderRadius: 6,
+    gap: space.lg,
+    padding: 20,
+    paddingTop: 18,
+    transform: [{ rotate: "-0.8deg" }],
+  },
+  between: { justifyContent: "space-between" },
+  flex: { flex: 1 },
+  picture: {
+    alignItems: "center",
+    backgroundColor: cf.tab.mossWash,
+    borderRadius: 14,
+    height: 56,
+    justifyContent: "center",
+    width: 56,
+  },
+  part: {
+    borderTopColor: surface.rule,
+    borderTopWidth: 1,
+    borderStyle: "dashed",
+    gap: 4,
+    paddingTop: space.md,
+  },
+  note: { fontStyle: "italic" },
+  stamp: {
+    end: 14,
+    position: "absolute",
+    top: 58,
+    transform: [{ scale: 1.6 }],
+  },
+});

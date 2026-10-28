@@ -1,13 +1,14 @@
-import { CalendarDays } from "lucide-react-native";
-
-import { RoutePlaceholder } from "@/components/layout/route-placeholder";
+import { AppointmentsScreen } from "@/features/appointments";
+import { useFamilyContent } from "@/lib/use-family-content";
 
 export default function AppointmentsRoute() {
+  const { SAMPLE_NOW, family, pastVisits, visits } = useFamilyContent();
   return (
-    <RoutePlaceholder
-      icon={CalendarDays}
-      showBack
-      titleKey="navigation.appointments"
+    <AppointmentsScreen
+      now={SAMPLE_NOW}
+      therapistGivenName={family.therapist.givenName}
+      visits={visits}
+      pastVisits={pastVisits}
     />
   );
 }

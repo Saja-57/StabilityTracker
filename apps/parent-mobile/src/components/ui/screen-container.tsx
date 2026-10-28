@@ -1,4 +1,4 @@
-import { colors, spacing } from "@stability/design-tokens";
+import { caseFile } from "@stability/design-tokens";
 import type { PropsWithChildren } from "react";
 import {
   KeyboardAvoidingView,
@@ -24,7 +24,7 @@ export interface ScreenContainerProps extends PropsWithChildren {
 
 const styles = StyleSheet.create({
   root: {
-    backgroundColor: colors.background.canvas,
+    backgroundColor: caseFile.sheet.base,
     flex: 1,
   },
   keyboard: {
@@ -32,9 +32,9 @@ const styles = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    gap: spacing.xl,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.xl,
+    gap: 28,
+    paddingHorizontal: 20,
+    paddingVertical: 24,
   },
 });
 
@@ -49,8 +49,8 @@ export function ScreenContainer({
   const insets = useSafeAreaInsets();
   const directionStyle = getDirectionalViewStyle(language);
   const safePadding = {
-    paddingBottom: Math.max(insets.bottom, spacing.lg),
-    paddingTop: Math.max(insets.top, spacing.lg),
+    paddingBottom: Math.max(insets.bottom, 16) + 24,
+    paddingTop: Math.max(insets.top, 16) + 8,
   };
 
   const content = scrollable ? (

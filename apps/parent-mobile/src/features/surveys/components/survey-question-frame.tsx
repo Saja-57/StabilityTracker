@@ -1,28 +1,24 @@
-import { spacing } from "@stability/design-tokens";
 import type { SupportedLanguage } from "@stability/i18n";
 import type { PropsWithChildren } from "react";
 import { StyleSheet, View } from "react-native";
 
-import { AppText, Badge, Card } from "@/components/ui";
+import { Row, TabLabel } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { isolate } from "@/lib/format";
 import { useLanguage } from "@/providers/language-provider";
+import { space } from "@/theme/case-file";
 
 export interface SurveyQuestionFrameProps extends PropsWithChildren {
+  readonly hint?: string;
   readonly isOptional: boolean;
   readonly language?: SupportedLanguage;
   readonly prompt: string;
 }
 
-const styles = StyleSheet.create({
-  card: {
-    gap: spacing.lg,
-  },
-  heading: {
-    gap: spacing.sm,
-  },
-});
-
+/** One question per screen: the prompt large, a quiet hint, then the answer. */
 export function SurveyQuestionFrame({
   children,
+  hint,
   isOptional,
   language,
   prompt,
@@ -30,20 +26,32 @@ export function SurveyQuestionFrame({
   const { t } = useLanguage();
 
   return (
-    <Card style={styles.card}>
+    <View style={styles.frame}>
       <View style={styles.heading}>
-        <Badge tone={isOptional ? "neutral" : "brand"}>
-          {t(isOptional ? "surveys.optional" : "surveys.required")}
-        </Badge>
-        <AppText
+        <Type
+          variant="display"
           accessibilityRole="header"
           {...(language ? { language } : {})}
-          variant="sectionTitle"
         >
-          {prompt}
-        </AppText>
+          {isolate(prompt)}
+        </Type>
+        <Row gap={space.sm} wrap>
+          {isOptional ? (
+            <TabLabel tone="ink" label={t("checkin.optional")} />
+          ) : null}
+          {hint ? (
+            <Type variant="small" color="muted">
+              {hint}
+            </Type>
+          ) : null}
+        </Row>
       </View>
       {children}
-    </Card>
+    </View>
   );
 }
+
+const styles = StyleSheet.create({
+  frame: { gap: space.xl },
+  heading: { gap: space.md },
+});

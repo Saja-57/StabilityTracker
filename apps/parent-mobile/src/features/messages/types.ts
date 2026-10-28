@@ -16,6 +16,12 @@ export interface ParentMessageViewModel {
   readonly title: string;
 }
 
+/** A reply the family wrote in this session, shown under the note. */
+export interface MessageReply {
+  readonly body: string;
+  readonly id: string;
+}
+
 export type MessageListState =
   | { readonly status: "empty" }
   | { readonly status: "loading" }

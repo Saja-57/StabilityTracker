@@ -1,77 +1,114 @@
-import { colors, spacing } from "@stability/design-tokens";
-import { getDirection } from "@stability/i18n";
-import type { Href } from "expo-router";
-import { router } from "expo-router";
-import { ChevronLeft, ChevronRight } from "lucide-react-native";
+import { router, type Href } from "expo-router";
+import type { ReactNode } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
+import Animated, {
+  useAnimatedStyle,
+  useSharedValue,
+  withTiming,
+} from "react-native-reanimated";
 
-import { AppText } from "@/components/ui";
 import {
-  getIconSize,
-  iconStrokeWidth,
-  type IconComponent,
-} from "@/components/ui/icon";
-import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
-
-export interface MoreNavigationItemProps {
-  href: MoreRouteHref;
-  icon: IconComponent;
-  label: string;
-}
+  paperEase,
+  Row,
+  TabLabel,
+  type Tone,
+  toneWash,
+} from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { Glyph, type GlyphName } from "@/components/icons/glyphs";
+import { corner, elevation, ink, space, surface } from "@/theme/case-file";
 
 export type MoreRouteHref =
   "/ai" | "/appointments" | "/family" | "/profile" | "/resources" | "/surveys";
 
-const styles = StyleSheet.create({
-  item: {
-    alignItems: "center",
-    gap: spacing.md,
-    minHeight: 56,
-    paddingHorizontal: spacing.lg,
-    paddingVertical: spacing.sm,
-  },
-  label: {
-    flex: 1,
-  },
-  pressed: {
-    backgroundColor: colors.surface.interactive,
-  },
-});
+export interface MoreNavigationItemProps {
+  readonly href: MoreRouteHref;
+  readonly glyph: GlyphName;
+  readonly tone: Tone;
+  readonly label: string;
+  readonly description: string;
+  readonly tag?: { readonly tone: Tone; readonly label: string };
+  readonly art?: ReactNode;
+}
 
+/** One destination on the More door: a raised tile with its own glyph and what is inside. */
 export function MoreNavigationItem({
   href,
-  icon: Icon,
+  glyph,
+  tone,
   label,
+  description,
+  tag,
+  art,
 }: MoreNavigationItemProps) {
-  const { language } = useLanguage();
-  const ForwardIcon =
-    getDirection(language) === "rtl" ? ChevronLeft : ChevronRight;
-
+  const palette = toneWash[tone];
+  const scale = useSharedValue(1);
+  const pressed = useAnimatedStyle(() => ({
+    transform: [{ scale: scale.value }],
+  }));
   return (
     <Pressable
-      accessibilityLabel={label}
       accessibilityRole="link"
+      accessibilityLabel={
+        tag
+          ? `${label}, ${tag.label}. ${description}`
+          : `${label}. ${description}`
+      }
       onPress={() => router.push(href as Href)}
-      style={({ pressed }) => [
-        styles.item,
-        getDirectionalRowStyle(language),
-        pressed ? styles.pressed : undefined,
-      ]}
+      onPressIn={() => {
+        scale.set(withTiming(0.975, { duration: 120, easing: paperEase }));
+      }}
+      onPressOut={() => {
+        scale.set(withTiming(1, { duration: 260, easing: paperEase }));
+      }}
+      style={styles.press}
     >
-      <Icon
-        color={colors.brand.primary}
-        size={getIconSize("medium")}
-        strokeWidth={iconStrokeWidth}
-      />
-      <View style={styles.label}>
-        <AppText variant="bodyStrong">{label}</AppText>
-      </View>
-      <ForwardIcon
-        color={colors.text.muted}
-        size={getIconSize("small")}
-        strokeWidth={iconStrokeWidth}
-      />
+      <Animated.View style={[styles.tile, pressed]}>
+        <Row style={styles.top} align="flex-start">
+          <View
+            style={[styles.glyphTile, { backgroundColor: palette.background }]}
+          >
+            {art ?? (
+              <Glyph name={glyph} color={palette.color} size={24} tint={0.28} />
+            )}
+          </View>
+          {tag ? (
+            <TabLabel tone={tag.tone} label={tag.label} />
+          ) : (
+            <Glyph name="chevron" color={ink.muted} size={18} />
+          )}
+        </Row>
+        <View style={styles.copy}>
+          <Type variant="headline" numberOfLines={2}>
+            {label}
+          </Type>
+          <Type variant="small" color="muted" numberOfLines={2}>
+            {description}
+          </Type>
+        </View>
+      </Animated.View>
     </Pressable>
   );
 }
+
+const styles = StyleSheet.create({
+  press: { flex: 1 },
+  tile: {
+    flex: 1,
+    backgroundColor: surface.raised,
+    borderRadius: corner.lg,
+    gap: space.md,
+    minHeight: 164,
+    padding: space.lg,
+    ...elevation.tile,
+  },
+  top: { justifyContent: "space-between" },
+  glyphTile: {
+    alignItems: "center",
+    borderRadius: 13,
+    height: 46,
+    justifyContent: "center",
+    width: 46,
+  },
+  copy: { flex: 1, gap: 4, justifyContent: "flex-end" },
+});

@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { CaseloadView } from "@/features/caseload/caseload-view";
 
 export default function ChildrenPage() {
-  return <RoutePlaceholder navigationItemId="children" />;
+  return <CaseloadView />;
 }

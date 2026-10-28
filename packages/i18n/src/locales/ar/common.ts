@@ -1,4 +1,20 @@
 import type { TranslationResource } from "../en/common";
+import { arParentCore } from "./parent-core";
+import { arParentHome } from "./parent-home";
+import { arParentRoutine } from "./parent-routine";
+import { arParentLog } from "./parent-log";
+import { arParentMessages } from "./parent-messages";
+import { arParentSurveys } from "./parent-surveys";
+import { arParentMore } from "./parent-more";
+import { arTherapistCore } from "./therapist-core";
+import { arTherapistCaseload } from "./therapist-caseload";
+import { arTherapistFile } from "./therapist-file";
+import { arTherapistAppointments } from "./therapist-appointments";
+import { arTherapistMessages } from "./therapist-messages";
+import { arTherapistReports } from "./therapist-reports";
+import { arTherapistInsights } from "./therapist-insights";
+import { arTherapistNotes } from "./therapist-notes";
+import { arTherapistSettings } from "./therapist-settings";
 
 export const arCommon = {
   "app.name": "Stability Tracker",
@@ -138,6 +154,10 @@ export const arCommon = {
   "eventLog.media.audio": "تسجيل صوت",
   "eventLog.media.gallery": "اختيار من المعرض",
   "eventLog.media.unavailable": "غير متاح بعد",
+  "eventLog.media.count": "تمت إضافة {count}",
+  "eventLog.media.recording": "جارٍ التسجيل {time}. اضغطوا للإيقاف",
+  "eventLog.media.remove": "إزالة",
+  "eventLog.media.permission": "اسمحوا بالوصول من الإعدادات لإضافة هذا.",
   "eventLog.sections.basics": "أساسيات الحدث",
   "eventLog.sections.before": "قبل الحدث",
   "eventLog.sections.during": "أثناء الحدث",
@@ -279,4 +299,20 @@ export const arCommon = {
   "states.empty.description": "سيظهر المحتوى هنا عندما يصبح متاحًا.",
   "states.error.title": "حدث خطأ ما",
   "states.error.description": "تعذر تحميل المحتوى.",
+  ...arParentCore,
+  ...arParentHome,
+  ...arParentRoutine,
+  ...arParentLog,
+  ...arParentMessages,
+  ...arParentSurveys,
+  ...arParentMore,
+  ...arTherapistCore,
+  ...arTherapistCaseload,
+  ...arTherapistFile,
+  ...arTherapistAppointments,
+  ...arTherapistMessages,
+  ...arTherapistReports,
+  ...arTherapistInsights,
+  ...arTherapistNotes,
+  ...arTherapistSettings,
 } as const satisfies TranslationResource;

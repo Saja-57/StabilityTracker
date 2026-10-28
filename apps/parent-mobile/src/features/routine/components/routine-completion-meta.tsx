@@ -1,74 +1,59 @@
-import { colors, spacing } from "@stability/design-tokens";
-import { Clock3, UserRound } from "lucide-react-native";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet } from "react-native";
 
-import { AppText, getIconSize, iconStrokeWidth } from "@/components/ui";
+import { PenMark, Row } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { fill, isolate } from "@/lib/format";
 import { useLanguage } from "@/providers/language-provider";
-import { getDirectionalRowStyle } from "@/theme/direction";
 
 import type { RoutineCompletionViewModel } from "../types";
 
 export interface RoutineCompletionMetaProps {
   readonly completion?: RoutineCompletionViewModel;
+  /** Draw a small pen tick before the signature. */
+  readonly withMark?: boolean;
 }
 
-const styles = StyleSheet.create({
-  container: {
-    gap: spacing.sm,
-  },
-  item: {
-    alignItems: "center",
-    flexWrap: "wrap",
-    gap: spacing.xs,
-  },
-});
-
+/** The pen signature on a done card: "Tamar 07:04". */
 export function RoutineCompletionMeta({
   completion,
+  withMark = false,
 }: RoutineCompletionMetaProps) {
-  const { language, t } = useLanguage();
-  const caregiverLanguage = completion?.caregiverLanguage ?? language;
+  const { t } = useLanguage();
+  const name = completion?.caregiverDisplayName;
+  const time = completion?.completedAt;
 
-  if (!completion?.caregiverDisplayName && !completion?.completedAt) {
+  if (!name && !time) {
     return null;
   }
 
   return (
-    <View style={styles.container}>
-      {completion.caregiverDisplayName ? (
-        <View style={[styles.item, getDirectionalRowStyle(language)]}>
-          <UserRound
-            color={colors.text.muted}
-            size={getIconSize("small")}
-            strokeWidth={iconStrokeWidth}
-          />
-          <AppText color="muted" variant="caption">
-            {t("routine.completedBy")}
-          </AppText>
-          <AppText
-            color="secondary"
-            language={caregiverLanguage}
-            variant="caption"
-          >
-            {completion.caregiverDisplayName}
-          </AppText>
-        </View>
+    <Row gap={6} style={styles.row}>
+      {withMark ? <PenMark visible size={18} /> : null}
+      <Type
+        variant="small"
+        color="pen"
+        accessibilityLabel={fill(t("routineDay.doneBy"), {
+          name: name ?? "",
+          time: time ?? "",
+        })}
+      >
+        {isolate(name)}
+      </Type>
+      {time ? (
+        <Type
+          variant="figure"
+          color="pen"
+          style={styles.time}
+          accessibilityElementsHidden
+        >
+          {time}
+        </Type>
       ) : null}
-      {completion.completedAt ? (
-        <View style={[styles.item, getDirectionalRowStyle(language)]}>
-          <Clock3
-            color={colors.text.muted}
-            size={getIconSize("small")}
-            strokeWidth={iconStrokeWidth}
-          />
-          <AppText color="muted" variant="caption">
-            {t("routine.completedAt")}
-          </AppText>
-          <AppText color="secondary" variant="caption">
-            {completion.completedAt}
-          </AppText>
-        </View>
-      ) : null}
-    </View>
+    </Row>
   );
 }
+
+const styles = StyleSheet.create({
+  row: { minHeight: 20 },
+  time: { fontSize: 13.5 },
+});

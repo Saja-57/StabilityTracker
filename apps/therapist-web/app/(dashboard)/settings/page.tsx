@@ -1,5 +1,5 @@
-import { RoutePlaceholder } from "@/components/layout";
+import { SettingsView } from "@/features/settings/settings-view";
 
 export default function SettingsPage() {
-  return <RoutePlaceholder navigationItemId="settings" />;
+  return <SettingsView />;
 }
