@@ -47,7 +47,7 @@ export function EventLogHeader({
   return (
     <View style={styles.header}>
       {onBack || aside ? (
-        <Row style={styles.between}>
+        <Row gap={space.md} style={styles.between}>
           {onBack ? <BackButton onPress={onBack} /> : <View />}
           {aside}
         </Row>

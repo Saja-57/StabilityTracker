@@ -7,7 +7,8 @@ export const enParentHome = {
   "home.allDone": "Every step is done for today.",
   "home.session.with": "Session with {name}",
   "home.greeting.morning": "Good morning, {name}.",
-  "home.summary": "{done} of {total} steps done today. {child} is at school; the hard part usually comes after pickup.",
+  "home.summary":
+    "{done} of {total} steps done today. {child} is at school; the hard part usually comes after pickup.",
   "home.now": "Now",
   "home.until": "{start}–{end}",
   "home.next": "Next at {time}",
@@ -19,9 +20,12 @@ export const enParentHome = {
   "home.checkin.title": "Weekly check-in",
   "home.checkin.detail": "Five questions for Lena, about two minutes.",
   "home.checkin.waiting": "Waiting",
+  "home.checkin.start": "Start",
+  "home.checkin.done": "Done for this week. Thank you.",
   "home.session.title": "Session with Lena today at {time}",
   "home.week.title": "The last two weeks",
-  "home.week.summary": "Moments logged since the session on {date}: {count}. {support} helped every time you tried it.",
+  "home.week.summary":
+    "Moments logged since the session on {date}: {count}. {support} helped every time you tried it.",
   "home.help.action": "Something's happening",
   "home.help.hint": "Opens calm support first, then a quick log.",
 } as const;

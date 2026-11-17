@@ -30,7 +30,9 @@ export const heParentSurveys = {
   "checkin.sent.stamp": "נשלח אל {name}",
   "checkin.sent.stampPlain": "נשלח",
   "checkin.sent.title": "תודה.",
-  "checkin.sent.detail": "{name} תקרא את זה לפני המפגש הבא. אין צורך לעשות שום דבר נוסף.",
-  "checkin.sent.detailPlain": "המטפלת תקרא את זה לפני המפגש הבא. אין צורך לעשות שום דבר נוסף.",
+  "checkin.sent.detail":
+    "{name} תקרא את זה לפני המפגש הבא. אין צורך לעשות שום דבר נוסף.",
+  "checkin.sent.detailPlain":
+    "המטפלת תקרא את זה לפני המפגש הבא. אין צורך לעשות שום דבר נוסף.",
   "checkin.sent.home": "חזרה לבית",
 } as const satisfies Record<keyof typeof enParentSurveys, string>;

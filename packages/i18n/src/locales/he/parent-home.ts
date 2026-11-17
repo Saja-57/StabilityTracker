@@ -8,7 +8,8 @@ export const heParentHome = {
   "home.allDone": "כל הצעדים של היום הושלמו.",
   "home.session.with": "מפגש עם {name}",
   "home.greeting.morning": "בוקר טוב, {name}.",
-  "home.summary": "{done} מתוך {total} צעדים הושלמו היום. {child} בבית הספר; החלק הקשה מגיע בדרך כלל אחרי האיסוף.",
+  "home.summary":
+    "{done} מתוך {total} צעדים הושלמו היום. {child} בבית הספר; החלק הקשה מגיע בדרך כלל אחרי האיסוף.",
   "home.now": "עכשיו",
   "home.until": "{start}–{end}",
   "home.next": "הבא ב־{time}",
@@ -20,9 +21,12 @@ export const heParentHome = {
   "home.checkin.title": "השאלון השבועי",
   "home.checkin.detail": "חמש שאלות עבור לנה, כשתי דקות.",
   "home.checkin.waiting": "ממתין",
+  "home.checkin.start": "להתחיל",
+  "home.checkin.done": "הושלם לשבוע הזה. תודה.",
   "home.session.title": "מפגש עם לנה היום ב־{time}",
   "home.week.title": "השבועיים האחרונים",
-  "home.week.summary": "רגעים שתועדו מאז המפגש ב־{date}: {count}. {support} עזר בכל פעם שניסיתם.",
+  "home.week.summary":
+    "רגעים שתועדו מאז המפגש ב־{date}: {count}. {support} עזר בכל פעם שניסיתם.",
   "home.help.action": "משהו קורה עכשיו",
   "home.help.hint": "פותח קודם תמיכה מרגיעה, ואז תיעוד מהיר.",
 } as const satisfies Record<keyof typeof enParentHome, string>;

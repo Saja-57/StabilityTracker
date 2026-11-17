@@ -4,12 +4,15 @@ import Animated, { FadeInDown } from "react-native-reanimated";
 
 import {
   Action,
+  PressCard,
   SectionTitle,
   paperEase,
 } from "@/components/case-file/primitives";
+import { Type } from "@/components/case-file/type";
+import { Glyph } from "@/components/icons/glyphs";
 import { fill, isolate } from "@/lib/format";
 import { useLanguage } from "@/providers/language-provider";
-import { corner, space } from "@/theme/case-file";
+import { cf, corner, space } from "@/theme/case-file";
 
 import type { EventLogStrategyViewModel } from "../types";
 import { CalmingSupportCard } from "./calming-support-card";
@@ -45,6 +48,29 @@ export function SupportView({
           title={t("logFlow.support.title")}
           lede={fill(t("logFlow.support.lede"), { child: isolate(childName) })}
           onBack={onBack}
+          aside={
+            <PressCard
+              accessibilityRole="button"
+              accessibilityLabel={`${t("logFlow.reminder.title")}. ${fill(
+                t("logFlow.reminder.body"),
+                { child: isolate(childName), name: isolate(therapistName) },
+              )}`}
+              onPress={onLog}
+              style={styles.reminder}
+            >
+              <View style={styles.reminderIcon}>
+                <Glyph name="bell" color={cf.pressboard.ink} size={15} />
+              </View>
+              <Type
+                variant="caption"
+                style={styles.reminderTitle}
+                numberOfLines={1}
+              >
+                {t("logFlow.reminder.title")}
+              </Type>
+              <Glyph name="chevron" color={cf.tab.rubyInk} size={14} />
+            </PressCard>
+          }
         />
       </Animated.View>
 
@@ -92,6 +118,28 @@ export function SupportView({
 }
 
 const styles = StyleSheet.create({
+  reminder: {
+    alignItems: "center",
+    backgroundColor: cf.tab.rubyWash,
+    borderColor: cf.tab.ruby,
+    borderRadius: corner.pill,
+    borderWidth: 1.5,
+    flexDirection: "row",
+    flexShrink: 1,
+    gap: 6,
+    paddingEnd: 12,
+    paddingStart: 5,
+    paddingVertical: 5,
+  },
+  reminderIcon: {
+    alignItems: "center",
+    backgroundColor: cf.tab.ruby,
+    borderRadius: corner.pill,
+    height: 28,
+    justifyContent: "center",
+    width: 28,
+  },
+  reminderTitle: { color: cf.tab.rubyInk, flexShrink: 1, fontWeight: "600" },
   section: { gap: space.md },
   list: { gap: space.md },
   logLater: { borderRadius: corner.lg },

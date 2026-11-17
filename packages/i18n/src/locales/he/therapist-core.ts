@@ -91,15 +91,20 @@ export const heTherapistCore = {
   "vocab.stepStatus.upcoming": "בהמשך",
   "vocab.stepStatus.current": "עכשיו",
 
-  "copy.pattern": "הגורם המקדים השכיח: {trigger}, לפני {count} מתוך {total} רגעים שתועדו.",
+  "copy.pattern":
+    "הגורם המקדים השכיח: {trigger}, לפני {count} מתוך {total} רגעים שתועדו.",
   "copy.pattern.none": "לא תועדו אירועים בשבועיים האחרונים.",
-  "copy.reason.needsReview": "מאז המפגש ב־{date}: תועדו {total}, בעוצמה גבוהה {high}, לא נקראו {open}.",
-  "copy.reason.sessionToday": "מפגש היום ב־{time}. תועדו מאז המפגש הקודם: {total}.",
+  "copy.reason.needsReview":
+    "מאז המפגש ב־{date}: תועדו {total}, בעוצמה גבוהה {high}, לא נקראו {open}.",
+  "copy.reason.sessionToday":
+    "מפגש היום ב־{time}. תועדו מאז המפגש הקודם: {total}.",
   "copy.reason.steady": "תועדו ב־14 הימים האחרונים: {total}. מגמה: {trend}.",
   "desk.greeting.morning": "בוקר טוב, {name}.",
-  "desk.summary": "{files} תיקים ממתינים לך היום. {sessions} מפגשים ביומן, והמשפחות תיעדו {logs} רגעים מאז אתמול בבוקר.",
+  "desk.summary":
+    "{files} תיקים ממתינים לך היום. {sessions} מפגשים ביומן, והמשפחות תיעדו {logs} רגעים מאז אתמול בבוקר.",
   "desk.needYou.title": "תיקים שממתינים לך",
-  "desk.needYou.description": "הועלו לראש הערימה כי משהו השתנה מאז המפגש האחרון.",
+  "desk.needYou.description":
+    "הועלו לראש הערימה כי משהו השתנה מאז המפגש האחרון.",
   "desk.needYou.fortnight": "28 הימים האחרונים של תיעוד מהבית",
   "desk.needYou.sinceSession": "מאז המפגש ב־{date}",
   "desk.figures.events": "אירועים מאז המפגש האחרון",
@@ -113,7 +118,8 @@ export const heTherapistCore = {
   "desk.today.prep": "תיעודים מהבית מאז המפגש האחרון: {events}",
   "desk.today.flagged": "{count} מסומנים",
   "desk.feed.title": "חדש מהבית",
-  "desk.feed.description": "תועד על ידי המשפחות מאז אתמול בבוקר. {count} עדיין לסקירה.",
+  "desk.feed.description":
+    "תועד על ידי המשפחות מאז אתמול בבוקר. {count} עדיין לסקירה.",
   "desk.feed.markAll": "סימון הכול כנסקר",
   "desk.feed.markReviewed": "סימון כנסקר",
   "desk.feed.flagged": "מסומן",

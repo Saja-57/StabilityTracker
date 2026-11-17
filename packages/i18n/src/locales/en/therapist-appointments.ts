@@ -8,7 +8,8 @@ export const enTherapistAppointments = {
   "appointments.week.previous": "Previous week",
   "appointments.week.following": "Next week",
   "appointments.week.backToThis": "Back to this week",
-  "appointments.week.summary": "{count} sessions on the calendar, {ahead} still ahead.",
+  "appointments.week.summary":
+    "{count} sessions on the calendar, {ahead} still ahead.",
   "appointments.week.summaryNone": "No sessions on the calendar.",
   "appointments.grid.label": "Week calendar",
   "appointments.grid.hint": "Use the arrow keys to move between sessions.",
@@ -18,11 +19,13 @@ export const enTherapistAppointments = {
   "appointments.grid.done": "Done",
   "appointments.grid.slip": "{name}, {time}, {mode}",
   "appointments.empty.title": "Nothing booked this week",
-  "appointments.empty.body": "The sample calendar only covers the days around today. Sessions you book will appear here.",
+  "appointments.empty.body":
+    "The sample calendar only covers the days around today. Sessions you book will appear here.",
   "appointments.agenda.noSessions": "No sessions",
   "appointments.legend.label": "Session mode",
   "appointments.prep.title": "Session prep",
-  "appointments.prep.empty": "Select a session to see what changed at home since you last met.",
+  "appointments.prep.empty":
+    "Select a session to see what changed at home since you last met.",
   "appointments.prep.when": "{day}, {from} to {to}",
   "appointments.prep.sinceSession": "Home logs since the session on {date}",
   "appointments.prep.logs": "Home logs",

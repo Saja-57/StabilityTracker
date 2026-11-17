@@ -5,7 +5,8 @@ export const heParentLog = {
   "logFlow.now.detail": "קודם נושמים. האסטרטגיות של {name} במרחק נגיעה.",
   "logFlow.now.hint": "פותח מדריך נשימה ואסטרטגיות הרגעה. התיעוד יכול לחכות.",
   "logFlow.earlier.title": "לתעד משהו שקרה קודם",
-  "logFlow.earlier.detail": "עמוד קצר אחד בכל פעם. הוסיפו רק את מה שאתם זוכרים.",
+  "logFlow.earlier.detail":
+    "עמוד קצר אחד בכל פעם. הוסיפו רק את מה שאתם זוכרים.",
   "logFlow.recent.title": "רגעים אחרונים",
   "logFlow.recent.helped": "{support} עזר",
   "logFlow.recent.by": "על ידי {name}",
@@ -14,6 +15,10 @@ export const heParentLog = {
   "logFlow.support.title": "הישארו קרובים. קודם נושמים.",
   "logFlow.support.lede": "אתם כאן, ליד {child}. שום דבר לא צריך להיכתב עכשיו.",
   "logFlow.support.logLater": "לתעד כשתהיו מוכנים",
+  "logFlow.reminder.title": "לא לשכוח לתעד",
+  "logFlow.reminder.body":
+    "כש{child} נרגעת, הקדישו דקה לתעד מה קרה. זה עוזר ל{name} לראות מה עובד.",
+  "logFlow.reminder.action": "לתעד עכשיו",
   "logFlow.breathe.in": "שאיפה",
   "logFlow.breathe.hold": "החזקה",
   "logFlow.breathe.out": "נשיפה",
@@ -43,7 +48,8 @@ export const heParentLog = {
   "logFlow.duration.longer": "יותר",
   "logFlow.note.add": "הוספת הערה קצרה",
   "logFlow.note.label": "הערה קצרה",
-  "logFlow.media.later": "נשמר בטלפון הזה בינתיים. השליחה למטפלת תגיע עם ההתחברות.",
+  "logFlow.media.later":
+    "נשמר בטלפון הזה בינתיים. השליחה למטפלת תגיע עם ההתחברות.",
   "logFlow.review.lede": "זה הפתק שיגיע אל {name}. אפשר לשנות כל דבר לפני כן.",
   "logFlow.review.save": "שמירה ביומן של {child}",
   "logFlow.review.edit": "לשנות משהו",

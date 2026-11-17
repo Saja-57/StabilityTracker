@@ -60,12 +60,14 @@ export function EventLogScreen({
 }: EventLogScreenProps) {
   const { language, t } = useLanguage();
   const [stage, setStage] = useState<EventLogStage>(initialStage);
-  const [mode, setMode] = useState<EventLogMode>("quick");
+  const [mode, setMode] = useState<EventLogMode>(
+    initialStage === "detailed" ? "detailed" : "quick",
+  );
   const [cameFromSupport, setCameFromSupport] = useState(false);
   const [step, setStep] = useState<DetailedLogStep>("basics");
   const [turn, setTurn] = useState<"forward" | "back">("forward");
   const [draft, setDraft] = useState<EventLogDraft>(() =>
-    createEmptyEventLogDraft(),
+    createEmptyEventLogDraft(initialStage === "detailed" ? "today" : null),
   );
   const change: EventLogDraftChange = useCallback((key, value) => {
     setDraft((current) => ({ ...current, [key]: value }));

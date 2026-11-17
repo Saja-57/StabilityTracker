@@ -4,21 +4,28 @@ export const enTherapistInsights = {
   "insights.period.label": "Period",
   "insights.period.d14": "14 days",
   "insights.period.d28": "28 days",
-  "insights.lead.trigger": "{trigger} came before {share}% of the {count} moments families logged across your caseload in the last {days} days.",
-  "insights.lead.support": "{support} was the most reliable support, settling things {worked} of {uses} times.",
-  "insights.lead.rhythm": "{weekday} {part} carried the heaviest load, and {busier} of {total} children are busier than the period before.",
+  "insights.lead.trigger":
+    "{trigger} came before {share}% of the {count} moments families logged across your caseload in the last {days} days.",
+  "insights.lead.support":
+    "{support} was the most reliable support, settling things {worked} of {uses} times.",
+  "insights.lead.rhythm":
+    "{weekday} {part} carried the heaviest load, and {busier} of {total} children are busier than the period before.",
   "insights.lead.empty": "No moments were logged in the last {days} days.",
   "insights.rhythm.title": "When things happen",
-  "insights.rhythm.description": "Every logged moment across all children, by weekday and part of day. Darker cells weigh more intense moments more heavily.",
+  "insights.rhythm.description":
+    "Every logged moment across all children, by weekday and part of day. Darker cells weigh more intense moments more heavily.",
   "insights.rhythm.peak": "Heaviest: {weekday}, {part}",
   "insights.antecedents.title": "Top antecedents",
-  "insights.antecedents.description": "What came right before, across all families.",
+  "insights.antecedents.description":
+    "What came right before, across all families.",
   "insights.helped.title": "What helped",
-  "insights.helped.description": "Supports ranked by how often they settled things. Supports tried fewer than 3 times are left out.",
+  "insights.helped.description":
+    "Supports ranked by how often they settled things. Supports tried fewer than 3 times are left out.",
   "insights.helped.rate": "{rate}%",
   "insights.helped.note": "{worked}/{uses}",
   "insights.trend.title": "Children by trend",
-  "insights.trend.description": "The second half of the period against the first half.",
+  "insights.trend.description":
+    "The second half of the period against the first half.",
   "insights.trend.delta": "{before} then {after}",
   "insights.trend.none": "No children in this group.",
   "insights.weekly.title": "Intensity by week",

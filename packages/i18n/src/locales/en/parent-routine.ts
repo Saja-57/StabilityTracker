@@ -16,8 +16,10 @@ export const enParentRoutine = {
   "routineDay.collapseHint": "Hides the details",
   "routineDay.loading": "Getting today's cards ready",
   "routineDay.empty.title": "No cards on the fridge today",
-  "routineDay.empty.detail": "When today's routine is set up, its picture cards appear here in order.",
+  "routineDay.empty.detail":
+    "When today's routine is set up, its picture cards appear here in order.",
   "routineDay.error.title": "The cards didn't load",
-  "routineDay.error.detail": "This is usually a connection hiccup. Try again whenever you're ready.",
+  "routineDay.error.detail":
+    "This is usually a connection hiccup. Try again whenever you're ready.",
   "routineDay.retry": "Try again",
 } as const;

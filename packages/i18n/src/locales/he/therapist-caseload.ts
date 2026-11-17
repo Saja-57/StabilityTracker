@@ -2,7 +2,8 @@ import type { enTherapistCaseload } from "../en/therapist-caseload";
 
 export const heTherapistCaseload = {
   "caseload.title": "התיקים שלך",
-  "caseload.summary": "{total} ילדים בטיפולך. {review} תיקים ממתינים לסקירה שלך ול־{today} יש מפגש היום.",
+  "caseload.summary":
+    "{total} ילדים בטיפולך. {review} תיקים ממתינים לסקירה שלך ול־{today} יש מפגש היום.",
   "caseload.filterLabel": "סינון תיקים",
   "caseload.filter.all": "הכול",
   "caseload.search": "חיפוש ילד/ה",

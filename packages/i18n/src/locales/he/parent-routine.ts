@@ -17,8 +17,10 @@ export const heParentRoutine = {
   "routineDay.collapseHint": "מסתיר את הפרטים",
   "routineDay.loading": "מכינים את הכרטיסים של היום",
   "routineDay.empty.title": "אין כרטיסים על המקרר היום",
-  "routineDay.empty.detail": "כשהשגרה של היום תוגדר, כרטיסי התמונות שלה יופיעו כאן לפי הסדר.",
+  "routineDay.empty.detail":
+    "כשהשגרה של היום תוגדר, כרטיסי התמונות שלה יופיעו כאן לפי הסדר.",
   "routineDay.error.title": "הכרטיסים לא נטענו",
-  "routineDay.error.detail": "בדרך כלל זו תקלה רגעית בחיבור. אפשר לנסות שוב מתי שנוח.",
+  "routineDay.error.detail":
+    "בדרך כלל זו תקלה רגעית בחיבור. אפשר לנסות שוב מתי שנוח.",
   "routineDay.retry": "לנסות שוב",
 } as const satisfies Record<keyof typeof enParentRoutine, string>;

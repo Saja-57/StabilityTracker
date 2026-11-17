@@ -90,15 +90,20 @@ export const enTherapistCore = {
   "vocab.stepStatus.upcoming": "Upcoming",
   "vocab.stepStatus.current": "Current",
 
-  "copy.pattern": "Most common lead-in: {trigger}, before {count} of {total} logged moments.",
+  "copy.pattern":
+    "Most common lead-in: {trigger}, before {count} of {total} logged moments.",
   "copy.pattern.none": "No events logged in the last two weeks.",
-  "copy.reason.needsReview": "Since the session on {date}: {total} logged, {high} at high intensity, {open} unread.",
-  "copy.reason.sessionToday": "Session today at {time}. Logged since the last one: {total}.",
+  "copy.reason.needsReview":
+    "Since the session on {date}: {total} logged, {high} at high intensity, {open} unread.",
+  "copy.reason.sessionToday":
+    "Session today at {time}. Logged since the last one: {total}.",
   "copy.reason.steady": "Logged in the last 14 days: {total}. Trend: {trend}.",
   "desk.greeting.morning": "Good morning, {name}.",
-  "desk.summary": "{files} files need you today. {sessions} sessions on the calendar, and families logged {logs} moments since yesterday morning.",
+  "desk.summary":
+    "{files} files need you today. {sessions} sessions on the calendar, and families logged {logs} moments since yesterday morning.",
   "desk.needYou.title": "Files that need you",
-  "desk.needYou.description": "Pulled to the top because something changed since the last session.",
+  "desk.needYou.description":
+    "Pulled to the top because something changed since the last session.",
   "desk.needYou.fortnight": "Last 28 days of home logs",
   "desk.needYou.sinceSession": "Since session on {date}",
   "desk.figures.events": "Events since last session",
@@ -112,7 +117,8 @@ export const enTherapistCore = {
   "desk.today.prep": "Home logs since last session: {events}",
   "desk.today.flagged": "{count} flagged",
   "desk.feed.title": "New from home",
-  "desk.feed.description": "Logged by families since yesterday morning. {count} still to review.",
+  "desk.feed.description":
+    "Logged by families since yesterday morning. {count} still to review.",
   "desk.feed.markAll": "Mark all reviewed",
   "desk.feed.markReviewed": "Mark as reviewed",
   "desk.feed.flagged": "Flagged",

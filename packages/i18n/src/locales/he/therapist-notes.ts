@@ -12,7 +12,8 @@ export const heTherapistNotes = {
   "notes.composer.titlePlaceholder.observation": "מה שמת לב",
   "notes.composer.titlePlaceholder.plan": "עדכון תוכנית",
   "notes.composer.body": "רשומה",
-  "notes.composer.bodyPlaceholder.observation": "מה ראית ביומני הבית או בחדר, במילים פשוטות.",
+  "notes.composer.bodyPlaceholder.observation":
+    "מה ראית ביומני הבית או בחדר, במילים פשוטות.",
   "notes.composer.bodyPlaceholder.plan": "מה משתנה, עבור מי, ומתי תבדקו שוב.",
   "notes.composer.prompt.observed": "מה ראיתי",
   "notes.composer.prompt.practiced": "מה תרגלנו",
@@ -38,6 +39,7 @@ export const heTherapistNotes = {
   "notes.list.openFile": "פתיחת התיק של {name}",
   "notes.pin": "הצמדה לתיק",
   "notes.empty.title": "עדיין לא תויק כאן דבר",
-  "notes.empty.body": "אין רשומות שמתאימות לתיק ולסוג האלה. הרחיבו את הסינון, או התחילו רשומה למעלה.",
+  "notes.empty.body":
+    "אין רשומות שמתאימות לתיק ולסוג האלה. הרחיבו את הסינון, או התחילו רשומה למעלה.",
   "notes.empty.reset": "הצגת כל הרשומות",
 } as const satisfies Record<keyof typeof enTherapistNotes, string>;

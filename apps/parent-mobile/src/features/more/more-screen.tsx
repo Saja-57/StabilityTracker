@@ -64,10 +64,9 @@ export function MoreScreen({
   const drawers: Drawer[] = [
     {
       href: "/ai",
-      glyph: "notes",
+      glyph: "spark",
       title: t("more.hub.ask.title"),
       detail: fill(t("more.hub.ask.detail"), { name: lena }),
-      tag: t("more.preview"),
     },
     {
       href: "/resources",

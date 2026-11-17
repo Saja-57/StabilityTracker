@@ -2,8 +2,10 @@ import type { enTherapistMessages } from "../en/therapist-messages";
 
 export const heTherapistMessages = {
   "correspondence.title": "התכתבות",
-  "correspondence.summary": "{waiting} משפחות מחכות לתשובה. ההנחיות שתשלחו מגיעות ישירות לסדר היום שלהן.",
-  "correspondence.summaryClear": "כל המשפחות קיבלו תשובה. ההנחיות שתשלחו מגיעות ישירות לסדר היום שלהן.",
+  "correspondence.summary":
+    "{waiting} משפחות מחכות לתשובה. ההנחיות שתשלחו מגיעות ישירות לסדר היום שלהן.",
+  "correspondence.summaryClear":
+    "כל המשפחות קיבלו תשובה. ההנחיות שתשלחו מגיעות ישירות לסדר היום שלהן.",
   "correspondence.filter.label": "סינון שיחות",
   "correspondence.filter.all": "הכול",
   "correspondence.filter.waiting": "מחכות לך",
@@ -13,7 +15,8 @@ export const heTherapistMessages = {
   "correspondence.list.you": "את/ה:",
   "correspondence.list.waiting": "מחכה לך",
   "correspondence.list.empty.all": "אין עדיין שיחות עם משפחות.",
-  "correspondence.list.empty.waiting": "אף משפחה לא מחכה לך. כל הודעה קיבלה תשובה.",
+  "correspondence.list.empty.waiting":
+    "אף משפחה לא מחכה לך. כל הודעה קיבלה תשובה.",
   "correspondence.list.empty.sent": "אין כרגע הודעות שממתינות אצל משפחה.",
   "correspondence.thread.label": "שיחה עם {name}",
   "correspondence.thread.caregiver": "{name}, {relation}",
@@ -37,13 +40,18 @@ export const heTherapistMessages = {
   "correspondence.composer.hint.recommendation": "צעד מעשי לנסות בבית.",
   "correspondence.composer.hint.observation": "דפוס שזיהית ברישומים שלהם.",
   "correspondence.composer.hint.reminder": "תזכורת עדינה לפני שמשהו קורה.",
-  "correspondence.composer.hint.routineAdjustment": "שינוי שיופיע בסדר היום של המשפחה.",
+  "correspondence.composer.hint.routineAdjustment":
+    "שינוי שיופיע בסדר היום של המשפחה.",
   "correspondence.suggest.log.label": "לבקש רישום של האיסוף הבא",
-  "correspondence.suggest.log.text": "תוכלו לרשום איך עובר האיסוף הבא, כולל עשר הדקות הראשונות אחריו? זה עוזר לנו לראות מה משתנה.",
+  "correspondence.suggest.log.text":
+    "תוכלו לרשום איך עובר האיסוף הבא, כולל עשר הדקות הראשונות אחריו? זה עוזר לנו לראות מה משתנה.",
   "correspondence.suggest.thanks.label": "להודות על הרישום",
-  "correspondence.suggest.thanks.text": "תודה שרשמתם בקפידה השבוע. זה משנה מאוד את האופן שבו אנחנו מתכננים.",
+  "correspondence.suggest.thanks.text":
+    "תודה שרשמתם בקפידה השבוע. זה משנה מאוד את האופן שבו אנחנו מתכננים.",
   "correspondence.suggest.session.label": "להביא לפגישה",
-  "correspondence.suggest.session.text": "בואו נסתכל על זה יחד בפגישה הבאה. עד אז, המשיכו במה שעזר.",
+  "correspondence.suggest.session.text":
+    "בואו נסתכל על זה יחד בפגישה הבאה. עד אז, המשיכו במה שעזר.",
   "correspondence.suggest.small.label": "צעד אחד בכל פעם",
-  "correspondence.suggest.small.text": "התחילו רק במה שמרגיש אפשרי. שינוי קטן אחד השבוע זה מספיק.",
+  "correspondence.suggest.small.text":
+    "התחילו רק במה שמרגיש אפשרי. שינוי קטן אחד השבוע זה מספיק.",
 } as const satisfies Record<keyof typeof enTherapistMessages, string>;

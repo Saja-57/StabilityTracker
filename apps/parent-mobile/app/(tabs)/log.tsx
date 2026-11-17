@@ -72,7 +72,13 @@ export default function LogRoute() {
   return (
     <EventLogScreen
       key={start ?? "entry"}
-      initialStage={start === "support" ? "support" : "entry"}
+      initialStage={
+        start === "support"
+          ? "support"
+          : start === "earlier"
+            ? "detailed"
+            : "entry"
+      }
       childName={family.child.givenName}
       therapistName={family.therapist.givenName}
       caregiverName={you?.givenName ?? ""}

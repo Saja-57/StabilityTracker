@@ -91,15 +91,20 @@ export const arTherapistCore = {
   "vocab.stepStatus.upcoming": "قادم",
   "vocab.stepStatus.current": "الآن",
 
-  "copy.pattern": "المحفز الأكثر تكرارًا: {trigger}، قبل {count} من أصل {total} لحظة مسجّلة.",
+  "copy.pattern":
+    "المحفز الأكثر تكرارًا: {trigger}، قبل {count} من أصل {total} لحظة مسجّلة.",
   "copy.pattern.none": "لم تُسجَّل أحداث خلال الأسبوعين الماضيين.",
-  "copy.reason.needsReview": "منذ جلسة {date}: المسجّل {total}، بشدة مرتفعة {high}، غير المقروء {open}.",
-  "copy.reason.sessionToday": "جلسة اليوم عند {time}. المسجّل منذ الجلسة السابقة: {total}.",
+  "copy.reason.needsReview":
+    "منذ جلسة {date}: المسجّل {total}، بشدة مرتفعة {high}، غير المقروء {open}.",
+  "copy.reason.sessionToday":
+    "جلسة اليوم عند {time}. المسجّل منذ الجلسة السابقة: {total}.",
   "copy.reason.steady": "المسجّل خلال آخر 14 يومًا: {total}. الاتجاه: {trend}.",
   "desk.greeting.morning": "صباح الخير، {name}.",
-  "desk.summary": "{files} ملفات بحاجة إليك اليوم. {sessions} جلسات في التقويم، وسجّلت العائلات {logs} لحظة منذ صباح أمس.",
+  "desk.summary":
+    "{files} ملفات بحاجة إليك اليوم. {sessions} جلسات في التقويم، وسجّلت العائلات {logs} لحظة منذ صباح أمس.",
   "desk.needYou.title": "ملفات بحاجة إليك",
-  "desk.needYou.description": "رُفعت إلى الأعلى لأن شيئًا تغيّر منذ الجلسة الأخيرة.",
+  "desk.needYou.description":
+    "رُفعت إلى الأعلى لأن شيئًا تغيّر منذ الجلسة الأخيرة.",
   "desk.needYou.fortnight": "آخر 28 يومًا من تسجيلات المنزل",
   "desk.needYou.sinceSession": "منذ جلسة {date}",
   "desk.figures.events": "أحداث منذ الجلسة الأخيرة",
@@ -113,7 +118,8 @@ export const arTherapistCore = {
   "desk.today.prep": "تسجيلات المنزل منذ الجلسة الأخيرة: {events}",
   "desk.today.flagged": "{count} مُعلَّمة",
   "desk.feed.title": "جديد من المنزل",
-  "desk.feed.description": "سجّلتها العائلات منذ صباح أمس. {count} بانتظار المراجعة.",
+  "desk.feed.description":
+    "سجّلتها العائلات منذ صباح أمس. {count} بانتظار المراجعة.",
   "desk.feed.markAll": "تعليم الكل كمُراجَع",
   "desk.feed.markReviewed": "تعليم كمُراجَع",
   "desk.feed.flagged": "مُعلَّم",

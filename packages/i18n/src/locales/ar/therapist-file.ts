@@ -14,19 +14,23 @@ export const arTherapistFile = {
   "file.tab.surveys": "الاستبيانات",
   "file.tab.notes": "الملاحظات",
   "file.overview.stamp": "منذ جلسة {date}",
-  "file.overview.daysAgo": "{days} أيام من تسجيلات المنزل لقراءتها قبل اللقاء القادم.",
+  "file.overview.daysAgo":
+    "{days} أيام من تسجيلات المنزل لقراءتها قبل اللقاء القادم.",
   "file.overview.routineKept": "الالتزام بالروتين، آخر 7 أيام",
   "file.overview.before": "ما الذي سبق",
   "file.overview.beforeHint": "المحفزات المحتملة خلال آخر 28 يومًا.",
   "file.overview.helped": "ما الذي ساعد",
-  "file.overview.helpedHint": "أساليب الدعم مرتبة حسب عدد مرات نجاحها وفق العائلة.",
+  "file.overview.helpedHint":
+    "أساليب الدعم مرتبة حسب عدد مرات نجاحها وفق العائلة.",
   "file.overview.when": "متى يحدث ذلك",
-  "file.overview.whenHint": "يوم الأسبوع حسب فترة اليوم؛ الأغمق يعني أحداثًا أكثر وأشد.",
+  "file.overview.whenHint":
+    "يوم الأسبوع حسب فترة اليوم؛ الأغمق يعني أحداثًا أكثر وأشد.",
   "file.overview.survey": "آخر استبيان لمقدم الرعاية",
   "file.overview.sendGuidance": "إرسال إرشاد",
   "file.overview.adjustRoutine": "تعديل الروتين",
   "file.overview.readEvents": "قراءة كل الأحداث",
-  "file.events.summary": "{count} حدثًا خلال آخر 28 يومًا، {open} بانتظار المراجعة.",
+  "file.events.summary":
+    "{count} حدثًا خلال آخر 28 يومًا، {open} بانتظار المراجعة.",
   "file.events.filter": "التصفية حسب الشدة",
   "file.events.empty": "لا أحداث بهذه الشدة.",
   "file.events.duration": "استمر نحو {min} دقيقة",
@@ -37,7 +41,8 @@ export const arTherapistFile = {
   "file.events.detailed": "تسجيل مفصل",
   "file.events.flag": "تعليم للجلسة",
   "file.events.unflag": "مُعلَّم للجلسة",
-  "file.routine.description": "أربعة عشر يومًا من روتين العائلة. عدّل خطوة لتصل إلى تطبيق العائلة كتعديل للروتين.",
+  "file.routine.description":
+    "أربعة عشر يومًا من روتين العائلة. عدّل خطوة لتصل إلى تطبيق العائلة كتعديل للروتين.",
   "file.routine.time": "الوقت",
   "file.routine.step": "الخطوة",
   "file.routine.kept": "الالتزام",
@@ -46,7 +51,8 @@ export const arTherapistFile = {
   "file.routine.propose": "تعديل",
   "file.routine.history": "اكتمل في {done} من {total} أيام",
   "file.routine.sendToFamily": "إرسال إلى العائلة",
-  "file.surveys.description": "استبيانات قصيرة تجيب عنها العائلة في تطبيقها. ترتفع النتيجة عندما يبلغ مقدمو الرعاية عن أيام أسهل.",
+  "file.surveys.description":
+    "استبيانات قصيرة تجيب عنها العائلة في تطبيقها. ترتفع النتيجة عندما يبلغ مقدمو الرعاية عن أيام أسهل.",
   "file.surveys.requested": "تم إرسال الاستبيان",
   "file.surveys.send": "إرسال استبيان",
   "file.surveys.answered": "أُجيب في {date}",

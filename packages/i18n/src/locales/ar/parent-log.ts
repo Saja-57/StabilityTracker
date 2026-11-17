@@ -3,17 +3,24 @@ import type { enParentLog } from "../en/parent-log";
 export const arParentLog = {
   "logFlow.now.title": "يحدث الآن",
   "logFlow.now.detail": "تنفّسوا أولًا. استراتيجيات {name} على بُعد لمسة.",
-  "logFlow.now.hint": "يفتح دليل تنفّس واستراتيجيات تهدئة. التسجيل يمكنه الانتظار.",
+  "logFlow.now.hint":
+    "يفتح دليل تنفّس واستراتيجيات تهدئة. التسجيل يمكنه الانتظار.",
   "logFlow.earlier.title": "سجّلوا شيئًا حدث سابقًا",
-  "logFlow.earlier.detail": "صفحة قصيرة واحدة في كل مرة. أضيفوا فقط ما تتذكرونه.",
+  "logFlow.earlier.detail":
+    "صفحة قصيرة واحدة في كل مرة. أضيفوا فقط ما تتذكرونه.",
   "logFlow.recent.title": "لحظات أخيرة",
   "logFlow.recent.helped": "ساعد: {support}",
   "logFlow.recent.by": "بواسطة {name}",
-  "logFlow.recent.empty": "لم يُسجَّل شيء بعد. ستظهر هنا اللحظات التي تسجّلونها.",
+  "logFlow.recent.empty":
+    "لم يُسجَّل شيء بعد. ستظهر هنا اللحظات التي تسجّلونها.",
   "logFlow.recent.notRated": "لم تُحدَّد الشدة",
   "logFlow.support.title": "ابقوا قريبين. تنفّسوا أولًا.",
   "logFlow.support.lede": "{child} في أمان معكم. لا شيء يحتاج إلى كتابة الآن.",
   "logFlow.support.logLater": "سجّلوه عندما تكونون مستعدين",
+  "logFlow.reminder.title": "لا تنسوا التسجيل",
+  "logFlow.reminder.body":
+    "عندما تهدأ {child}، خذوا دقيقة لتسجيل ما حدث. هذا يساعد {name} على معرفة ما ينجح.",
+  "logFlow.reminder.action": "سجّلوه الآن",
   "logFlow.breathe.in": "شهيق",
   "logFlow.breathe.hold": "احبسوا النفس",
   "logFlow.breathe.out": "زفير",
@@ -43,8 +50,10 @@ export const arParentLog = {
   "logFlow.duration.longer": "أطول",
   "logFlow.note.add": "إضافة ملاحظة قصيرة",
   "logFlow.note.label": "ملاحظة قصيرة",
-  "logFlow.media.later": "محفوظة على هذا الهاتف حاليًا. إرسالها إلى المعالجة سيتوفر مع تسجيل الدخول.",
-  "logFlow.review.lede": "هذه هي الورقة التي ستصل إلى {name}. يمكنكم تغيير أي شيء قبل ذلك.",
+  "logFlow.media.later":
+    "محفوظة على هذا الهاتف حاليًا. إرسالها إلى المعالجة سيتوفر مع تسجيل الدخول.",
+  "logFlow.review.lede":
+    "هذه هي الورقة التي ستصل إلى {name}. يمكنكم تغيير أي شيء قبل ذلك.",
   "logFlow.review.save": "حفظ في سجل {child}",
   "logFlow.review.edit": "تغيير شيء ما",
   "logFlow.review.notNoted": "لم يُذكر",

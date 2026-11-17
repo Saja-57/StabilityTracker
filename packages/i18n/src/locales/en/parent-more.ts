@@ -6,11 +6,13 @@ export const enParentMore = {
   "more.listSeparator": " · ",
   "more.preview": "Preview",
   "more.sampleData": "Illustrative sample data",
-  "more.sampleData.detail": "Every name, visit, and note in this app is invented to show how it will work.",
-  "more.language.note": "Each language is written in its own words, so anyone at home can switch back.",
+  "more.sampleData.detail":
+    "Every name, visit, and note in this app is invented to show how it will work.",
+  "more.language.note":
+    "Each language is written in its own words, so anyone at home can switch back.",
 
-  "more.hub.ask.title": "Ask",
-  "more.hub.ask.detail": "Answers from {name}'s plan.",
+  "more.hub.ask.title": "Ask AI",
+  "more.hub.ask.detail": "Help with the app and {name}'s plan.",
   "more.hub.resources.title": "Resources",
   "more.hub.resources.detail": "{name}'s approved strategies.",
   "more.hub.checkin.title": "Weekly check-in",
@@ -19,7 +21,8 @@ export const enParentMore = {
   "more.hub.appointments.title": "Appointments",
   "more.hub.appointments.today": "Next visit today at {time}.",
   "more.hub.appointments.next": "Next visit on {date}.",
-  "more.hub.appointments.none": "No visits booked. {name} will send the next one.",
+  "more.hub.appointments.none":
+    "No visits booked. {name} will send the next one.",
   "more.hub.family.title": "Family and care team",
   "more.hub.family.detail": "{child}, caregivers, and the care team.",
   "more.hub.profile.title": "Profile and settings",
@@ -35,29 +38,34 @@ export const enParentMore = {
   "more.appointments.allPacked": "All packed. See you there.",
   "more.appointments.calendar": "Add to calendar",
   "more.appointments.calendarAdded": "In your calendar",
-  "more.appointments.calendarNote": "Added for this preview. A reminder will come an hour before once calendars are connected.",
+  "more.appointments.calendarNote":
+    "Added for this preview. A reminder will come an hour before once calendars are connected.",
   "more.appointments.reschedule": "Ask to reschedule",
   "more.appointments.requestSent": "Request sent",
   "more.appointments.requestSentShort": "Request sent",
   "more.appointments.requestTitle": "{name} will reply with a new time",
-  "more.appointments.requestDetail": "Your visit stays booked until {name} confirms a change. Nothing else to do.",
+  "more.appointments.requestDetail":
+    "Your visit stays booked until {name} confirms a change. Nothing else to do.",
   "more.appointments.requestUndo": "Keep the original time",
   "more.appointments.upcoming": "Coming up",
   "more.appointments.past": "Past visits",
 
   "more.family.title": "Family and care team",
-  "more.family.lede": "{child}, the people who care for her at home, and the team around you.",
+  "more.family.lede":
+    "{child}, the people who care for her at home, and the team around you.",
   "more.family.focus": "Working on",
   "more.family.goal": "The goal {name} set with you",
   "more.family.caregivers": "Caregivers",
   "more.family.team": "Care team",
-  "more.family.teamNote": "{name} coordinates with the team. Ask her before sharing anything new with school.",
+  "more.family.teamNote":
+    "{name} coordinates with the team. Ask her before sharing anything new with school.",
   "more.family.role.therapist": "Therapist",
   "more.family.role.school": "School",
   "more.family.role.pediatrician": "Doctor",
   "more.family.invite.action": "Invite a caregiver",
   "more.family.invite.title": "Invite a caregiver",
-  "more.family.invite.lede": "Someone who looks after {child} can follow the routine and log moments too. {name} confirms every new caregiver before they join.",
+  "more.family.invite.lede":
+    "Someone who looks after {child} can follow the routine and log moments too. {name} confirms every new caregiver before they join.",
   "more.family.invite.name": "Their name",
   "more.family.invite.namePlaceholder": "For example, Dana",
   "more.family.invite.contact": "Email or phone",
@@ -65,55 +73,78 @@ export const enParentMore = {
   "more.family.invite.relation": "Their relation to the child",
   "more.family.invite.access": "What they can see",
   "more.family.invite.accessRoutine": "Routine and logging",
-  "more.family.invite.accessRoutineDetail": "Today's routine, calm support, and logging moments with {child}.",
+  "more.family.invite.accessRoutineDetail":
+    "Today's routine, calm support, and logging moments with {child}.",
   "more.family.invite.accessFull": "Everything",
-  "more.family.invite.accessFullDetail": "Also the therapist's notes, check-ins, and visits.",
-  "more.family.invite.honest": "In this preview nothing is sent. The request is kept on this screen so you can see how it works.",
+  "more.family.invite.accessFullDetail":
+    "Also the therapist's notes, check-ins, and visits.",
+  "more.family.invite.honest":
+    "In this preview nothing is sent. The request is kept on this screen so you can see how it works.",
   "more.family.invite.send": "Send to the therapist to confirm",
-  "more.family.invite.needs": "Add a name, a way to reach them, and their relation.",
+  "more.family.invite.needs":
+    "Add a name, a way to reach them, and their relation.",
   "more.family.invite.pending": "Awaiting confirmation",
-  "more.family.invite.pendingDetail": "{name} will confirm, then they receive the invitation.",
+  "more.family.invite.pendingDetail":
+    "{name} will confirm, then they receive the invitation.",
   "more.family.invite.withdraw": "Withdraw invitation",
 
   "more.profile.title": "Profile and settings",
-  "more.profile.lede": "Your details, what reaches your phone, and how your family's information is held.",
+  "more.profile.lede":
+    "Your details, what reaches your phone, and how your family's information is held.",
   "more.profile.role": "{relation} of {child}",
   "more.profile.email": "Email",
   "more.profile.phone": "Phone",
   "more.profile.since": "Joined",
   "more.profile.notifications": "Notifications",
-  "more.profile.notifications.note": "Changes apply on this phone only. Nothing urgent ever depends on a notification.",
+  "more.profile.notifications.note":
+    "Changes apply on this phone only. Nothing urgent ever depends on a notification.",
   "more.profile.notify.guidance": "Notes from {name}",
-  "more.profile.notify.guidance.detail": "When new guidance or a routine change arrives.",
+  "more.profile.notify.guidance.detail":
+    "When new guidance or a routine change arrives.",
   "more.profile.notify.routine": "Routine reminders",
-  "more.profile.notify.routine.detail": "A gentle nudge a few minutes before each step.",
+  "more.profile.notify.routine.detail":
+    "A gentle nudge a few minutes before each step.",
   "more.profile.notify.checkIn": "Weekly check-in",
-  "more.profile.notify.checkIn.detail": "Once a week, when the questions are ready.",
+  "more.profile.notify.checkIn.detail":
+    "Once a week, when the questions are ready.",
   "more.profile.notify.sessions": "Visit reminders",
-  "more.profile.notify.sessions.detail": "The evening before and an hour before each visit.",
+  "more.profile.notify.sessions.detail":
+    "The evening before and an hour before each visit.",
   "more.profile.notify.quietHours": "Quiet evenings",
-  "more.profile.notify.quietHours.detail": "Hold everything from 20:00 to 07:00.",
+  "more.profile.notify.quietHours.detail":
+    "Hold everything from 20:00 to 07:00.",
   "more.profile.privacy": "Privacy",
   "more.profile.privacy.title": "Your family's information",
-  "more.profile.privacy.share": "What you log is shared with {name} and the caregivers you invite. No one else.",
-  "more.profile.privacy.one": "{name} sees your logs to adjust {child}'s plan, never to grade it.",
-  "more.profile.privacy.two": "Caregivers you invite see only what you choose for them.",
-  "more.profile.privacy.three": "You can ask {name} to remove any log at any time.",
-  "more.profile.privacy.sample": "This is a preview. All details shown are invented, and nothing you enter here is saved or sent.",
+  "more.profile.privacy.share":
+    "What you log is shared with {name} and the caregivers you invite. No one else.",
+  "more.profile.privacy.one":
+    "{name} sees your logs to adjust {child}'s plan, never to grade it.",
+  "more.profile.privacy.two":
+    "Caregivers you invite see only what you choose for them.",
+  "more.profile.privacy.three":
+    "You can ask {name} to remove any log at any time.",
+  "more.profile.privacy.sample":
+    "This is a preview. All details shown are invented, and nothing you enter here is saved or sent.",
 
   "more.resources.title": "Resources",
-  "more.resources.lede": "Strategies {name} has approved for {child}, each with its steps.",
+  "more.resources.lede":
+    "Strategies {name} has approved for {child}, each with its steps.",
   "more.resources.filter": "Show strategies",
   "more.resources.approvedBy": "Approved by {name}",
   "more.resources.forYou": "For you",
-  "more.resources.approvedNote": "{name} chose these for {child}. Open one for when to use it and how.",
-  "more.resources.forYouNote": "For the grown-ups: small things that help you stay steady first.",
+  "more.resources.approvedNote":
+    "{name} chose these for {child}. Open one for when to use it and how.",
+  "more.resources.forYouNote":
+    "For the grown-ups: small things that help you stay steady first.",
   "more.resources.worked": "Worked {worked} of {tried}",
-  "more.resources.workedLong": "Helped {worked} of the {tried} times you tried it",
+  "more.resources.workedLong":
+    "Helped {worked} of the {tried} times you tried it",
   "more.resources.notTried": "Not tried yet",
-  "more.resources.notTriedLong": "Not logged yet. When you try it, note it in the log and it will show here.",
+  "more.resources.notTriedLong":
+    "Not logged yet. When you try it, note it in the log and it will show here.",
   "more.resources.record": "How it has gone",
-  "more.resources.recordNote": "From the moments you logged. Every try counts, whatever the result.",
+  "more.resources.recordNote":
+    "From the moments you logged. Every try counts, whatever the result.",
   "more.resources.when": "When to use it",
   "more.resources.steps": "Steps",
   "more.resources.askLena": "Ask {name} about this",
@@ -125,21 +156,38 @@ export const enParentMore = {
   "more.resources.name.visualTimer": "Visual timer",
   "more.resources.name.breathe": "Breathe first",
 
-  "more.ask.title": "Ask",
-  "more.ask.lede": "Answers drawn from {name}'s plan and your own logs for {child}.",
-  "more.ask.notice": "Ask is in preview. It is not a live assistant: it only shows answers already grounded in the plan, and decisions always go to {name}.",
-  "more.ask.suggested": "Questions it can answer",
-  "more.ask.source": "Source:",
-  "more.ask.own": "Ask your own",
-  "more.ask.placeholder": "Type a question about {child}'s routine",
-  "more.ask.composerNote": "Preview only. Your question is not saved or sent.",
-  "more.ask.send": "Ask",
-  "more.ask.fallback": "Ask is in preview: for anything not covered here, message {name}.",
-  "more.ask.fallbackSource": "Ask defers anything outside the plan to your therapist",
+  "more.ask.title": "Ask AI",
+  "more.ask.newChat": "New chat",
+  "more.ask.greeting": "How can I help?",
+  "more.ask.lede":
+    "Ask about {child}'s day, {name}'s plan, or how to use the app.",
+  "more.ask.starter.next": "What's next in {child}'s routine today?",
+  "more.ask.starter.log": "How do I log something that happened earlier?",
+  "more.ask.starter.notes": "What did {name} say in the latest note?",
+  "more.ask.placeholder": "Ask anything",
+  "more.ask.send": "Send",
+  "more.ask.footnote":
+    "Ask AI can make mistakes. Decisions about care stay with {name}.",
+  "more.ask.thinking": "Ask AI is writing an answer",
+  "more.ask.error":
+    "Couldn't reach Ask AI. Check your connection and try again.",
+  "more.ask.notConfigured": "Ask AI isn't set up on this device yet.",
+  "more.ask.retry": "Try again",
   "more.ask.message": "Message {name}",
+  "more.ask.go.home": "Open Home",
+  "more.ask.go.routine": "Open Routine",
+  "more.ask.go.log_now": "Get support now",
+  "more.ask.go.log_earlier": "Log something earlier",
+  "more.ask.go.messages": "Open Messages",
+  "more.ask.go.checkin": "Start the check-in",
+  "more.ask.go.appointments": "Open Appointments",
+  "more.ask.go.resources": "Open Resources",
+  "more.ask.go.family": "Open Family",
+  "more.ask.go.profile": "Open Profile",
   "reminders.routine.title": "Coming up at {time}",
   "reminders.routine.done": "Mark done",
   "reminders.checkIn.title": "This week's check-in is ready",
-  "reminders.checkIn.body": "Five short questions for {name}. About two minutes.",
+  "reminders.checkIn.body":
+    "Five short questions for {name}. About two minutes.",
   "reminders.channel": "Reminders",
 } as const;

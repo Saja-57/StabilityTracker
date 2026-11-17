@@ -1,7 +1,8 @@
 /** Therapist workspace: reports. */
 export const enTherapistReports = {
   "reports.title": "Reports",
-  "reports.summary": "Drafts waiting for you: {drafts}. Ready to send: {ready}. Already shared with families and teams: {shared}.",
+  "reports.summary":
+    "Drafts waiting for you: {drafts}. Ready to send: {ready}. Already shared with families and teams: {shared}.",
   "reports.prepare": "Prepare report",
   "reports.list.label": "Report documents",
   "reports.status.draft": "Draft",
@@ -19,14 +20,17 @@ export const enTherapistReports = {
   "reports.doc.audience": "Prepared for",
   "reports.doc.age": "{age} years",
   "reports.doc.summaryTitle": "What home logs show",
-  "reports.doc.summary": "Between {from} and {to}, the family logged {count} moments. {high} were high intensity, {moderate} moderate and {low} low. Once things peaked, {name} usually settled within {recovery} minutes.",
-  "reports.doc.summaryNone": "No home logs were recorded for {name} in this period. Logs in the sample cover the last 28 days only.",
+  "reports.doc.summary":
+    "Between {from} and {to}, the family logged {count} moments. {high} were high intensity, {moderate} moderate and {low} low. Once things peaked, {name} usually settled within {recovery} minutes.",
+  "reports.doc.summaryNone":
+    "No home logs were recorded for {name} in this period. Logs in the sample cover the last 28 days only.",
   "reports.doc.coverage": "Home logs available from {from}.",
   "reports.doc.events": "Logged moments",
   "reports.doc.highShare": "High intensity",
   "reports.doc.recovery": "Median recovery",
   "reports.doc.barcodeTitle": "Daily log, last 28 days",
-  "reports.doc.barcodeNote": "One mark per logged moment. Taller and darker marks are more intense.",
+  "reports.doc.barcodeNote":
+    "One mark per logged moment. Taller and darker marks are more intense.",
   "reports.doc.triggersTitle": "What tended to come first",
   "reports.doc.triggersNote": "Top antecedents, share of logged moments",
   "reports.doc.helpedTitle": "What helped",
@@ -43,9 +47,11 @@ export const enTherapistReports = {
   "reports.share.done": "Shared. The {audience} copy is on its way.",
   "reports.markReady": "Mark ready",
   "reports.download": "Download PDF",
-  "reports.download.helper": "PDF export arrives once records are connected. For now this page is the document.",
+  "reports.download.helper":
+    "PDF export arrives once records are connected. For now this page is the document.",
   "reports.composer.title": "Prepare a report",
-  "reports.composer.description": "A new draft is built from the family's home logs for the period you choose.",
+  "reports.composer.description":
+    "A new draft is built from the family's home logs for the period you choose.",
   "reports.composer.child": "Child",
   "reports.composer.period": "Period",
   "reports.composer.audience": "Prepared for",

@@ -5,17 +5,22 @@ export const heTherapistInsights = {
   "insights.period.label": "תקופה",
   "insights.period.d14": "14 ימים",
   "insights.period.d28": "28 ימים",
-  "insights.lead.trigger": "{trigger} הקדים/ה {share}% מתוך {count} הרגעים שמשפחות תיעדו אצל כל המטופלים שלך ב-{days} הימים האחרונים.",
-  "insights.lead.support": "{support} הייתה התמיכה האמינה ביותר, ועזרה להירגע {worked} מתוך {uses} פעמים.",
-  "insights.lead.rhythm": "העומס הכבד ביותר היה ביום {weekday}, {part}, ו-{busier} מתוך {total} ילדים עמוסים יותר מבתקופה הקודמת.",
+  "insights.lead.trigger":
+    "{trigger} הקדים/ה {share}% מתוך {count} הרגעים שמשפחות תיעדו אצל כל המטופלים שלך ב-{days} הימים האחרונים.",
+  "insights.lead.support":
+    "{support} הייתה התמיכה האמינה ביותר, ועזרה להירגע {worked} מתוך {uses} פעמים.",
+  "insights.lead.rhythm":
+    "העומס הכבד ביותר היה ביום {weekday}, {part}, ו-{busier} מתוך {total} ילדים עמוסים יותר מבתקופה הקודמת.",
   "insights.lead.empty": "לא תועדו רגעים ב-{days} הימים האחרונים.",
   "insights.rhythm.title": "מתי דברים קורים",
-  "insights.rhythm.description": "כל רגע שתועד אצל כל הילדים, לפי יום בשבוע וחלק ביום. תאים כהים יותר נותנים משקל רב יותר לרגעים עזים.",
+  "insights.rhythm.description":
+    "כל רגע שתועד אצל כל הילדים, לפי יום בשבוע וחלק ביום. תאים כהים יותר נותנים משקל רב יותר לרגעים עזים.",
   "insights.rhythm.peak": "העמוס ביותר: {weekday}, {part}",
   "insights.antecedents.title": "גורמים מקדימים מובילים",
   "insights.antecedents.description": "מה קרה ממש לפני, בכל המשפחות.",
   "insights.helped.title": "מה עזר",
-  "insights.helped.description": "תמיכות מדורגות לפי כמה פעמים עזרו להירגע. תמיכות שנוסו פחות מ-3 פעמים לא נכללות.",
+  "insights.helped.description":
+    "תמיכות מדורגות לפי כמה פעמים עזרו להירגע. תמיכות שנוסו פחות מ-3 פעמים לא נכללות.",
   "insights.helped.rate": "{rate}%",
   "insights.helped.note": "{worked}/{uses}",
   "insights.trend.title": "ילדים לפי מגמה",

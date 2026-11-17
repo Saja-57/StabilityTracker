@@ -2,17 +2,25 @@
 export const enParentLog = {
   "logFlow.now.title": "It's happening now",
   "logFlow.now.detail": "Breathe first. {name}'s strategies are one tap away.",
-  "logFlow.now.hint": "Opens a breathing guide and calm strategies. Logging can wait.",
+  "logFlow.now.hint":
+    "Opens a breathing guide and calm strategies. Logging can wait.",
   "logFlow.earlier.title": "Log something from earlier",
-  "logFlow.earlier.detail": "One short page at a time. Add only what you remember.",
+  "logFlow.earlier.detail":
+    "One short page at a time. Add only what you remember.",
   "logFlow.recent.title": "Recent moments",
   "logFlow.recent.helped": "{support} helped",
   "logFlow.recent.by": "by {name}",
-  "logFlow.recent.empty": "Nothing logged yet. Moments you log will appear here.",
+  "logFlow.recent.empty":
+    "Nothing logged yet. Moments you log will appear here.",
   "logFlow.recent.notRated": "Intensity not noted",
   "logFlow.support.title": "Stay close. Breathe first.",
-  "logFlow.support.lede": "{child} is safe with you. Nothing needs writing down right now.",
+  "logFlow.support.lede":
+    "{child} is safe with you. Nothing needs writing down right now.",
   "logFlow.support.logLater": "Log it when you're ready",
+  "logFlow.reminder.title": "Don't forget to record it",
+  "logFlow.reminder.body":
+    "When {child} is calm again, take a minute to log what happened. It helps {name} see what works.",
+  "logFlow.reminder.action": "Log it now",
   "logFlow.breathe.in": "Breathe in",
   "logFlow.breathe.hold": "Hold",
   "logFlow.breathe.out": "Breathe out",
@@ -42,15 +50,18 @@ export const enParentLog = {
   "logFlow.duration.longer": "Longer",
   "logFlow.note.add": "Add a short note",
   "logFlow.note.label": "Short note",
-  "logFlow.media.later": "Kept on this phone for now. Sending them to the therapist comes with sign-in.",
-  "logFlow.review.lede": "This is the slip {name} will see. You can change anything first.",
+  "logFlow.media.later":
+    "Kept on this phone for now. Sending them to the therapist comes with sign-in.",
+  "logFlow.review.lede":
+    "This is the slip {name} will see. You can change anything first.",
   "logFlow.review.save": "Save to {child}'s log",
   "logFlow.review.edit": "Change something",
   "logFlow.review.notNoted": "Not noted",
   "logFlow.review.by": "Logged by {name}",
   "logFlow.saved.stamp": "Logged",
   "logFlow.saved.title": "Logged. {name} will see it before your session.",
-  "logFlow.saved.lede": "Thank you for writing it down. It is in your recent moments.",
+  "logFlow.saved.lede":
+    "Thank you for writing it down. It is in your recent moments.",
   "logFlow.saved.home": "Back to Home",
   "logFlow.saved.another": "Log another moment",
 } as const;

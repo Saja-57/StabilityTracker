@@ -4,15 +4,18 @@ export const arTherapistSettings = {
   "settings.title": "الإعدادات",
   "settings.summary": "كيف تعرفك مساحة العمل، وكيف تخاطبك، ومتى تبقى هادئة.",
   "settings.profile.title": "الملف الشخصي",
-  "settings.profile.description": "يظهر للعائلات في الرسائل والتقارير المشتركة.",
+  "settings.profile.description":
+    "يظهر للعائلات في الرسائل والتقارير المشتركة.",
   "settings.profile.name": "الاسم الكامل",
   "settings.profile.credential": "المؤهل",
   "settings.profile.practice": "العيادة",
   "settings.language.title": "اللغة",
   "settings.language.description": "لغة مساحة العمل. يُطبّق التغيير فورًا.",
-  "settings.language.rtl": "العبرية والعربية تحوّلان مساحة العمل كلها إلى الكتابة من اليمين إلى اليسار، بما في ذلك الشريط والخطوط الزمنية والرسوم.",
+  "settings.language.rtl":
+    "العبرية والعربية تحوّلان مساحة العمل كلها إلى الكتابة من اليمين إلى اليسار، بما في ذلك الشريط والخطوط الزمنية والرسوم.",
   "settings.notify.title": "الإشعارات",
-  "settings.notify.description": "فقط ما يحتاج إلى معالج. كل ما عداه ينتظر على مكتبك.",
+  "settings.notify.description":
+    "فقط ما يحتاج إلى معالج. كل ما عداه ينتظر على مكتبك.",
   "settings.notify.highIntensity": "حدث جديد بشدة عالية",
   "settings.notify.highIntensityHint": "عندما تسجل عائلة لحظة بشدة عالية.",
   "settings.notify.familyMessage": "رسالة من عائلة بانتظارك",
@@ -23,7 +26,8 @@ export const arTherapistSettings = {
   "settings.notify.digestHint": "ملخص واحد لكل الملفات، مرة في اليوم.",
   "settings.notify.digestTime": "وقت الملخص",
   "settings.hours.title": "ساعات العمل",
-  "settings.hours.description": "خارج هذه الساعات تُؤجَّل الإشعارات حتى الصباح.",
+  "settings.hours.description":
+    "خارج هذه الساعات تُؤجَّل الإشعارات حتى الصباح.",
   "settings.hours.days": "أيام العمل",
   "settings.hours.start": "البداية",
   "settings.hours.end": "النهاية",
@@ -32,7 +36,8 @@ export const arTherapistSettings = {
   "settings.privacy.title": "الخصوصية والبيانات",
   "settings.privacy.description": "من أين تأتي السجلات في مساحة العمل هذه.",
   "settings.privacy.sample": "بيانات تجريبية",
-  "settings.privacy.body": "تعرض مساحة العمل حاليًا بيانات توضيحية. كل طفل وعائلة وسجل هنا مختلق لأغراض العرض. تُربط السجلات الحقيقية لاحقًا، بموافقة كل عائلة.",
+  "settings.privacy.body":
+    "تعرض مساحة العمل حاليًا بيانات توضيحية. كل طفل وعائلة وسجل هنا مختلق لأغراض العرض. تُربط السجلات الحقيقية لاحقًا، بموافقة كل عائلة.",
   "settings.save.pending": "لديك تغييرات غير محفوظة",
   "settings.save.save": "احفظ التغييرات",
   "settings.save.discard": "تجاهل",

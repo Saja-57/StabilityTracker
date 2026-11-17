@@ -4,7 +4,8 @@ export const arParentMessages = {
   "inbox.title": "ملاحظات على الباب",
   "inbox.summary.many": "{count} ملاحظات جديدة من {name}. تجدونها في الأعلى.",
   "inbox.summary.one": "ملاحظة جديدة واحدة من {name}. تجدونها في الأعلى.",
-  "inbox.summary.none": "قرأتم كل ما أرسلته {name}. تبقى ملاحظاتها هنا للعودة إليها.",
+  "inbox.summary.none":
+    "قرأتم كل ما أرسلته {name}. تبقى ملاحظاتها هنا للعودة إليها.",
   "inbox.section.new": "جديدة",
   "inbox.section.earlier": "مقروءة",
   "inbox.open.hint": "يفتح الملاحظة كاملة",
@@ -15,7 +16,8 @@ export const arParentMessages = {
   "inbox.ack.detail": "ستعرف {name} أنكم قرأتم هذا.",
   "inbox.reply.action": "رد",
   "inbox.reply.title": "رد على {name}",
-  "inbox.reply.hint": "جملة أو جملتان تكفيان. تقرأ {name} الردود قبل الجلسة القادمة.",
+  "inbox.reply.hint":
+    "جملة أو جملتان تكفيان. تقرأ {name} الردود قبل الجلسة القادمة.",
   "inbox.reply.placeholder": "اكتبوا ردكم",
   "inbox.reply.send": "إرسال",
   "inbox.reply.cancel": "ليس الآن",
@@ -24,7 +26,8 @@ export const arParentMessages = {
   "inbox.reply.sent": "أُرسل",
   "inbox.routine.action": "عرض في الروتين",
   "inbox.empty.title": "لا ملاحظات بعد",
-  "inbox.empty.detail": "عندما ترسل المعالجة إرشادًا، يصل إلى هنا، مثبتًا على الباب.",
+  "inbox.empty.detail":
+    "عندما ترسل المعالجة إرشادًا، يصل إلى هنا، مثبتًا على الباب.",
   "inbox.error.title": "لم يتم تحميل الملاحظات",
   "inbox.error.detail": "لم يضع شيء. حاولوا مرة أخرى بعد قليل.",
 } as const satisfies Record<keyof typeof enParentMessages, string>;

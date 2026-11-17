@@ -19,14 +19,17 @@ export const heTherapistFile = {
   "file.overview.before": "מה קדם לאירועים",
   "file.overview.beforeHint": "גורמים אפשריים ב־28 הימים האחרונים.",
   "file.overview.helped": "מה עזר",
-  "file.overview.helpedHint": "תמיכות מדורגות לפי כמה פעמים המשפחה דיווחה שעזרו.",
+  "file.overview.helpedHint":
+    "תמיכות מדורגות לפי כמה פעמים המשפחה דיווחה שעזרו.",
   "file.overview.when": "מתי זה קורה",
-  "file.overview.whenHint": "יום בשבוע לפי חלק ביום; כהה יותר פירושו יותר אירועים וחזקים יותר.",
+  "file.overview.whenHint":
+    "יום בשבוע לפי חלק ביום; כהה יותר פירושו יותר אירועים וחזקים יותר.",
   "file.overview.survey": "שאלון ההורה האחרון",
   "file.overview.sendGuidance": "שליחת הנחיה",
   "file.overview.adjustRoutine": "התאמת השגרה",
   "file.overview.readEvents": "קריאת כל האירועים",
-  "file.events.summary": "{count} אירועים ב־28 הימים האחרונים, {open} עדיין לסקירה.",
+  "file.events.summary":
+    "{count} אירועים ב־28 הימים האחרונים, {open} עדיין לסקירה.",
   "file.events.filter": "סינון לפי עוצמה",
   "file.events.empty": "אין אירועים בעוצמה הזו.",
   "file.events.duration": "נמשך כ־{min} דק׳",
@@ -37,7 +40,8 @@ export const heTherapistFile = {
   "file.events.detailed": "תיעוד מפורט",
   "file.events.flag": "סימון למפגש",
   "file.events.unflag": "מסומן למפגש",
-  "file.routine.description": "ארבעה עשר ימים משגרת המשפחה. שינוי בצעד יגיע לאפליקציה של המשפחה כהתאמת שגרה.",
+  "file.routine.description":
+    "ארבעה עשר ימים משגרת המשפחה. שינוי בצעד יגיע לאפליקציה של המשפחה כהתאמת שגרה.",
   "file.routine.time": "שעה",
   "file.routine.step": "צעד",
   "file.routine.kept": "נשמר",
@@ -46,7 +50,8 @@ export const heTherapistFile = {
   "file.routine.propose": "התאמה",
   "file.routine.history": "הושלם ב־{done} מתוך {total} ימים",
   "file.routine.sendToFamily": "שליחה למשפחה",
-  "file.surveys.description": "שאלונים קצרים שהמשפחה עונה עליהם באפליקציה. הציון עולה כשההורים מדווחים על ימים קלים יותר.",
+  "file.surveys.description":
+    "שאלונים קצרים שהמשפחה עונה עליהם באפליקציה. הציון עולה כשההורים מדווחים על ימים קלים יותר.",
   "file.surveys.requested": "השאלון נשלח",
   "file.surveys.send": "שליחת שאלון",
   "file.surveys.answered": "נענה ב־{date}",

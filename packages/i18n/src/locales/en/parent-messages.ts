@@ -3,7 +3,8 @@ export const enParentMessages = {
   "inbox.title": "Notes on the door",
   "inbox.summary.many": "{count} new notes from {name}. They are at the top.",
   "inbox.summary.one": "One new note from {name}. It is at the top.",
-  "inbox.summary.none": "You have read everything from {name}. Her notes stay here to come back to.",
+  "inbox.summary.none":
+    "You have read everything from {name}. Her notes stay here to come back to.",
   "inbox.section.new": "New",
   "inbox.section.earlier": "Read",
   "inbox.open.hint": "Opens the full note",
@@ -14,7 +15,8 @@ export const enParentMessages = {
   "inbox.ack.detail": "{name} will see that you read this.",
   "inbox.reply.action": "Reply",
   "inbox.reply.title": "Reply to {name}",
-  "inbox.reply.hint": "A sentence or two is plenty. {name} reads replies before your next session.",
+  "inbox.reply.hint":
+    "A sentence or two is plenty. {name} reads replies before your next session.",
   "inbox.reply.placeholder": "Write your reply",
   "inbox.reply.send": "Send",
   "inbox.reply.cancel": "Not now",
@@ -23,7 +25,8 @@ export const enParentMessages = {
   "inbox.reply.sent": "Sent",
   "inbox.routine.action": "See in routine",
   "inbox.empty.title": "No notes yet",
-  "inbox.empty.detail": "When your therapist sends guidance, it lands here, held on the door.",
+  "inbox.empty.detail":
+    "When your therapist sends guidance, it lands here, held on the door.",
   "inbox.error.title": "Notes did not load",
   "inbox.error.detail": "Nothing is lost. Try again in a moment.",
 } as const;

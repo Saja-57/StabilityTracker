@@ -12,7 +12,8 @@ export const arTherapistNotes = {
   "notes.composer.titlePlaceholder.observation": "ما لاحظته",
   "notes.composer.titlePlaceholder.plan": "تحديث الخطة",
   "notes.composer.body": "المدخل",
-  "notes.composer.bodyPlaceholder.observation": "ما رأيته في سجلات البيت أو في الغرفة، بكلمات بسيطة.",
+  "notes.composer.bodyPlaceholder.observation":
+    "ما رأيته في سجلات البيت أو في الغرفة، بكلمات بسيطة.",
   "notes.composer.bodyPlaceholder.plan": "ما الذي يتغير، ولمن، ومتى ستراجعه.",
   "notes.composer.prompt.observed": "ما لاحظته",
   "notes.composer.prompt.practiced": "ما تدربنا عليه",
@@ -38,6 +39,7 @@ export const arTherapistNotes = {
   "notes.list.openFile": "افتح ملف {name}",
   "notes.pin": "ثبّت في الملف",
   "notes.empty.title": "لم يُحفظ شيء هنا بعد",
-  "notes.empty.body": "لا توجد مدخلات تطابق هذا الملف وهذا النوع. وسّع التصفية، أو ابدأ مدخلًا في الأعلى.",
+  "notes.empty.body":
+    "لا توجد مدخلات تطابق هذا الملف وهذا النوع. وسّع التصفية، أو ابدأ مدخلًا في الأعلى.",
   "notes.empty.reset": "اعرض كل المدخلات",
 } as const satisfies Record<keyof typeof enTherapistNotes, string>;

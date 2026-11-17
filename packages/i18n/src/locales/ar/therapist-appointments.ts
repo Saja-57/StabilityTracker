@@ -9,7 +9,8 @@ export const arTherapistAppointments = {
   "appointments.week.previous": "الأسبوع السابق",
   "appointments.week.following": "الأسبوع التالي",
   "appointments.week.backToThis": "العودة إلى هذا الأسبوع",
-  "appointments.week.summary": "{count} جلسات في التقويم، {ahead} منها لم تبدأ بعد.",
+  "appointments.week.summary":
+    "{count} جلسات في التقويم، {ahead} منها لم تبدأ بعد.",
   "appointments.week.summaryNone": "لا جلسات في التقويم.",
   "appointments.grid.label": "تقويم الأسبوع",
   "appointments.grid.hint": "استخدم مفاتيح الأسهم للتنقل بين الجلسات.",
@@ -19,11 +20,13 @@ export const arTherapistAppointments = {
   "appointments.grid.done": "انتهت",
   "appointments.grid.slip": "{name}، {time}، {mode}",
   "appointments.empty.title": "لا جلسات محجوزة هذا الأسبوع",
-  "appointments.empty.body": "يغطي تقويم العينة الأيام القريبة من اليوم فقط. ستظهر هنا الجلسات التي تحجزها.",
+  "appointments.empty.body":
+    "يغطي تقويم العينة الأيام القريبة من اليوم فقط. ستظهر هنا الجلسات التي تحجزها.",
   "appointments.agenda.noSessions": "لا جلسات",
   "appointments.legend.label": "نوع الجلسة",
   "appointments.prep.title": "التحضير للجلسة",
-  "appointments.prep.empty": "اختر جلسة لترى ما تغيّر في البيت منذ لقائكما الأخير.",
+  "appointments.prep.empty":
+    "اختر جلسة لترى ما تغيّر في البيت منذ لقائكما الأخير.",
   "appointments.prep.when": "{day}، من {from} إلى {to}",
   "appointments.prep.sinceSession": "تسجيلات البيت منذ جلسة {date}",
   "appointments.prep.logs": "تسجيلات البيت",

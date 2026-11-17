@@ -99,11 +99,12 @@ export function PressCard({
 
 /* ----------------------------------------------------------- action */
 
-export type ActionVariant = "ink" | "gold" | "outline" | "quiet" | "board";
+export type ActionVariant = "ink" | "gold" | "alert" | "outline" | "quiet" | "board";
 
 const actionSurface: Record<ActionVariant, ViewStyle> = {
   ink: { backgroundColor: surface.board, ...elevation.press },
   gold: { backgroundColor: cf.tab.gold, ...elevation.press },
+  alert: { backgroundColor: cf.tab.ruby, ...elevation.press },
   outline: { backgroundColor: surface.raised, borderColor: surface.rule, borderWidth: 1 },
   quiet: { backgroundColor: "transparent" },
   board: { backgroundColor: surface.boardRaised },
@@ -112,6 +113,7 @@ const actionSurface: Record<ActionVariant, ViewStyle> = {
 const actionInk: Record<ActionVariant, string> = {
   ink: cf.pressboard.ink,
   gold: cf.pressboard.deep,
+  alert: cf.pressboard.ink,
   outline: cf.sheet.ink,
   quiet: cf.sheet.inkSecondary,
   board: cf.pressboard.ink,

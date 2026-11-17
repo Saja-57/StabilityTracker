@@ -1,13 +1,10 @@
-export interface AskExchangeViewModel {
-  readonly question: string;
-  readonly answer: string;
-  readonly source: string;
-}
+import type { AskDestination } from "./ask-client";
 
 export interface AskScreenProps {
-  /** Scripted, plan-grounded answers. Ask is a preview, not a live model. */
-  readonly library: readonly AskExchangeViewModel[];
   readonly therapistGivenName: string;
   readonly childGivenName: string;
+  /** Plain-text summary of the family's plan, routine and logs for grounding. */
+  readonly context: string;
+  readonly onNavigate: (destination: AskDestination) => void;
   readonly onMessageTherapist: () => void;
 }

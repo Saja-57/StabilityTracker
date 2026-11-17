@@ -2,7 +2,8 @@ import type { enTherapistSettings } from "../en/therapist-settings";
 
 export const heTherapistSettings = {
   "settings.title": "הגדרות",
-  "settings.summary": "איך סביבת העבודה מכירה אותך, מדברת אלייך, ומתי היא שותקת.",
+  "settings.summary":
+    "איך סביבת העבודה מכירה אותך, מדברת אלייך, ומתי היא שותקת.",
   "settings.profile.title": "פרופיל",
   "settings.profile.description": "מוצג למשפחות בהודעות ובדוחות משותפים.",
   "settings.profile.name": "שם מלא",
@@ -10,7 +11,8 @@ export const heTherapistSettings = {
   "settings.profile.practice": "מרפאה",
   "settings.language.title": "שפה",
   "settings.language.description": "שפת סביבת העבודה. השינוי חל מיד.",
-  "settings.language.rtl": "עברית וערבית מעבירות את כל סביבת העבודה לכיוון מימין לשמאל, כולל הסרגל, צירי הזמן והתרשימים.",
+  "settings.language.rtl":
+    "עברית וערבית מעבירות את כל סביבת העבודה לכיוון מימין לשמאל, כולל הסרגל, צירי הזמן והתרשימים.",
   "settings.notify.title": "התראות",
   "settings.notify.description": "רק מה שדורש קלינאי. כל השאר ממתין על השולחן.",
   "settings.notify.highIntensity": "אירוע חדש בעוצמה גבוהה",
@@ -32,7 +34,8 @@ export const heTherapistSettings = {
   "settings.privacy.title": "פרטיות ונתונים",
   "settings.privacy.description": "מאיפה מגיעות הרשומות בסביבת העבודה.",
   "settings.privacy.sample": "נתוני דוגמה",
-  "settings.privacy.body": "סביבת העבודה מציגה כרגע נתונים להמחשה בלבד. כל ילד, משפחה ותיעוד הם בדויים. רשומות אמיתיות יחוברו בהמשך, בהסכמת כל משפחה.",
+  "settings.privacy.body":
+    "סביבת העבודה מציגה כרגע נתונים להמחשה בלבד. כל ילד, משפחה ותיעוד הם בדויים. רשומות אמיתיות יחוברו בהמשך, בהסכמת כל משפחה.",
   "settings.save.pending": "יש שינויים שלא נשמרו",
   "settings.save.save": "שמירת השינויים",
   "settings.save.discard": "ביטול",

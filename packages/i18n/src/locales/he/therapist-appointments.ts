@@ -19,11 +19,13 @@ export const heTherapistAppointments = {
   "appointments.grid.done": "הסתיים",
   "appointments.grid.slip": "{name}, {time}, {mode}",
   "appointments.empty.title": "אין מפגשים השבוע",
-  "appointments.empty.body": "יומן הדוגמה מכסה רק את הימים הקרובים להיום. מפגשים שתקבעו יופיעו כאן.",
+  "appointments.empty.body":
+    "יומן הדוגמה מכסה רק את הימים הקרובים להיום. מפגשים שתקבעו יופיעו כאן.",
   "appointments.agenda.noSessions": "אין מפגשים",
   "appointments.legend.label": "אופן המפגש",
   "appointments.prep.title": "הכנה למפגש",
-  "appointments.prep.empty": "בחרו מפגש כדי לראות מה השתנה בבית מאז הפגישה האחרונה.",
+  "appointments.prep.empty":
+    "בחרו מפגש כדי לראות מה השתנה בבית מאז הפגישה האחרונה.",
   "appointments.prep.when": "{day}, {from} עד {to}",
   "appointments.prep.sinceSession": "תיעודים מהבית מאז המפגש ב-{date}",
   "appointments.prep.logs": "תיעודים מהבית",

@@ -29,7 +29,9 @@ export const enParentSurveys = {
   "checkin.sent.stamp": "Sent to {name}",
   "checkin.sent.stampPlain": "Sent",
   "checkin.sent.title": "Thank you.",
-  "checkin.sent.detail": "{name} will read this before your next session. There is nothing else to do.",
-  "checkin.sent.detailPlain": "Your therapist will read this before your next session. There is nothing else to do.",
+  "checkin.sent.detail":
+    "{name} will read this before your next session. There is nothing else to do.",
+  "checkin.sent.detailPlain":
+    "Your therapist will read this before your next session. There is nothing else to do.",
   "checkin.sent.home": "Back to Home",
 } as const;

@@ -4,7 +4,8 @@ export const heParentMessages = {
   "inbox.title": "פתקים על הדלת",
   "inbox.summary.many": "{count} פתקים חדשים מאת {name}. הם למעלה.",
   "inbox.summary.one": "פתק חדש אחד מאת {name}. הוא למעלה.",
-  "inbox.summary.none": "קראתם את כל הפתקים של {name}. הם נשארים כאן כדי לחזור אליהם.",
+  "inbox.summary.none":
+    "קראתם את כל הפתקים של {name}. הם נשארים כאן כדי לחזור אליהם.",
   "inbox.section.new": "חדשים",
   "inbox.section.earlier": "נקראו",
   "inbox.open.hint": "פותח את הפתק המלא",
@@ -15,7 +16,8 @@ export const heParentMessages = {
   "inbox.ack.detail": "{name} תראה שקראתם את זה.",
   "inbox.reply.action": "תשובה",
   "inbox.reply.title": "תשובה אל {name}",
-  "inbox.reply.hint": "משפט או שניים מספיקים. {name} קוראת תשובות לפני המפגש הבא.",
+  "inbox.reply.hint":
+    "משפט או שניים מספיקים. {name} קוראת תשובות לפני המפגש הבא.",
   "inbox.reply.placeholder": "כתבו את התשובה",
   "inbox.reply.send": "שליחה",
   "inbox.reply.cancel": "לא עכשיו",

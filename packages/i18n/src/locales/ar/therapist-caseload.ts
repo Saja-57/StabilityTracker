@@ -2,7 +2,8 @@ import type { enTherapistCaseload } from "../en/therapist-caseload";
 
 export const arTherapistCaseload = {
   "caseload.title": "ملفاتك",
-  "caseload.summary": "{total} أطفال في رعايتك. {review} ملفات بحاجة إلى مراجعتك و{today} لديهم جلسة اليوم.",
+  "caseload.summary":
+    "{total} أطفال في رعايتك. {review} ملفات بحاجة إلى مراجعتك و{today} لديهم جلسة اليوم.",
   "caseload.filterLabel": "تصفية الملفات",
   "caseload.filter.all": "الكل",
   "caseload.search": "البحث عن طفل",

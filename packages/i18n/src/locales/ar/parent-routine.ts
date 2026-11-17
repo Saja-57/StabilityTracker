@@ -17,8 +17,10 @@ export const arParentRoutine = {
   "routineDay.collapseHint": "يخفي التفاصيل",
   "routineDay.loading": "نجهّز بطاقات اليوم",
   "routineDay.empty.title": "لا توجد بطاقات على الثلاجة اليوم",
-  "routineDay.empty.detail": "عند إعداد روتين اليوم، تظهر بطاقاته المصورة هنا بالترتيب.",
+  "routineDay.empty.detail":
+    "عند إعداد روتين اليوم، تظهر بطاقاته المصورة هنا بالترتيب.",
   "routineDay.error.title": "لم يتم تحميل البطاقات",
-  "routineDay.error.detail": "غالبًا ما يكون هذا خللًا مؤقتًا في الاتصال. حاول مجددًا متى شئت.",
+  "routineDay.error.detail":
+    "غالبًا ما يكون هذا خللًا مؤقتًا في الاتصال. حاول مجددًا متى شئت.",
   "routineDay.retry": "حاول مجددًا",
 } as const satisfies Record<keyof typeof enParentRoutine, string>;

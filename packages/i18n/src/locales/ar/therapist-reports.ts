@@ -2,7 +2,8 @@ import type { enTherapistReports } from "../en/therapist-reports";
 
 export const arTherapistReports = {
   "reports.title": "التقارير",
-  "reports.summary": "مسودات بانتظارك: {drafts}. جاهزة للإرسال: {ready}. تمت مشاركتها مع العائلات والفرق: {shared}.",
+  "reports.summary":
+    "مسودات بانتظارك: {drafts}. جاهزة للإرسال: {ready}. تمت مشاركتها مع العائلات والفرق: {shared}.",
   "reports.prepare": "إعداد تقرير",
   "reports.list.label": "مستندات التقارير",
   "reports.status.draft": "مسودة",
@@ -20,19 +21,23 @@ export const arTherapistReports = {
   "reports.doc.audience": "مُعدّ لـ",
   "reports.doc.age": "{age} سنوات",
   "reports.doc.summaryTitle": "ما تُظهره سجلات المنزل",
-  "reports.doc.summary": "بين {from} و{to} سجّلت العائلة {count} لحظة. كانت {high} منها عالية الشدة، و{moderate} متوسطة، و{low} منخفضة. بعد الذروة، كان {name} يهدأ عادة خلال {recovery} دقيقة.",
-  "reports.doc.summaryNone": "لم تُسجَّل أي لحظات منزلية لـ{name} في هذه الفترة. بيانات العيّنة تغطي آخر 28 يومًا فقط.",
+  "reports.doc.summary":
+    "بين {from} و{to} سجّلت العائلة {count} لحظة. كانت {high} منها عالية الشدة، و{moderate} متوسطة، و{low} منخفضة. بعد الذروة، كان {name} يهدأ عادة خلال {recovery} دقيقة.",
+  "reports.doc.summaryNone":
+    "لم تُسجَّل أي لحظات منزلية لـ{name} في هذه الفترة. بيانات العيّنة تغطي آخر 28 يومًا فقط.",
   "reports.doc.coverage": "سجلات المنزل متاحة بدءًا من {from}.",
   "reports.doc.events": "لحظات مسجّلة",
   "reports.doc.highShare": "شدة عالية",
   "reports.doc.recovery": "وسيط التعافي",
   "reports.doc.barcodeTitle": "السجل اليومي، آخر 28 يومًا",
-  "reports.doc.barcodeNote": "علامة واحدة لكل لحظة مسجّلة. العلامات الأطول والأغمق أشدّ.",
+  "reports.doc.barcodeNote":
+    "علامة واحدة لكل لحظة مسجّلة. العلامات الأطول والأغمق أشدّ.",
   "reports.doc.triggersTitle": "ما الذي سبق غالبًا",
   "reports.doc.triggersNote": "أبرز المسببات، كنسبة من اللحظات المسجّلة",
   "reports.doc.helpedTitle": "ما الذي ساعد",
   "reports.doc.helpedNone": "لم تُسجَّل أي وسائل دعم في هذه الفترة.",
-  "reports.doc.helpedRow": "{support} ساعد على التهدئة {worked} من أصل {uses} مرات.",
+  "reports.doc.helpedRow":
+    "{support} ساعد على التهدئة {worked} من أصل {uses} مرات.",
   "reports.doc.goalTitle": "الهدف الحالي",
   "reports.doc.signature": "التوقيع",
   "reports.doc.dated": "التاريخ",
@@ -44,9 +49,11 @@ export const arTherapistReports = {
   "reports.share.done": "تمت المشاركة. نسخة {audience} في طريقها.",
   "reports.markReady": "وضع علامة جاهز",
   "reports.download": "تنزيل PDF",
-  "reports.download.helper": "سيتوفر التصدير إلى PDF بعد ربط السجلات. حتى ذلك الحين، هذه الصفحة هي المستند.",
+  "reports.download.helper":
+    "سيتوفر التصدير إلى PDF بعد ربط السجلات. حتى ذلك الحين، هذه الصفحة هي المستند.",
   "reports.composer.title": "إعداد تقرير",
-  "reports.composer.description": "تُبنى مسودة جديدة من سجلات العائلة المنزلية للفترة التي تختارها.",
+  "reports.composer.description":
+    "تُبنى مسودة جديدة من سجلات العائلة المنزلية للفترة التي تختارها.",
   "reports.composer.child": "الطفل",
   "reports.composer.period": "الفترة",
   "reports.composer.audience": "مُعدّ لـ",

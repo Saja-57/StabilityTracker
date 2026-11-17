@@ -1,156 +1,288 @@
-import { useState } from "react";
-import { Pressable, StyleSheet, TextInput, View } from "react-native";
+import { useEffect, useRef, useState } from "react";
+import {
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  TextInput,
+  View,
+  type ScrollViewInstance,
+} from "react-native";
 import Animated, {
+  FadeIn,
   FadeInDown,
-  LinearTransition,
+  useAnimatedStyle,
+  useReducedMotion,
+  useSharedValue,
+  withDelay,
+  withRepeat,
+  withSequence,
+  withTiming,
 } from "react-native-reanimated";
 
 import {
   Action,
   PressCard,
   Row,
-  SectionTitle,
-  TabLabel,
   paperEase,
 } from "@/components/case-file/primitives";
 import { Type } from "@/components/case-file/type";
 import { Glyph } from "@/components/icons/glyphs";
 import { ScreenContainer } from "@/components/ui";
-import { StackHeader } from "@/features/more/components/stack-header";
+import { goBackOrMore } from "@/features/more/components/stack-header";
 import { fill, isolate } from "@/lib/format";
 import { useLanguage } from "@/providers/language-provider";
 import { cf, corner, ink, space, surface } from "@/theme/case-file";
 import { getDirectionalTextStyle } from "@/theme/direction";
 
-import { AnswerSlip } from "./components/answer-slip";
+import {
+  AskError,
+  askAi,
+  type AskDestination,
+  type AskFailure,
+  type AskReply,
+} from "./ask-client";
 import type { AskScreenProps } from "./types";
 
-const enter = (index: number) =>
-  FadeInDown.duration(520)
-    .delay(60 + index * 70)
-    .easing(paperEase);
+type Turn =
+  | { readonly id: number; readonly role: "user"; readonly content: string }
+  | ({ readonly id: number; readonly role: "assistant" } & AskReply);
 
-const settle = LinearTransition.duration(320).easing(paperEase);
-
-type Shown =
-  | { kind: "library"; index: number }
-  | { kind: "free"; question: string }
-  | null;
+const rise = FadeInDown.duration(360).easing(paperEase);
 
 /**
- * Ask, in preview: scripted answers drawn from Lena's plan and the family's
- * own logs, written up as question slips. Tapping one pins its answer to the
- * door. It never invents advice; anything else goes to Lena.
+ * Ask AI: one calm thread. Three starters while it is empty, short answers,
+ * and at most one button that takes the parent to the right place.
  */
 export function AskScreen({
-  library,
   therapistGivenName,
   childGivenName,
+  context,
+  onNavigate,
   onMessageTherapist,
 }: AskScreenProps) {
   const { language, t } = useLanguage();
-  const [shown, setShown] = useState<Shown>(null);
+  const [turns, setTurns] = useState<readonly Turn[]>([]);
   const [draft, setDraft] = useState("");
-  const lena = isolate(therapistGivenName);
-  const values = { name: lena, child: isolate(childGivenName) };
+  const [pending, setPending] = useState(false);
+  const [failure, setFailure] = useState<AskFailure | null>(null);
+  const scroll = useRef<ScrollViewInstance>(null);
+  const request = useRef<AbortController | null>(null);
+  const nextId = useRef(0);
+  const values = {
+    name: isolate(therapistGivenName),
+    child: isolate(childGivenName),
+  };
 
-  const submit = () => {
-    const question = draft.trim();
-    if (!question) return;
-    setShown({ kind: "free", question });
+  useEffect(() => () => request.current?.abort(), []);
+
+  const run = async (thread: readonly Turn[]) => {
+    request.current?.abort();
+    const controller = new AbortController();
+    request.current = controller;
+    setPending(true);
+    setFailure(null);
+    const timeout = setTimeout(() => controller.abort(), 50_000);
+    try {
+      const reply = await askAi(
+        {
+          language,
+          context,
+          messages: thread.map((turn) =>
+            turn.role === "user"
+              ? { role: "user", content: turn.content }
+              : { role: "assistant", content: turn.answer },
+          ),
+        },
+        controller.signal,
+      );
+      setTurns((current) => [
+        ...current,
+        { id: nextId.current++, role: "assistant", ...reply },
+      ]);
+    } catch (error) {
+      if (request.current !== controller) return;
+      setFailure(error instanceof AskError ? error.reason : "unreachable");
+    } finally {
+      clearTimeout(timeout);
+      if (request.current === controller) setPending(false);
+    }
+  };
+
+  const send = (text: string) => {
+    const content = text.trim();
+    if (!content || pending) return;
+    const thread = [
+      ...turns,
+      { id: nextId.current++, role: "user" as const, content },
+    ];
+    setTurns(thread);
+    setDraft("");
+    void run(thread);
+  };
+
+  const restart = () => {
+    request.current?.abort();
+    request.current = null;
+    setTurns([]);
+    setPending(false);
+    setFailure(null);
     setDraft("");
   };
 
-  const canSend = draft.trim().length > 0;
+  const empty = turns.length === 0 && !pending && !failure;
+  const canSend = draft.trim().length > 0 && !pending;
+  const starters = [
+    fill(t("more.ask.starter.next"), values),
+    t("more.ask.starter.log"),
+    fill(t("more.ask.starter.notes"), values),
+  ];
 
   return (
-    <ScreenContainer scrollProps={{ showsVerticalScrollIndicator: false }}>
-      <Animated.View entering={enter(0)}>
-        <StackHeader
-          title={t("more.ask.title")}
-          lede={fill(t("more.ask.lede"), values)}
-          aside={<TabLabel tone="cobalt" label={t("more.preview")} />}
-        />
-      </Animated.View>
-
-      <Animated.View entering={enter(1)} style={styles.section}>
-        <SectionTitle title={t("more.ask.suggested")} />
-        <Animated.View layout={settle}>
-          {library.map((entry, index) => {
-            const active = shown?.kind === "library" && shown.index === index;
-            return (
-              <Animated.View
-                key={entry.question}
-                layout={settle}
-                style={index > 0 ? styles.ruled : null}
-              >
-                <PressCard
-                  accessibilityRole="button"
-                  accessibilityState={{ expanded: active }}
-                  accessibilityLabel={entry.question}
-                  onPress={() =>
-                    setShown(active ? null : { kind: "library", index })
-                  }
-                  pressedScale={0.985}
-                  style={styles.question}
-                >
-                  <Row gap={space.md} align="flex-start">
-                    <Type
-                      variant={active ? "headline" : "label"}
-                      style={styles.flex}
-                    >
-                      {isolate(entry.question)}
-                    </Type>
-                    <View style={[styles.chevron, active ? styles.flip : null]}>
-                      <Glyph
-                        name="chevronDown"
-                        color={active ? ink.primary : ink.muted}
-                        size={18}
-                      />
-                    </View>
-                  </Row>
-                </PressCard>
-                {active ? (
-                  <View style={styles.answer}>
-                    <AnswerSlip
-                      answer={isolate(entry.answer)}
-                      source={isolate(entry.source)}
-                      tilt={index % 2 === 0 ? -0.8 : 0.7}
-                    />
-                  </View>
-                ) : null}
-              </Animated.View>
-            );
-          })}
-        </Animated.View>
-      </Animated.View>
-
-      <Animated.View entering={enter(2)} layout={settle}>
-        <Row gap={space.sm} align="flex-start">
-          <Glyph name="shield" color={ink.muted} size={17} />
-          <Type variant="small" color="muted" style={styles.flex}>
-            {fill(t("more.ask.notice"), values)}
-          </Type>
-        </Row>
-      </Animated.View>
-
-      <Animated.View
-        entering={enter(3)}
-        layout={settle}
-        style={styles.ownSection}
-      >
-        <Type variant="label" color="secondary" accessibilityRole="header">
-          {t("more.ask.own")}
+    <ScreenContainer scrollable={false} contentContainerStyle={styles.screen}>
+      <Row style={styles.bar}>
+        <Pressable
+          accessibilityRole="button"
+          accessibilityLabel={t("common.back")}
+          hitSlop={6}
+          onPress={goBackOrMore}
+          style={({ pressed }) => [
+            styles.round,
+            pressed ? styles.pressed : null,
+          ]}
+        >
+          <Glyph name="arrowBack" color={ink.primary} size={22} />
+        </Pressable>
+        <Type
+          variant="headline"
+          accessibilityRole="header"
+          style={styles.barTitle}
+        >
+          {t("more.ask.title")}
         </Type>
+        {turns.length > 0 ? (
+          <Pressable
+            accessibilityRole="button"
+            accessibilityLabel={t("more.ask.newChat")}
+            hitSlop={6}
+            onPress={restart}
+            style={({ pressed }) => [
+              styles.round,
+              pressed ? styles.pressed : null,
+            ]}
+          >
+            <Glyph name="plus" color={ink.primary} size={22} />
+          </Pressable>
+        ) : (
+          <View style={styles.roundSpacer} />
+        )}
+      </Row>
+
+      <ScrollView
+        ref={scroll}
+        style={styles.flex}
+        contentContainerStyle={[
+          styles.thread,
+          empty ? styles.threadEmpty : null,
+        ]}
+        keyboardShouldPersistTaps="handled"
+        keyboardDismissMode="interactive"
+        showsVerticalScrollIndicator={false}
+        onContentSizeChange={() => {
+          if (!empty) scroll.current?.scrollToEnd({ animated: true });
+        }}
+      >
+        {empty ? (
+          <Animated.View entering={rise} style={styles.welcome}>
+            <View style={styles.mark}>
+              <Glyph name="spark" color={cf.tab.mossInk} size={26} />
+            </View>
+            <View style={styles.welcomeCopy}>
+              <Type variant="display">{t("more.ask.greeting")}</Type>
+              <Type variant="lede" color="secondary">
+                {fill(t("more.ask.lede"), values)}
+              </Type>
+            </View>
+            <View style={styles.starters}>
+              {starters.map((starter, index) => (
+                <Animated.View
+                  key={starter}
+                  entering={FadeInDown.duration(360)
+                    .delay(120 + index * 60)
+                    .easing(paperEase)}
+                >
+                  <PressCard
+                    accessibilityRole="button"
+                    accessibilityLabel={starter}
+                    onPress={() => send(starter)}
+                    pressedScale={0.985}
+                    style={styles.starter}
+                  >
+                    <Type variant="label" style={styles.flex}>
+                      {starter}
+                    </Type>
+                    <Glyph name="arrow" color={ink.muted} size={18} />
+                  </PressCard>
+                </Animated.View>
+              ))}
+            </View>
+          </Animated.View>
+        ) : (
+          turns.map((turn) =>
+            turn.role === "user" ? (
+              <Animated.View key={turn.id} entering={rise} style={styles.mine}>
+                <Type variant="body" style={styles.mineText} selectable>
+                  {turn.content}
+                </Type>
+              </Animated.View>
+            ) : (
+              <Answer
+                key={turn.id}
+                reply={turn}
+                therapistLabel={fill(t("more.ask.message"), values)}
+                onNavigate={onNavigate}
+                onMessageTherapist={onMessageTherapist}
+              />
+            ),
+          )
+        )}
+
+        {pending ? <Thinking label={t("more.ask.thinking")} /> : null}
+
+        {failure ? (
+          <Animated.View
+            entering={FadeIn.duration(240)}
+            style={styles.failure}
+            accessibilityLiveRegion="polite"
+          >
+            <Type variant="small" color="secondary" style={styles.flex}>
+              {t(
+                failure === "not_configured"
+                  ? "more.ask.notConfigured"
+                  : "more.ask.error",
+              )}
+            </Type>
+            {turns.at(-1)?.role === "user" ? (
+              <Action
+                label={t("more.ask.retry")}
+                variant="outline"
+                size="small"
+                onPress={() => void run(turns)}
+              />
+            ) : null}
+          </Animated.View>
+        ) : null}
+      </ScrollView>
+
+      <View style={styles.dock}>
         <Row gap={space.sm} align="flex-end" style={styles.composer}>
           <TextInput
-            accessibilityLabel={t("more.ask.own")}
+            accessibilityLabel={t("more.ask.placeholder")}
             value={draft}
             onChangeText={setDraft}
-            placeholder={fill(t("more.ask.placeholder"), values)}
+            placeholder={t("more.ask.placeholder")}
             placeholderTextColor={ink.muted}
             multiline
-            onSubmitEditing={submit}
+            maxLength={1000}
             style={[styles.input, getDirectionalTextStyle(language)]}
           />
           <Pressable
@@ -158,7 +290,7 @@ export function AskScreen({
             accessibilityLabel={t("more.ask.send")}
             accessibilityState={{ disabled: !canSend }}
             disabled={!canSend}
-            onPress={submit}
+            onPress={() => send(draft)}
             hitSlop={4}
             style={[styles.send, canSend ? styles.sendReady : null]}
           >
@@ -169,69 +301,232 @@ export function AskScreen({
             />
           </Pressable>
         </Row>
-        <Type variant="caption" color="muted">
-          {t("more.ask.composerNote")}
-        </Type>
-        {shown?.kind === "free" ? (
-          <AnswerSlip
-            key={shown.question}
-            question={isolate(shown.question)}
-            answer={fill(t("more.ask.fallback"), values)}
-            source={t("more.ask.fallbackSource")}
-          >
-            <Action
-              label={fill(t("more.ask.message"), values)}
-              glyph="messages"
-              variant="ink"
-              onPress={onMessageTherapist}
-            />
-          </AnswerSlip>
-        ) : (
-          <Action
-            label={fill(t("more.ask.message"), values)}
-            glyph="messages"
-            variant="quiet"
-            onPress={onMessageTherapist}
-            style={styles.message}
-          />
-        )}
-      </Animated.View>
+        {empty ? (
+          <Type variant="caption" color="muted" style={styles.footnote}>
+            {fill(t("more.ask.footnote"), values)}
+          </Type>
+        ) : null}
+      </View>
     </ScreenContainer>
   );
 }
 
+function Answer({
+  reply,
+  therapistLabel,
+  onNavigate,
+  onMessageTherapist,
+}: {
+  reply: AskReply;
+  therapistLabel: string;
+  onNavigate: (destination: AskDestination) => void;
+  onMessageTherapist: () => void;
+}) {
+  const { t } = useLanguage();
+  return (
+    <Animated.View
+      entering={rise}
+      style={styles.answer}
+      accessibilityLiveRegion="polite"
+    >
+      <View style={styles.answerMark}>
+        <Glyph name="spark" color={cf.tab.mossInk} size={16} />
+      </View>
+      <View style={[styles.flex, styles.answerBody]}>
+        <Type variant="body" selectable>
+          {reply.answer}
+        </Type>
+        {reply.action || reply.askTherapist ? (
+          <Row wrap gap={space.sm}>
+            {reply.action ? (
+              <Action
+                label={t(`more.ask.go.${reply.action}`)}
+                trailingGlyph="chevron"
+                variant="ink"
+                size="small"
+                onPress={() => onNavigate(reply.action as AskDestination)}
+              />
+            ) : null}
+            {reply.askTherapist ? (
+              <Action
+                label={therapistLabel}
+                glyph="messages"
+                variant="outline"
+                size="small"
+                onPress={onMessageTherapist}
+              />
+            ) : null}
+          </Row>
+        ) : null}
+      </View>
+    </Animated.View>
+  );
+}
+
+function Thinking({ label }: { label: string }) {
+  return (
+    <Animated.View
+      entering={FadeIn.duration(200)}
+      style={styles.answer}
+      accessible
+      accessibilityLabel={label}
+      accessibilityLiveRegion="polite"
+    >
+      <View style={styles.answerMark}>
+        <Glyph name="spark" color={cf.tab.mossInk} size={16} />
+      </View>
+      <Row gap={5} style={styles.dots}>
+        {[0, 1, 2].map((index) => (
+          <Dot key={index} index={index} />
+        ))}
+      </Row>
+    </Animated.View>
+  );
+}
+
+function Dot({ index }: { index: number }) {
+  const reduced = useReducedMotion();
+  const opacity = useSharedValue(0.35);
+  useEffect(() => {
+    if (reduced) return;
+    opacity.set(
+      withDelay(
+        index * 160,
+        withRepeat(
+          withSequence(
+            withTiming(1, { duration: 360 }),
+            withTiming(0.35, { duration: 360 }),
+          ),
+          -1,
+        ),
+      ),
+    );
+  }, [index, opacity, reduced]);
+  const style = useAnimatedStyle(() => ({ opacity: opacity.value }));
+  return <Animated.View style={[styles.dot, style]} />;
+}
+
 const styles = StyleSheet.create({
   flex: { flex: 1 },
-  section: { gap: space.sm },
-  ruled: { borderTopColor: surface.rule, borderTopWidth: 1 },
-  question: { minHeight: 56, justifyContent: "center", paddingVertical: 16 },
-  chevron: { paddingTop: 2 },
-  flip: { transform: [{ rotate: "180deg" }] },
-  answer: { paddingBottom: space.lg },
-  ownSection: { gap: space.sm, paddingTop: space.lg },
-  composer: {
-    backgroundColor: surface.sunk,
-    borderRadius: corner.lg,
-    paddingEnd: 6,
-    paddingStart: space.md,
-    paddingVertical: 6,
-  },
-  input: {
-    color: ink.primary,
-    flex: 1,
-    fontSize: 15,
-    lineHeight: 22,
-    minHeight: 44,
-    paddingTop: 11,
-    textAlignVertical: "top",
-  },
-  send: {
+  screen: { gap: 0, paddingHorizontal: 0 },
+  bar: {
     alignItems: "center",
+    justifyContent: "space-between",
+    paddingBottom: space.sm,
+    paddingHorizontal: space.gutter,
+  },
+  barTitle: { flex: 1, textAlign: "center" },
+  round: {
+    alignItems: "center",
+    backgroundColor: surface.sunk,
     borderRadius: 22,
     height: 44,
     justifyContent: "center",
     width: 44,
   },
+  roundSpacer: { height: 44, width: 44 },
+  pressed: { opacity: 0.7 },
+  thread: {
+    gap: space.xl,
+    paddingBottom: space.lg,
+    paddingHorizontal: space.gutter,
+    paddingTop: space.md,
+  },
+  threadEmpty: { flexGrow: 1, justifyContent: "flex-end" },
+  welcome: { gap: space.xl },
+  mark: {
+    alignItems: "center",
+    backgroundColor: cf.tab.mossWash,
+    borderRadius: corner.lg,
+    height: 52,
+    justifyContent: "center",
+    width: 52,
+  },
+  welcomeCopy: { gap: space.sm },
+  starters: { gap: space.sm },
+  starter: {
+    alignItems: "center",
+    backgroundColor: surface.raised,
+    borderColor: surface.rule,
+    borderRadius: corner.md,
+    borderWidth: 1,
+    flexDirection: "row",
+    gap: space.md,
+    minHeight: 52,
+    paddingHorizontal: space.lg,
+    paddingVertical: 14,
+  },
+  mine: {
+    alignSelf: "flex-end",
+    backgroundColor: surface.board,
+    borderBottomEndRadius: 6,
+    borderRadius: corner.lg,
+    maxWidth: "84%",
+    paddingHorizontal: space.lg,
+    paddingVertical: 11,
+  },
+  mineText: { color: cf.pressboard.ink },
+  answer: { flexDirection: "row", gap: space.md },
+  answerMark: {
+    alignItems: "center",
+    backgroundColor: cf.tab.mossWash,
+    borderRadius: 14,
+    height: 28,
+    justifyContent: "center",
+    marginTop: 1,
+    width: 28,
+  },
+  answerBody: { gap: space.md },
+  dots: { alignItems: "center", height: 28 },
+  dot: {
+    backgroundColor: ink.muted,
+    borderRadius: 4,
+    height: 8,
+    width: 8,
+  },
+  failure: {
+    alignItems: "center",
+    backgroundColor: surface.sunk,
+    borderRadius: corner.md,
+    flexDirection: "row",
+    gap: space.md,
+    padding: space.md,
+  },
+  dock: {
+    borderTopColor: surface.rule,
+    borderTopWidth: StyleSheet.hairlineWidth,
+    gap: space.sm,
+    paddingHorizontal: space.gutter,
+    paddingTop: space.md,
+  },
+  composer: {
+    backgroundColor: surface.raised,
+    borderColor: surface.ruleStrong,
+    borderRadius: 26,
+    borderWidth: 1,
+    paddingEnd: 5,
+    paddingStart: space.lg,
+    paddingVertical: 5,
+  },
+  input: {
+    color: ink.primary,
+    flex: 1,
+    fontSize: 16,
+    lineHeight: 22,
+    maxHeight: 120,
+    minHeight: 42,
+    paddingBottom: 10,
+    paddingTop: 10,
+    textAlignVertical: "top",
+  },
+  send: {
+    alignItems: "center",
+    backgroundColor: surface.sunk,
+    borderRadius: 21,
+    height: 42,
+    justifyContent: "center",
+    width: 42,
+  },
   sendReady: { backgroundColor: surface.board },
-  message: { alignSelf: "flex-start", paddingHorizontal: 0 },
+  footnote: { textAlign: "center" },
 });

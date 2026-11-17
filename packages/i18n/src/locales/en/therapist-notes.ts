@@ -11,12 +11,15 @@ export const enTherapistNotes = {
   "notes.composer.titlePlaceholder.observation": "What you noticed",
   "notes.composer.titlePlaceholder.plan": "Plan update",
   "notes.composer.body": "Entry",
-  "notes.composer.bodyPlaceholder.observation": "What you saw in the home logs or the room, in plain words.",
-  "notes.composer.bodyPlaceholder.plan": "What changes, for whom, and when you will review it.",
+  "notes.composer.bodyPlaceholder.observation":
+    "What you saw in the home logs or the room, in plain words.",
+  "notes.composer.bodyPlaceholder.plan":
+    "What changes, for whom, and when you will review it.",
   "notes.composer.prompt.observed": "What I observed",
   "notes.composer.prompt.practiced": "What we practiced",
   "notes.composer.prompt.home": "Plan for home",
-  "notes.composer.promptHint.observed": "Regulation, engagement, what stood out",
+  "notes.composer.promptHint.observed":
+    "Regulation, engagement, what stood out",
   "notes.composer.promptHint.practiced": "Skills, supports, how many prompts",
   "notes.composer.promptHint.home": "One or two things the family can try",
   "notes.composer.save": "File entry",
@@ -37,6 +40,7 @@ export const enTherapistNotes = {
   "notes.list.openFile": "Open {name}'s file",
   "notes.pin": "Pin to file",
   "notes.empty.title": "Nothing filed here yet",
-  "notes.empty.body": "No entries match this file and kind. Widen the filters, or start one above.",
+  "notes.empty.body":
+    "No entries match this file and kind. Widen the filters, or start one above.",
   "notes.empty.reset": "Show all entries",
 } as const;

@@ -30,7 +30,9 @@ export const arParentSurveys = {
   "checkin.sent.stamp": "أُرسل إلى {name}",
   "checkin.sent.stampPlain": "أُرسل",
   "checkin.sent.title": "شكرًا لكم.",
-  "checkin.sent.detail": "ستقرأ {name} هذا قبل الجلسة القادمة. لا شيء آخر عليكم فعله.",
-  "checkin.sent.detailPlain": "ستقرأ المعالجة هذا قبل الجلسة القادمة. لا شيء آخر عليكم فعله.",
+  "checkin.sent.detail":
+    "ستقرأ {name} هذا قبل الجلسة القادمة. لا شيء آخر عليكم فعله.",
+  "checkin.sent.detailPlain":
+    "ستقرأ المعالجة هذا قبل الجلسة القادمة. لا شيء آخر عليكم فعله.",
   "checkin.sent.home": "العودة إلى الرئيسية",
 } as const satisfies Record<keyof typeof enParentSurveys, string>;

@@ -2,7 +2,8 @@ import type { enTherapistReports } from "../en/therapist-reports";
 
 export const heTherapistReports = {
   "reports.title": "דוחות",
-  "reports.summary": "טיוטות שמחכות לך: {drafts}. מוכנים לשליחה: {ready}. כבר שותפו עם משפחות וצוותים: {shared}.",
+  "reports.summary":
+    "טיוטות שמחכות לך: {drafts}. מוכנים לשליחה: {ready}. כבר שותפו עם משפחות וצוותים: {shared}.",
   "reports.prepare": "הכנת דוח",
   "reports.list.label": "מסמכי דוחות",
   "reports.status.draft": "טיוטה",
@@ -20,16 +21,20 @@ export const heTherapistReports = {
   "reports.doc.audience": "הוכן עבור",
   "reports.doc.age": "בן/בת {age}",
   "reports.doc.summaryTitle": "מה עולה מהתיעוד בבית",
-  "reports.doc.summary": "בין {from} ל-{to} המשפחה תיעדה {count} רגעים. {high} היו בעוצמה גבוהה, {moderate} בינונית ו-{low} נמוכה. אחרי שיא, {name} נרגע/ה בדרך כלל תוך {recovery} דקות.",
-  "reports.doc.summaryNone": "לא תועדו רגעים בבית עבור {name} בתקופה זו. נתוני הדוגמה מכסים רק את 28 הימים האחרונים.",
+  "reports.doc.summary":
+    "בין {from} ל-{to} המשפחה תיעדה {count} רגעים. {high} היו בעוצמה גבוהה, {moderate} בינונית ו-{low} נמוכה. אחרי שיא, {name} נרגע/ה בדרך כלל תוך {recovery} דקות.",
+  "reports.doc.summaryNone":
+    "לא תועדו רגעים בבית עבור {name} בתקופה זו. נתוני הדוגמה מכסים רק את 28 הימים האחרונים.",
   "reports.doc.coverage": "תיעוד מהבית זמין החל מ-{from}.",
   "reports.doc.events": "רגעים שתועדו",
   "reports.doc.highShare": "עוצמה גבוהה",
   "reports.doc.recovery": "חציון התאוששות",
   "reports.doc.barcodeTitle": "תיעוד יומי, 28 הימים האחרונים",
-  "reports.doc.barcodeNote": "סימן אחד לכל רגע שתועד. סימן גבוה וכהה יותר מעיד על עוצמה גבוהה יותר.",
+  "reports.doc.barcodeNote":
+    "סימן אחד לכל רגע שתועד. סימן גבוה וכהה יותר מעיד על עוצמה גבוהה יותר.",
   "reports.doc.triggersTitle": "מה נטה לקרות קודם",
-  "reports.doc.triggersNote": "הגורמים המקדימים המובילים, מתוך כלל הרגעים שתועדו",
+  "reports.doc.triggersNote":
+    "הגורמים המקדימים המובילים, מתוך כלל הרגעים שתועדו",
   "reports.doc.helpedTitle": "מה עזר",
   "reports.doc.helpedNone": "לא תועדו תמיכות בתקופה זו.",
   "reports.doc.helpedRow": "{support} עזר/ה להירגע {worked} מתוך {uses} פעמים.",
@@ -44,9 +49,11 @@ export const heTherapistReports = {
   "reports.share.done": "שותף. העותק עבור {audience} בדרך.",
   "reports.markReady": "סימון כמוכן",
   "reports.download": "הורדת PDF",
-  "reports.download.helper": "ייצוא ל-PDF יתאפשר כשהרשומות יחוברו. בינתיים, העמוד הזה הוא המסמך.",
+  "reports.download.helper":
+    "ייצוא ל-PDF יתאפשר כשהרשומות יחוברו. בינתיים, העמוד הזה הוא המסמך.",
   "reports.composer.title": "הכנת דוח",
-  "reports.composer.description": "טיוטה חדשה נבנית מתיעוד המשפחה בבית לתקופה שבחרת.",
+  "reports.composer.description":
+    "טיוטה חדשה נבנית מתיעוד המשפחה בבית לתקופה שבחרת.",
   "reports.composer.child": "ילד/ה",
   "reports.composer.period": "תקופה",
   "reports.composer.audience": "הוכן עבור",
